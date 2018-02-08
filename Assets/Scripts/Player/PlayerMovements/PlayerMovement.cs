@@ -1,17 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
+[RequireComponent(typeof(Rigidbody))]
 [System.Serializable]
 public class PlayerMovement : MonoBehaviour {
-	[SerializeField]
-	protected float speed = 3.5f;
+    [SerializeField]
+    protected float speed = 4.5f;
+    protected Rigidbody rb;
 
-	public virtual void Start () {
+	protected virtual void Start () {
+        rb = GetComponent<Rigidbody>();
 	}
 
 
-	public virtual void Update () {
+	protected virtual void Update () {
+        
 	}
+
+    protected virtual void FixedUpdate () {
+        
+    }
+
+    protected virtual void MoveInDirection(Vector3 direction) {
+        rb.MovePosition(transform.position + direction * speed * Time.deltaTime);
+    }
 }

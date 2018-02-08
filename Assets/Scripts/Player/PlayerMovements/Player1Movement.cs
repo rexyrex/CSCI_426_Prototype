@@ -3,30 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player1Movement : PlayerMovement {
+    protected override void Start () {
+        base.Start();
 
-	// Use this for initialization
-	public override void Start () {
-		base.Start ();
-	}
-	
-	// Update is called once per frame
-	public override void Update () {
-		base.Update ();
+        speed = 4.0f;
+    }
 
-		if (Input.GetKey (KeyCode.W)) {
-			transform.Translate (Vector3.forward * speed * Time.deltaTime);
-		}
+    protected override void FixedUpdate() {
+        if (Input.GetKey(KeyCode.W))
+            MoveInDirection(Vector3.forward);
 
-		if (Input.GetKey (KeyCode.S)) {
-			transform.Translate (Vector3.back * speed * Time.deltaTime);
-		}
+        if (Input.GetKey(KeyCode.S))
+            MoveInDirection(Vector3.back);
 
-		if (Input.GetKey (KeyCode.A)) {
-			transform.Translate (Vector3.left * speed * Time.deltaTime);
-		}
+        if (Input.GetKey(KeyCode.A))
+            MoveInDirection(Vector3.left);
 
-		if (Input.GetKey (KeyCode.D)) {
-			transform.Translate (Vector3.right * speed * Time.deltaTime);
-		}
-	}
+        if (Input.GetKey(KeyCode.D))
+            MoveInDirection(Vector3.right);
+    }
 }
