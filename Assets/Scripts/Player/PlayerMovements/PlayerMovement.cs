@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerMovement : MonoBehaviour {
     [SerializeField]
-    protected float speed = 4.5f;
+    protected float speed = -1.0f;
     protected Rigidbody rb;
 
 	protected virtual void Start () {
@@ -23,6 +23,11 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     protected virtual void MoveInDirection(Vector3 direction) {
-        rb.MovePosition(transform.position + direction * speed * Time.deltaTime);
+        if (speed < 0.0f)
+            throw new System.ArgumentNullException("speed has not been set to " +
+                                                   "a value in movement script");
+
+        var pos = transform.position + direction * (float)speed * Time.deltaTime;
+        rb.MovePosition(pos);
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Player1Movement : PlayerMovement {
     protected override void Start () {
         base.Start();
-
-        speed = 4.0f;
+        if (speed < -0.0f)
+            speed = 7.5f;
     }
 
     protected override void FixedUpdate() {

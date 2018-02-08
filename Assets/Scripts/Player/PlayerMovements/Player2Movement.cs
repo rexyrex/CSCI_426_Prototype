@@ -6,7 +6,8 @@ public class Player2Movement : PlayerMovement {
     protected override void Start() {
         base.Start();
 
-        speed = 7.5f;
+        if (speed < 0.0f)
+            speed = 4.0f;
     }
 
     protected override void FixedUpdate() {
