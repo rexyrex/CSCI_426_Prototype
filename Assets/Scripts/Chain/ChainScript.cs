@@ -56,7 +56,7 @@ public class ChainScript : MonoBehaviour {
         } 
 
 
-        float width = dist/20;
+        float width = 1-dist*0.1f;
 
         if (width > 0.7f)
         {
