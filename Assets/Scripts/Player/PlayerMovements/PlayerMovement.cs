@@ -3,45 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[System.Serializable]
 public class PlayerMovement : MonoBehaviour {
-    NavMeshAgent playerAgent;
+	[SerializeField]
+	float speed = 3.5f;
 
-    void Start () {
-        playerAgent = GetComponent<NavMeshAgent>();
-    }
-	
+	[SerializeField]
+	public Keys keys;
+	public enum Keys { WASD, ARROWS };
+	KeyCode up, down, left, right;
 
-	void Update () {
-		
+	void Start () {
+		if (keys == Keys.WASD) {
+			up = KeyCode.W;
+			down = KeyCode.S;
+			left = KeyCode.A;
+			right = KeyCode.D;
+		} else if (keys == Keys.ARROWS) {
+			up = KeyCode.UpArrow;
+			down = KeyCode.DownArrow;
+			left = KeyCode.LeftArrow;
+			right = KeyCode.RightArrow;
+		}
 	}
 
-    void FixedUpdate()
-    {
 
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+	void Update () {
+		if (Input.GetKey (up)) {
+			transform.Translate (Vector3.forward * speed * Time.deltaTime);
+		}
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        //if (!playerAgent.pathPending) {
-        //if (!isJumping) {
-        //if (!GlobalPlayerData.gpd.isPaused())
-        //{
+		if (Input.GetKey (down)) {
+			transform.Translate (Vector3.back * speed * Time.deltaTime);
+		}
 
-            playerAgent.destination = playerAgent.transform.position + movement;
-        //}
-        //}
-        //}
-        //rb.MovePosition (rb.position + speed*movement * Time.deltaTime);
+		if (Input.GetKey (left)) {
+			transform.Translate (Vector3.left * speed * Time.deltaTime);
+		}
 
-        //rb.AddForce (movement * speed);
-
-        /*if (Input.GetKeyDown (KeyCode.Space)) {
-
-		} else {
-			isJumping = false;
-			playerAgent.enabled = true;
-		}*/
-
-
-    }
+		if (Input.GetKey (right)) {
+			transform.Translate (Vector3.right * speed * Time.deltaTime);
+		}
+	}
 }
