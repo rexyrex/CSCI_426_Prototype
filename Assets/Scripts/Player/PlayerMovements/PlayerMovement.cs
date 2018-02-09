@@ -33,19 +33,19 @@ public class PlayerMovement : MonoBehaviour {
             throw new System.ArgumentNullException("speed has not been set to " +
                                                    "a value in movement script");
 
-        var pos = transform.position + direction * (float)speed * Time.deltaTime;
+        var pos = transform.position + direction * speed * Time.deltaTime;
         rb.MovePosition(pos);
     }
 
     protected void TurnToward(Vector3 target) {
-        var targetDirection = target - transform.position;
-        var forward = transform.forward;
-        var localTarget = transform.InverseTransformPoint(target);
+        Vector3 targetDirection = target - transform.position;
+        Vector3 forward = transform.forward;
+        Vector3 localTarget = transform.InverseTransformPoint(target);
 
-        var angle = Mathf.Atan2(localTarget.x, localTarget.z) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(localTarget.x, localTarget.z) * Mathf.Rad2Deg;
 
-        var eulerAngleVelocity = rotationSpeedScale * new Vector3(0, angle, 0);
-        var deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.fixedDeltaTime);
+        Vector3 eulerAngleVelocity = rotationSpeedScale * new Vector3(0, angle, 0);
+        Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.fixedDeltaTime);
         rb.MoveRotation(rb.rotation * deltaRotation);
     }
 }
