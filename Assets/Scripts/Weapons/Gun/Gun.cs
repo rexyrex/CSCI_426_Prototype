@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun : MonoBehaviour {
+    [SerializeField]
+
 
 	// Use this for initialization
 	protected virtual void Start () {
