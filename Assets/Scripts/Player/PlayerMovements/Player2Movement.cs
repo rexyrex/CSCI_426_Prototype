@@ -11,16 +11,6 @@ public class Player2Movement : PlayerMovement {
     }
 
     protected override void FixedUpdate() {
-        if (Input.GetKey(KeyCode.UpArrow))
-            MoveInDirection(Vector3.forward);
-
-        if (Input.GetKey(KeyCode.DownArrow))
-            MoveInDirection(Vector3.back);
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-            MoveInDirection(Vector3.left);
-
-        if (Input.GetKey(KeyCode.RightArrow))
-            MoveInDirection(Vector3.right);
+        MoveInDirection(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
     }
 }

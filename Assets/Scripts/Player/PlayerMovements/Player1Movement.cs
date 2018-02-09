@@ -10,16 +10,6 @@ public class Player1Movement : PlayerMovement {
     }
 
     protected override void FixedUpdate() {
-        if (Input.GetKey(KeyCode.W))
-            MoveInDirection(Vector3.forward);
-
-        if (Input.GetKey(KeyCode.S))
-            MoveInDirection(Vector3.back);
-
-        if (Input.GetKey(KeyCode.A))
-            MoveInDirection(Vector3.left);
-
-        if (Input.GetKey(KeyCode.D))
-            MoveInDirection(Vector3.right);
+        MoveInDirection(Input.GetAxis("Horizontal1"), 0, Input.GetAxis("Vertical1"));
     }
 }

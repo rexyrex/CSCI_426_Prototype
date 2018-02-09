@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour {
         
     }
 
+    protected virtual void MoveInDirection(float x, float y, float z) {
+        MoveInDirection(new Vector3(x, y, z));
+    }
+
     protected virtual void MoveInDirection(Vector3 direction) {
         if (speed < 0.0f)
             throw new System.ArgumentNullException("speed has not been set to " +
