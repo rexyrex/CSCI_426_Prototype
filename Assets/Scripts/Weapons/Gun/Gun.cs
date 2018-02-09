@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Base component for guns.
+/// </summary>
 [System.Serializable]
 public class Gun : MonoBehaviour {
     public float damage = 1.0f;

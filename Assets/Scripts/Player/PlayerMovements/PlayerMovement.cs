@@ -24,19 +24,35 @@ public class PlayerMovement : MonoBehaviour {
         
     }
 
+    /// <summary>
+    /// Moves the player character along the given direction vector using the
+    /// rigidbody. Wrapper for MoveInDirection(Vector3 direction)
+    /// </summary>
+    /// <param name="x">The x coordinate.</param>
+    /// <param name="y">The y coordinate.</param>
+    /// <param name="z">The z coordinate.</param>
     protected virtual void MoveInDirection(float x, float y, float z) {
         MoveInDirection(new Vector3(x, y, z));
     }
 
+    /// <summary>
+    /// Moves the player character along the given direction vector using the
+    /// rigidbody.
+    /// </summary>
+    /// <param name="direction">The Direction.</param>
     protected void MoveInDirection(Vector3 direction) {
         if (speed < 0.0f)
             throw new System.ArgumentNullException("speed has not been set to " +
                                                    "a value in movement script");
 
-        var pos = transform.position + direction * speed * Time.deltaTime;
+        var pos = transform.position + direction * speed * Time.fixedDeltaTime;
         rb.MovePosition(pos);
     }
 
+    /// <summary>
+    /// Turns the player character toward a given point using the rigidbody.
+    /// </summary>
+    /// <param name="target">The target point.</param>
     protected void TurnToward(Vector3 target) {
         Vector3 targetDirection = target - transform.position;
         Vector3 forward = transform.forward;

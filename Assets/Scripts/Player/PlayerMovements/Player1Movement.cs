@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Movement script for player 1.
+/// </summary>
 public class Player1Movement : PlayerMovement {
     [SerializeField]
     protected Transform Player2;
@@ -13,6 +16,7 @@ public class Player1Movement : PlayerMovement {
     }
 
     protected override void FixedUpdate() {
+        // Which point in the game world is the cursor pointing to?
         Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit h;
 
