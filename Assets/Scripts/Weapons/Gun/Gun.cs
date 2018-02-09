@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Gun : MonoBehaviour {
-    [SerializeField]
+    public float damage = 1.0f;
+    public float range = 10.0f;
 
+    [SerializeField]
+    protected GunAimDelay gunAimDelay = null;
 
 	// Use this for initialization
 	protected virtual void Start () {
