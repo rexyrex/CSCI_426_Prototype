@@ -18,6 +18,7 @@ public class Gun : MonoBehaviour {
     protected GunAimDelay gunAimDelay;
 
     Transform bulletSpawner;
+    Rigidbody owner;
 
 	// Use this for initialization
 	protected virtual void Start () {
@@ -27,6 +28,7 @@ public class Gun : MonoBehaviour {
             Debug.Log("No rigidbody on projectile!");
 
         bulletSpawner = GetComponentInChildren<BulletSpawner>().transform;
+        owner = GetComponentInParent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -38,7 +40,7 @@ public class Gun : MonoBehaviour {
 
             // Propel the bullet
             Rigidbody rb = p.GetComponent<Rigidbody>();
-            rb.velocity = Vector3.Scale(transform.parent.GetComponent<Rigidbody>().velocity, transform.forward);
+            rb.velocity = Vector3.Project(owner.velocity, transform.forward);
             rb.AddForce(p.transform.forward * speed);
 
             // Destroy after we travel the given distance
