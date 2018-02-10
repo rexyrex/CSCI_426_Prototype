@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour {
-    [SerializeField]
-    protected Rigidbody projectile;
+    Rigidbody rb;
 
 	// Use this for initialization
-	protected void Start () {
-		
+	void Start () {
+        rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
-	protected void Update () {
+	void Update () {
 		
 	}
+
+    void OnCollisionEnter(Collision collision) {
+        Destroy(gameObject);
+    }
 }
