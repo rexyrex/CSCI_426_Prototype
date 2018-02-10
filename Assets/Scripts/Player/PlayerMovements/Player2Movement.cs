@@ -10,7 +10,7 @@ public class Player2Movement : PlayerMovement {
         base.Start();
 
         if (speed < 0.0f)
-            speed = 140.0f;
+            speed = 150.0f;
     }
 
     protected override void FixedUpdate() {

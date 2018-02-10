@@ -45,10 +45,7 @@ public class PlayerMovement : MonoBehaviour {
             throw new System.ArgumentNullException("speed has not been set to " +
                                                    "a value in movement script");
 
-        //var pos = transform.position + direction * speed * Time.fixedDeltaTime;
-        //rb.MovePosition(pos);
         rb.velocity = direction * speed * Time.fixedDeltaTime;
-        Debug.Log(rb.velocity);
     }
 
     /// <summary>
