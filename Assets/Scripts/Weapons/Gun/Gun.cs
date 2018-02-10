@@ -20,6 +20,8 @@ public class Gun : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected virtual void Update () {
-        
-	}
+        if (Input.GetButtonDown("Fire1")) {
+            Debug.Log("FIRE!");
+        }
+    }
 }

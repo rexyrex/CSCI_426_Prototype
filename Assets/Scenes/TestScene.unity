@@ -715,7 +715,22 @@ Prefab:
     - target: {fileID: 54497092797698730, guid: cfec364eeaf504888be447de5cee5b00,
         type: 2}
       propertyPath: m_Interpolate
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65209190333920762, guid: cfec364eeaf504888be447de5cee5b00,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54497092797698730, guid: cfec364eeaf504888be447de5cee5b00,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54497092797698730, guid: cfec364eeaf504888be447de5cee5b00,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114854652276342094, guid: cfec364eeaf504888be447de5cee5b00, type: 2}
@@ -1109,6 +1124,21 @@ Prefab:
       propertyPath: m_Interpolate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 54421536828006200, guid: a5ddb9d1f13c847cb8296b67c6d68b8f,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54421536828006200, guid: a5ddb9d1f13c847cb8296b67c6d68b8f,
+        type: 2}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54421536828006200, guid: a5ddb9d1f13c847cb8296b67c6d68b8f,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5ddb9d1f13c847cb8296b67c6d68b8f, type: 2}
   m_IsPrefabParent: 0
@@ -1431,7 +1461,7 @@ GameObject:
   - component: {fileID: 1248076895}
   - component: {fileID: 1248076894}
   m_Layer: 0
-  m_Name: dummyforward
+  m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2102,8 +2132,9 @@ GameObject:
   - component: {fileID: 2092829125}
   - component: {fileID: 2092829124}
   - component: {fileID: 2092829123}
+  - component: {fileID: 2092829126}
   m_Layer: 0
-  m_Name: dummyforward
+  m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2175,3 +2206,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2092829121}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2092829126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2092829121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8164b8ff4de9400791c2c8cb91324ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  range: 10
+  gunAimDelay: {fileID: 0}

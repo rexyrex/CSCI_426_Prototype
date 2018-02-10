@@ -6,13 +6,10 @@ using UnityEngine;
 /// Movement script for player 1.
 /// </summary>
 public class Player1Movement : PlayerMovement {
-    [SerializeField]
-    protected Transform Player2;
-
     protected override void Start () {
         base.Start();
         if (speed < -0.0f)
-            speed = 7.5f;
+            speed = 175.0f;
     }
 
     protected override void FixedUpdate() {
