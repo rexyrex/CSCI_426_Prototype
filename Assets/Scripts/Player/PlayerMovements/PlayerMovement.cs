@@ -6,7 +6,10 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerMovement : MonoBehaviour {
     [SerializeField]
-    protected float speed = -1.0f;
+    public float speed;
+    public float maxSpeed;
+    public float acceleration;
+    public float jumpHeight;
     protected Rigidbody rb;
     [SerializeField]
     protected float rotationSpeedScale = 20.0f;
