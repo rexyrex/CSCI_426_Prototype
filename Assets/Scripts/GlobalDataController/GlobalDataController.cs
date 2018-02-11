@@ -21,6 +21,9 @@ public class GlobalDataController : MonoBehaviour {
     public float currentMana;
     private float defaultMana = 40f;
 
+    public bool tooFar;
+    public float decayRate;
+
     void Awake()
     {
         if (gdc == null)
@@ -41,12 +44,19 @@ public class GlobalDataController : MonoBehaviour {
         p1currentHealth = p1defaultHealth;
         p2currentHealth = p2defaultHealth;
         currentMana = defaultMana;
-
+        tooFar = false;
     }
 
     public void UpdatePlayerStats()
     {
 
+    }
+
+    public static void TetherBreak()
+    {
+        gdc.currentMana = 0;
+        gdc.p1currentHealth -= gdc.p1maxHealth * gdc.decayRate * Time.deltaTime;
+        gdc.p2currentHealth -= gdc.p2maxHealth * gdc.decayRate * Time.deltaTime;
     }
 
     void Start () {

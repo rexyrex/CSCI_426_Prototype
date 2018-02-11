@@ -15,8 +15,6 @@ public class ChainScript : MonoBehaviour {
 
     bool isChainActive;
 
-    
-
 	// Use this for initialization
 	void Start () {
         lineRenderer = GetComponent<LineRenderer>();
@@ -28,44 +26,35 @@ public class ChainScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(GlobalDataController.gdc.currentMana >= 100)
-        {
+        //Activating and Deactivating the Chain
+        if(GlobalDataController.gdc.currentMana >= 100){
             isChainActive = true;
-
         }
-
-        if (isChainActive && GlobalDataController.gdc.currentMana >=0)
-        {
+        if (isChainActive && GlobalDataController.gdc.currentMana >=0){
             GlobalDataController.gdc.currentMana -= 0.17f;
             lineRenderer.material = activeMat;
-
-        } else
-        {
+        } else{
             isChainActive = false;
             lineRenderer.material = inactiveMat;
         }
 
+        //Determining the length of the chain
         float dist = Vector3.Distance(p1Trans.position, p2Trans.position);
-
-        if (dist > 10)
-        {
-            Debug.Log("Too Far");
-            isChainActive = false;
-            GlobalDataController.gdc.currentMana = 1;
-            lineRenderer.material = toofarMat;
-        } 
-
-
-        float width = 1-dist*0.1f;
-
-        if (width > 0.7f)
-        {
+        float width = 1 - dist * 0.1f;
+        if (width > 0.7f){
             width = 0.7f;
         }
+        else if (width < 0){
+            width = 0;
+        }
 
-        //Debug.Log(dist);
-        //lineRenderer.startWidth = 0.5f;
-        //lineRenderer.endWidth = 0.5f;
+        //If the players are too far apart...
+        if (width<=0){
+            GlobalDataController.TetherBreak();
+            isChainActive = false;
+            //GlobalDataController.gdc.currentMana = 1;
+            //lineRenderer.material = toofarMat;
+        }
         
         lineRenderer.SetWidth(width, width);
         
