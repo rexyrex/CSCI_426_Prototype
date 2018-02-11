@@ -21,15 +21,13 @@ public class GenericPlayerScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update () {
         manaBar.value = GlobalDataController.gdc.currentMana/100;
-
         healthBar.value = currentHealth / 100;
-
     }
 
 
-    void OnCollisionEnter(Collision col)
+    protected void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "SphereTag")
         {
@@ -50,12 +48,8 @@ public class GenericPlayerScript : MonoBehaviour {
         }
     }
 
-    public void Damage(float value)
+    public virtual void Damage(float value)
     {
-        currentHealth -= value;
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 }

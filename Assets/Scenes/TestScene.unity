@@ -735,7 +735,7 @@ Prefab:
     - target: {fileID: 54497092797698730, guid: cfec364eeaf504888be447de5cee5b00,
         type: 2}
       propertyPath: m_Mass
-      value: 55
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114950209733837994, guid: cfec364eeaf504888be447de5cee5b00,
         type: 2}
@@ -747,8 +747,24 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 54497092797698730, guid: cfec364eeaf504888be447de5cee5b00,
+        type: 2}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114584779585362086, guid: cfec364eeaf504888be447de5cee5b00,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54497092797698730, guid: cfec364eeaf504888be447de5cee5b00,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114854652276342094, guid: cfec364eeaf504888be447de5cee5b00, type: 2}
+    - {fileID: 114584779585362086, guid: cfec364eeaf504888be447de5cee5b00, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: cfec364eeaf504888be447de5cee5b00, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &568590610
@@ -835,6 +851,27 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &635136465 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1539675856249624, guid: cfec364eeaf504888be447de5cee5b00,
+    type: 2}
+  m_PrefabInternal: {fileID: 541015276}
+--- !u!114 &635136472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 635136465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b971216b91b744e81d046b9371c462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
+  maxHealth: 100
+  defaultHealth: 100
+  manaBar: {fileID: 209468527}
+  healthBar: {fileID: 568590612}
 --- !u!1 &641698395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,6 +1195,11 @@ Prefab:
         type: 2}
       propertyPath: m_Mass
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 114548764189831252, guid: a5ddb9d1f13c847cb8296b67c6d68b8f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5ddb9d1f13c847cb8296b67c6d68b8f, type: 2}
@@ -1660,6 +1702,27 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1330395713}
+--- !u!1 &1342087251 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1859126393030344, guid: a5ddb9d1f13c847cb8296b67c6d68b8f,
+    type: 2}
+  m_PrefabInternal: {fileID: 795861090}
+--- !u!114 &1342087258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1342087251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144eaa22a44a03945be5a04563d0f847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
+  maxHealth: 100
+  defaultHealth: 100
+  manaBar: {fileID: 209468527}
+  healthBar: {fileID: 1106355771}
 --- !u!1 &1524862100
 GameObject:
   m_ObjectHideFlags: 0
