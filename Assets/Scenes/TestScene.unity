@@ -740,7 +740,7 @@ Prefab:
     - target: {fileID: 114950209733837994, guid: cfec364eeaf504888be447de5cee5b00,
         type: 2}
       propertyPath: speed
-      value: -1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114950209733837994, guid: cfec364eeaf504888be447de5cee5b00,
         type: 2}
@@ -1184,7 +1184,7 @@ Prefab:
     - target: {fileID: 54421536828006200, guid: a5ddb9d1f13c847cb8296b67c6d68b8f,
         type: 2}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 54421536828006200, guid: a5ddb9d1f13c847cb8296b67c6d68b8f,
         type: 2}
@@ -1194,12 +1194,17 @@ Prefab:
     - target: {fileID: 54421536828006200, guid: a5ddb9d1f13c847cb8296b67c6d68b8f,
         type: 2}
       propertyPath: m_Mass
-      value: 120
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114548764189831252, guid: a5ddb9d1f13c847cb8296b67c6d68b8f,
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114494865351799334, guid: a5ddb9d1f13c847cb8296b67c6d68b8f,
+        type: 2}
+      propertyPath: speed
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5ddb9d1f13c847cb8296b67c6d68b8f, type: 2}

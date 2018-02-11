@@ -9,7 +9,7 @@ public class Player1Movement : PlayerMovement {
     protected override void Start () {
         base.Start();
         if (speed < 0.0f)
-            speed = 200.0f;
+            speed = 20.0f;
     }
 
     protected override void FixedUpdate() {
@@ -20,32 +20,29 @@ public class Player1Movement : PlayerMovement {
         if (Physics.Raycast(r, out h, 500.0f, LayerMask.NameToLayer("Environment")))
             TurnToward(h.point);
 
-        MoveInDirection(Input.GetAxis("Horizontal1"), 0, Input.GetAxis("Vertical1"));
+        float moveHorizontal = Input.GetAxis("Horizontal1");
+        float moveVertical = Input.GetAxis("Vertical1");
 
+        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+
+        rb.AddForce(speed * movement);
 
         if (Input.GetButtonDown("Jump1"))
         {
-            
             Vector3 up = new Vector3(0.0f, 1.0f, 0.0f);
-            //rb.velocity = up*100;
-            rb.AddForce(up * 10, ForceMode.Impulse);
+            rb.AddForce(up * 5, ForceMode.Impulse);
         }
     }
         
     protected override void Update()
     {
         base.Update();
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y != 0)
         {
-            Debug.Log("fall 1");
-            //Vector3 down = new Vector3(0.0f, -1.0f, 0.0f);
-            //rb.AddForce(down * rb.velocity.y*-2000);
-            rb.velocity += new Vector3(0.0f, 1.0f, 0.0f) * Physics.gravity.y * 1500f * Time.deltaTime*100;
-        }
-        else if (!Input.GetButton("Jump1"))
-        {
-            Debug.Log("fall 2");
-            rb.velocity += new Vector3(0.0f, 1.0f, 0.0f) * Physics.gravity.y * 1.5f * Time.deltaTime*100;
+            if (!Input.GetButton("Jump1") || rb.velocity.y<0)
+            {
+                rb.velocity += new Vector3(0.0f, 1.0f, 0.0f) * Physics.gravity.y * 0.015f * Time.deltaTime * 100;
+            }
         }
     }
 }
