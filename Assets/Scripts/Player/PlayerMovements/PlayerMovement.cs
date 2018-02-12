@@ -50,7 +50,54 @@ public class PlayerMovement : MonoBehaviour {
             throw new System.ArgumentNullException("speed has not been set to " +
                                                    "a value in movement script");
 
-        if (pullIntensity < 1.0f)
+        //Making Movement Feel Nicer
+        if (direction.x > 0)
+        {
+            if (rb.velocity.x <= maxSpeed)
+            {
+                direction.x *= acceleration;
+            }
+            else
+            {
+                direction.x = acceleration * direction.x / rb.velocity.x;
+            }
+        }
+        if (direction.x < 0)
+        {
+            if (rb.velocity.x >= -1 * maxSpeed)
+            {
+                direction.x *= acceleration;
+            }
+            else
+            {
+                direction.x = -1 * acceleration * direction.x / rb.velocity.x;
+            }
+        }
+
+        if (direction.z > 0)
+        {
+            if (rb.velocity.z <= maxSpeed)
+            {
+                direction.z *= acceleration;
+            }
+            else
+            {
+                direction.z = acceleration * direction.z / rb.velocity.z;
+            }
+        }
+        if (direction.z < 0)
+        {
+            if (rb.velocity.z >= -1 * maxSpeed)
+            {
+                direction.z *= acceleration;
+            }
+            else
+            {
+                direction.z = -1 * acceleration * direction.z / rb.velocity.z;
+            }
+        }
+
+        if (pullIntensity > 0.0f)
         {
             GlobalDataController gdc = GlobalDataController.gdc;
             direction += (gdc.p2pos - gdc.p1pos) / 100 * pullIntensity;

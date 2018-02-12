@@ -27,57 +27,7 @@ public class Player2Movement : PlayerMovement {
             TurnToward(direction);
         }
 
-        float moveHorizontal = Input.GetAxis("Horizontal2");
-        float moveVertical = Input.GetAxis("Vertical2");
-        //Making Movement Feel Nicer
-        if (moveHorizontal > 0)
-        {
-            if (rb.velocity.x <= maxSpeed)
-            {
-                moveHorizontal *= acceleration;
-            }
-            else
-            {
-                moveHorizontal = acceleration * moveHorizontal / rb.velocity.x;
-            }
-        }
-        if (moveHorizontal < 0)
-        {
-            if (rb.velocity.x >= -1 * maxSpeed)
-            {
-                moveHorizontal *= acceleration;
-            }
-            else
-            {
-                moveHorizontal = -1 * acceleration * moveHorizontal / rb.velocity.x;
-            }
-        }
-
-        if (moveVertical > 0)
-        {
-            if (rb.velocity.z <= maxSpeed)
-            {
-                moveVertical *= acceleration;
-            }
-            else
-            {
-                moveVertical = acceleration * moveVertical / rb.velocity.z;
-            }
-        }
-        if (moveVertical < 0)
-        {
-            if (rb.velocity.z >= -1 * maxSpeed)
-            {
-                moveVertical *= acceleration;
-            }
-            else
-            {
-                moveVertical = -1 * acceleration * moveVertical / rb.velocity.z;
-            }
-        }
-
-        MoveInDirection(moveHorizontal, 0.0f, moveVertical);
-
+        MoveInDirection(Input.GetAxis("Horizontal2"), 0.0f, Input.GetAxis("Vertical2"));
 
         if (Input.GetButtonDown("Jump2"))
         {
@@ -91,7 +41,7 @@ public class Player2Movement : PlayerMovement {
             weapon.Fire(direction);
         }
 
-        GlobalDataController.gdc.p2pos = this.transform.position;
+        GlobalDataController.gdc.p2pos = transform.position;
     }
 
     protected override void Update()
