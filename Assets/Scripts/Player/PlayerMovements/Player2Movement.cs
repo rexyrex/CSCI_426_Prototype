@@ -6,10 +6,13 @@ using UnityEngine;
 /// Movement script for player 2.
 /// </summary>
 public class Player2Movement : PlayerMovement {
+    protected bool attacking;
+
     protected override void Start() {
         base.Start();
         if (speed < 0.0f)
-            speed = 150.0f;
+            speed = 15f;
+        attacking = false;
     }
 
     protected override void FixedUpdate() {
@@ -79,6 +82,11 @@ public class Player2Movement : PlayerMovement {
             rb.AddForce(up * jumpHeight, ForceMode.Impulse);
         }
 
+        if (Input.GetButtonDown("Fire2"))
+        {
+
+        }
+
         GlobalDataController.gdc.p2pos = this.transform.position;
     }
 
@@ -92,5 +100,10 @@ public class Player2Movement : PlayerMovement {
                 rb.velocity += new Vector3(0.0f, 1.0f, 0.0f) * Physics.gravity.y * 0.02f * Time.deltaTime * 100;
             }
         }
+    }
+
+    public bool IsAttacking()
+    {
+        return attacking;
     }
 }
