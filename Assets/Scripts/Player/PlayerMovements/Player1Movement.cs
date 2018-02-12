@@ -22,7 +22,7 @@ public class Player1Movement : PlayerMovement {
             TurnToward(h.point);
 
         //Moving the Player
-        Debug.Log(rb.velocity.x);
+        //Debug.Log(rb.velocity.x);
         float moveHorizontal = Input.GetAxis("Horizontal1");
         float moveVertical = Input.GetAxis("Vertical1");
         //Making Movement Feel Nicer

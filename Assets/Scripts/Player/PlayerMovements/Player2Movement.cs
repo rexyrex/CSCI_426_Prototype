@@ -6,13 +6,14 @@ using UnityEngine;
 /// Movement script for player 2.
 /// </summary>
 public class Player2Movement : PlayerMovement {
-    protected GameObject weapon;
+    protected chargeweapon weapon;
+    protected Vector3 direction;
 
     protected override void Start() {
         base.Start();
         if (speed < 0.0f)
             speed = 15f;
-        weapon = GameObject.FindGameObjectWithTag("ChargeWeapon");
+        weapon = GameObject.FindGameObjectWithTag("ChargeWeapon").GetComponent<chargeweapon>();
     }
 
     protected override void FixedUpdate() {
@@ -21,7 +22,12 @@ public class Player2Movement : PlayerMovement {
         RaycastHit h;
 
         if (Physics.Raycast(r, out h, 500.0f, LayerMask.NameToLayer("Environment")))
-            TurnToward(h.point);
+        {
+            direction = h.point;
+            TurnToward(direction);
+        }
+            
+        
 
         float moveHorizontal = Input.GetAxis("Horizontal2");
         float moveVertical = Input.GetAxis("Vertical2");
@@ -84,7 +90,8 @@ public class Player2Movement : PlayerMovement {
 
         if (Input.GetButtonDown("Fire2"))
         {
-            
+            Debug.Log("FIRE!");
+            weapon.Fire(direction);
         }
 
         GlobalDataController.gdc.p2pos = this.transform.position;

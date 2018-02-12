@@ -1671,6 +1671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4f243d001c1ae4d912362a5f8c63b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chargeDistance: 20
 --- !u!4 &1257788890 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4970194224906294, guid: a5ddb9d1f13c847cb8296b67c6d68b8f,
