@@ -38,8 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
-
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1442,9 +1441,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4026228351079660, guid: 7936cb252fa3d2d4f9262ab32fa72064, type: 2}
       propertyPath: m_RootOrder
-
       value: 12
-
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7936cb252fa3d2d4f9262ab32fa72064, type: 2}
@@ -1836,7 +1833,7 @@ MonoBehaviour:
   maxMana: 100
   currentMana: 0
   tooFar: 0
-  decayRate: 0
+  decayRate: 0.25
   tetherPull: 0
   p1pos: {x: 0, y: 0, z: 0}
   p2pos: {x: 0, y: 0, z: 0}
@@ -1920,8 +1917,8 @@ MonoBehaviour:
   inactiveMat: {fileID: 2100000, guid: a8d672264663574428c07cd932a6b3e5, type: 2}
   activeMat: {fileID: 2100000, guid: 75fd3840f7d8c754dacdfd007db055a4, type: 2}
   toofarMat: {fileID: 2100000, guid: 7c918432df9c24a45acc1c82d3523828, type: 2}
-  damageThreshold: 0
-  pullThreshold: 0
+  damageThreshold: 10
+  pullThreshold: 7
 --- !u!120 &1655909163
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -2060,7 +2057,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4484398612000830, guid: 1dbf91b582d83764186ed9889e8a1ee4, type: 2}
       propertyPath: m_RootOrder
-
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 54267010736444166, guid: 1dbf91b582d83764186ed9889e8a1ee4,
