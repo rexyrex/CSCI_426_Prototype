@@ -10,6 +10,7 @@ TagManager:
   - ManaTag
   - Sphere2Tag
   - Environment
+  - SizeChangeEnemyTag
   layers:
   - Default
   - TransparentFX
