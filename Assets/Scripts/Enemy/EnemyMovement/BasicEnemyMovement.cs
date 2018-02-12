@@ -22,15 +22,15 @@ public class BasicEnemyMovement : MonoBehaviour {
 
 	void FixedUpdate () {
        
-
-        if (Vector3.Distance(gameObject.transform.position, p1Trans.position) < Vector3.Distance(gameObject.transform.position, p2Trans.position)){
-            playerAgent.destination = p1Trans.position;
-        } else
-        {
-            playerAgent.destination = p2Trans.position;
-        }
-
-        
+		if (playerAgent.isActiveAndEnabled) {
+			if (Vector3.Distance(gameObject.transform.position, p1Trans.position) < Vector3.Distance(gameObject.transform.position, p2Trans.position)){
+				playerAgent.destination = p1Trans.position;
+			} else
+			{
+				playerAgent.destination = p2Trans.position;
+			}
+		}
+      
 
     }
 }
