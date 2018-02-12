@@ -26,8 +26,6 @@ public class Player2Movement : PlayerMovement {
             direction = h.point;
             TurnToward(direction);
         }
-            
-        
 
         float moveHorizontal = Input.GetAxis("Horizontal2");
         float moveVertical = Input.GetAxis("Vertical2");
@@ -78,9 +76,8 @@ public class Player2Movement : PlayerMovement {
             }
         }
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        MoveInDirection(moveHorizontal, 0.0f, moveVertical);
 
-        rb.AddForce(speed * movement);
 
         if (Input.GetButtonDown("Jump2"))
         {
@@ -100,7 +97,7 @@ public class Player2Movement : PlayerMovement {
     protected override void Update()
     {
         base.Update();
-        if (rb.velocity.y != 0)
+        if (Mathf.Approximately(rb.velocity.y, 0))
         {
             if (!Input.GetButton("Jump2") || rb.velocity.y < 0)
             {
