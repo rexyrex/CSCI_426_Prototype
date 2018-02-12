@@ -26,6 +26,7 @@ public class Player1Movement : PlayerMovement {
         float moveHorizontal = Input.GetAxis("Horizontal1");
         float moveVertical = Input.GetAxis("Vertical1");
         //Making Movement Feel Nicer
+
         if(moveHorizontal > 0)
         {
             if (rb.velocity.x <= maxSpeed)
@@ -72,15 +73,7 @@ public class Player1Movement : PlayerMovement {
             }
         }
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        if (GlobalDataController.gdc.tetherPull)
-        {
-            movement.x += (GlobalDataController.gdc.p2pos.x - GlobalDataController.gdc.p1pos.x) / 100 * pullIntensity;
-            movement.y += (GlobalDataController.gdc.p2pos.y - GlobalDataController.gdc.p1pos.y) / 100 * pullIntensity;
-            movement.z += (GlobalDataController.gdc.p2pos.z - GlobalDataController.gdc.p1pos.z) / 100 * pullIntensity;
-        }
-        
-        rb.AddForce(speed * movement);
+        MoveInDirection(moveHorizontal, 0.0f, moveVertical, pullIntensity);
 
         if (Input.GetButtonDown("Jump1"))
         {
@@ -89,17 +82,18 @@ public class Player1Movement : PlayerMovement {
         }
 
         GlobalDataController.gdc.p1pos = this.transform.position;
+
+        if (Mathf.Approximately(rb.velocity.y, 0))
+        {
+            if (!Input.GetButton("Jump1") || rb.velocity.y < 0)
+            {
+                rb.velocity += new Vector3(0.0f, 1.0f, 0.0f) * Physics.gravity.y * 0.02f * Time.fixedDeltaTime * 100;
+            }
+        }
     }
         
     protected override void Update()
     {
         base.Update();
-        if (rb.velocity.y != 0)
-        {
-            if (!Input.GetButton("Jump1") || rb.velocity.y<0)
-            {
-                rb.velocity += new Vector3(0.0f, 1.0f, 0.0f) * Physics.gravity.y * 0.02f * Time.deltaTime * 100;
-            }
-        }
     }
 }

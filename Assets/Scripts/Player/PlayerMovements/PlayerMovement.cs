@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerMovement : MonoBehaviour {
     [SerializeField]
-    public float speed;
+    public float speed = -1.0f;
     public float maxSpeed;
     public float acceleration;
     public float jumpHeight;
@@ -34,8 +34,9 @@ public class PlayerMovement : MonoBehaviour {
     /// <param name="x">The x coordinate.</param>
     /// <param name="y">The y coordinate.</param>
     /// <param name="z">The z coordinate.</param>
-    protected virtual void MoveInDirection(float x, float y, float z) {
-        MoveInDirection(new Vector3(x, y, z));
+    /// <param name="pullIntensity">The pull intensity. (optional, defaults to -1)</param>
+    protected virtual void MoveInDirection(float x, float y, float z, float pullIntensity = -1.0f) {
+        MoveInDirection(new Vector3(x, y, z), pullIntensity);
     }
 
     /// <summary>
@@ -43,12 +44,19 @@ public class PlayerMovement : MonoBehaviour {
     /// rigidbody.
     /// </summary>
     /// <param name="direction">The Direction.</param>
-    protected void MoveInDirection(Vector3 direction) {
+    /// <param name="pullIntensity">The pull intensity. (optional, defaults to -1)</param>
+    protected void MoveInDirection(Vector3 direction, float pullIntensity = -1.0f) {
         if (speed < 0.0f)
             throw new System.ArgumentNullException("speed has not been set to " +
                                                    "a value in movement script");
 
-        rb.velocity = direction * speed * Time.fixedDeltaTime;
+        if (pullIntensity < 1.0f)
+        {
+            GlobalDataController gdc = GlobalDataController.gdc;
+            direction += (gdc.p2pos - gdc.p1pos) / 100 * pullIntensity;
+        }
+
+        rb.AddForce(speed * direction);
     }
 
     /// <summary>

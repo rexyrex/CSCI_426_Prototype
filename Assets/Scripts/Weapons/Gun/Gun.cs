@@ -44,7 +44,7 @@ public class Gun : MonoBehaviour {
             rb.AddForce(p.transform.forward * speed);
 
             // Destroy after we travel the given distance
-            Destroy(p, range/speed);
+            p.GetComponent<Projectile>().DestroyIn = range / speed;
         }
     }
 }

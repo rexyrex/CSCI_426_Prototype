@@ -2,8 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : MonoBehaviour
+{
     Rigidbody rb;
+
+    float destroyIn;
+    public float DestroyIn
+    {
+        get 
+        {
+            return destroyIn;
+        }
+
+        set
+        {
+            destroyIn = value;
+            Invoke("DestroyThis", destroyIn);
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +32,13 @@ public class Projectile : MonoBehaviour {
 	}
 
     void OnCollisionEnter(Collision collision) {
+        rb.freezeRotation = false;
+        rb.useGravity = true;
+        CancelInvoke("DestroyThis");
+        DestroyIn = destroyIn;
+    }
+
+    void DestroyThis() {
         Destroy(gameObject);
     }
 }
