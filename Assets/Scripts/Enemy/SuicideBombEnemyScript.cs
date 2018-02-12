@@ -17,9 +17,9 @@ public class SuicideBombEnemyScript : BasicEnemyScript {
 	void Update () {
 		if(Time.time - timeInitialized > explodeDelay)
         {
-            var exp = gameObject.transform.GetChild(0).GetComponent<ParticleSystem>();
-            exp.Play();
-            Destroy(gameObject, exp.main.duration);
+            //var exp = gameObject.transform.GetChild(0).GetComponent<ParticleSystem>();
+            //exp.Play();
+            //Destroy(gameObject, exp.main.duration);
         }
 	}
 
