@@ -671,7 +671,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4182478675486834, guid: cfec364eeaf504888be447de5cee5b00, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.74
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4182478675486834, guid: cfec364eeaf504888be447de5cee5b00, type: 2}
       propertyPath: m_LocalPosition.z
@@ -776,6 +776,11 @@ Prefab:
         type: 2}
       propertyPath: jumpHeight
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114950209733837994, guid: cfec364eeaf504888be447de5cee5b00,
+        type: 2}
+      propertyPath: pullIntensity
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114854652276342094, guid: cfec364eeaf504888be447de5cee5b00, type: 2}
@@ -1146,7 +1151,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4970194224906294, guid: a5ddb9d1f13c847cb8296b67c6d68b8f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.38
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4970194224906294, guid: a5ddb9d1f13c847cb8296b67c6d68b8f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1793,6 +1798,9 @@ MonoBehaviour:
   currentMana: 0
   tooFar: 0
   decayRate: 0.05
+  tetherPull: 0
+  p1pos: {x: 0, y: 0, z: 0}
+  p2pos: {x: 0, y: 0, z: 0}
 --- !u!4 &1524862102
 Transform:
   m_ObjectHideFlags: 0
@@ -1873,6 +1881,8 @@ MonoBehaviour:
   inactiveMat: {fileID: 2100000, guid: a8d672264663574428c07cd932a6b3e5, type: 2}
   activeMat: {fileID: 2100000, guid: 75fd3840f7d8c754dacdfd007db055a4, type: 2}
   toofarMat: {fileID: 2100000, guid: 7c918432df9c24a45acc1c82d3523828, type: 2}
+  damageThreshold: 10
+  pullThreshold: 5
 --- !u!120 &1655909163
 LineRenderer:
   m_ObjectHideFlags: 0

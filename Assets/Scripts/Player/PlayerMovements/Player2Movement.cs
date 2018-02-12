@@ -78,6 +78,8 @@ public class Player2Movement : PlayerMovement {
             Vector3 up = new Vector3(0.0f, 1.0f, 0.0f);
             rb.AddForce(up * jumpHeight, ForceMode.Impulse);
         }
+
+        GlobalDataController.gdc.p2pos = this.transform.position;
     }
 
     protected override void Update()

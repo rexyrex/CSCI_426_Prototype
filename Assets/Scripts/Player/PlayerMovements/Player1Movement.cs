@@ -6,6 +6,8 @@ using UnityEngine;
 /// Movement script for player 1.
 /// </summary>
 public class Player1Movement : PlayerMovement {
+    public float pullIntensity;
+
     protected override void Start () {
         base.Start();
         if (speed < 0.0f)
@@ -71,6 +73,13 @@ public class Player1Movement : PlayerMovement {
         }
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        if (GlobalDataController.gdc.tetherPull)
+        {
+            movement.x += (GlobalDataController.gdc.p2pos.x - GlobalDataController.gdc.p1pos.x) / 100 * pullIntensity;
+            movement.y += (GlobalDataController.gdc.p2pos.y - GlobalDataController.gdc.p1pos.y) / 100 * pullIntensity;
+            movement.z += (GlobalDataController.gdc.p2pos.z - GlobalDataController.gdc.p1pos.z) / 100 * pullIntensity;
+        }
+        
         rb.AddForce(speed * movement);
 
         if (Input.GetButtonDown("Jump1"))
@@ -78,6 +87,8 @@ public class Player1Movement : PlayerMovement {
             Vector3 up = new Vector3(0.0f, 1.0f, 0.0f);
             rb.AddForce(up * jumpHeight, ForceMode.Impulse);
         }
+
+        GlobalDataController.gdc.p1pos = this.transform.position;
     }
         
     protected override void Update()

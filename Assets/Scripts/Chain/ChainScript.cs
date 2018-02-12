@@ -13,6 +13,9 @@ public class ChainScript : MonoBehaviour {
     public Material activeMat;
     public Material toofarMat;
 
+    public float damageThreshold;
+    public float pullThreshold;
+
     bool isChainActive;
 
 	// Use this for initialization
@@ -40,25 +43,33 @@ public class ChainScript : MonoBehaviour {
 
         //Determining the length of the chain
         float dist = Vector3.Distance(p1Trans.position, p2Trans.position);
-        float width = 1 - dist * 0.1f;
+        float width = 1 - dist / damageThreshold;
         if (width > 0.7f){
             width = 0.7f;
         }
-        else if (width < 0){
-            width = 0;
+        else if (width < 0.05){
+            width = 0.05f;
         }
 
         //If the players are too far apart...
-        if (width<=0){
+        if (dist>=damageThreshold){
             GlobalDataController.TetherBreak();
             isChainActive = false;
+            
             //GlobalDataController.gdc.currentMana = 1;
-            //lineRenderer.material = toofarMat;
+            lineRenderer.material = toofarMat;
         }
-        
-        lineRenderer.SetWidth(width, width);
-        
 
+        if (dist > pullThreshold)
+        {
+            GlobalDataController.gdc.tetherPull = true;
+        }
+        else
+        {
+            GlobalDataController.gdc.tetherPull = false;
+        }
+
+        lineRenderer.SetWidth(width, width);
         lineRenderer.SetPosition(0, p1Trans.position);
         lineRenderer.SetPosition(1, p2Trans.position);
 

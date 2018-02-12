@@ -9,20 +9,27 @@ public class GlobalDataController : MonoBehaviour {
     private GameObject player1Reference;
     private GameObject player2Reference;
 
+    //Player Health
     public float p1maxHealth;
     public float p1currentHealth;
     private float p1defaultHealth = 100f;
-
     public float p2maxHealth;
     public float p2currentHealth;
     private float p2defaultHealth = 100f;
 
+    //Mana
     public float maxMana;
     public float currentMana;
     private float defaultMana = 40f;
 
+    //Tether Info
     public bool tooFar;
     public float decayRate;
+    public bool tetherPull;
+
+    //Player Positions
+    public Vector3 p1pos;
+    public Vector3 p2pos;
 
     void Awake()
     {
