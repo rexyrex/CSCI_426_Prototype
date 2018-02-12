@@ -11,6 +11,7 @@ TagManager:
   - Sphere2Tag
   - Environment
   - SizeChangeEnemyTag
+  - ChargeWeapon
   layers:
   - Default
   - TransparentFX
