@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SizeChangeEnemyScript : MonoBehaviour {
+public class SizeChangeEnemyScript : BasicEnemyScript {
 
     private float fullHealth = 50;
     private float health = 50;
@@ -31,7 +31,7 @@ public class SizeChangeEnemyScript : MonoBehaviour {
         }
 	}
 
-    public void OnHitByChain(float damage)
+	public override void OnHitByChain(float damage, bool isChainActive)
     {
         //Debug.Log("HIT " + (Time.time - lastHitTime));
         if(Time.time - lastHitTime > hitFreq)
