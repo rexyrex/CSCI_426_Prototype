@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuicideBombEnemyScript : MonoBehaviour {
+public class SuicideBombEnemyScript : BasicEnemyScript {
 
     private float explodeDelay = 10f;
     private float timeInitialized = 0f;
@@ -22,4 +22,13 @@ public class SuicideBombEnemyScript : MonoBehaviour {
             Destroy(gameObject, exp.main.duration);
         }
 	}
+
+	public override void OnHitByChain(float damage, bool isChainActive)
+	{
+		if (isChainActive) {
+			Destroy (gameObject);
+		}
+
+	}
+
 }

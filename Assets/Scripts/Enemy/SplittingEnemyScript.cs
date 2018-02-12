@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SplittingEnemyScript : MonoBehaviour {
+public class SplittingEnemyScript : BasicEnemyScript {
 
     private float splitFreq = 4f;
     private float lastSplit;
@@ -33,5 +33,12 @@ public class SplittingEnemyScript : MonoBehaviour {
             GameObject inst = Instantiate(clone, gameObject.transform.position, quat);
             lastSplit = Time.time;
         }
+	}
+
+	public override void OnHitByChain(float damage, bool isChainActive)
+	{
+		if (isChainActive) {
+			Destroy (gameObject);
+		}	
 	}
 }

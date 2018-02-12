@@ -81,7 +81,7 @@ public class ChainScript : MonoBehaviour {
             {
                 case "SphereTag": if(isChainActive) Destroy(hit.transform.gameObject);  break;
                 case "Sphere2Tag": Destroy(hit.transform.gameObject); break;
-                case "SizeChangeEnemyTag": hit.transform.gameObject.GetComponent<SizeChangeEnemyScript>().OnHitByChain(1); break;
+			case "SizeChangeEnemyTag": hit.transform.gameObject.GetComponent<SizeChangeEnemyScript>().OnHitByChain(1,isChainActive); break;
                 default: break;
             }
             
