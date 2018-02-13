@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Base component for guns.
@@ -14,7 +12,10 @@ public class Gun : MonoBehaviour {
 
     public GameObject projectile;
 
-    [SerializeField]
+    //public float gunAimDelayTime;
+    //public LineRenderer aimDelayRenderer;
+    //public Material aimDelayMaterial;
+    //[SerializeField]
     protected GunAimDelay gunAimDelay;
 
     Transform bulletSpawner;
@@ -29,6 +30,7 @@ public class Gun : MonoBehaviour {
 
         bulletSpawner = GetComponentInChildren<BulletSpawner>().transform;
         owner = GetComponentInParent<Rigidbody>();
+        gunAimDelay = GetComponentInParent<GunAimDelay>();
 	}
 	
 	// Update is called once per frame
