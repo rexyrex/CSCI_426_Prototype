@@ -8,6 +8,9 @@ public class Sink : EnvironmentObject {
     protected Renderer mat;
     protected Color activeCol;
     protected Color fadeCol;
+    protected bool reverting;
+    public float fadeTime;
+    protected float counter;
 
 	// Use this for initialization
 	void Start () {
@@ -16,11 +19,27 @@ public class Sink : EnvironmentObject {
         mat = this.GetComponent<Renderer>();
         activeCol = mat.material.color;
         fadeCol = new Color(activeCol.r, activeCol.g, activeCol.b, 0.5f);
+        reverting = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (reverting)
+        {
+            if (counter >= fadeTime)
+            {
+                reverting = false;
+                mat.material.color = activeCol;
+                bc.enabled = true;
+            }
+            else
+            {
+                float a = mat.material.color.a;
+                Color newCol = new Color(activeCol.r, activeCol.g, activeCol.b, a + 0.5f * Time.deltaTime / fadeTime);
+                mat.material.color = newCol;
+                counter += Time.deltaTime;
+            }
+        }
 	}
 
     public override void Actuate()
@@ -28,12 +47,14 @@ public class Sink : EnvironmentObject {
         //this.transform.Translate(movement*-1);
         mat.material.color = fadeCol;
         bc.enabled = false;
+        reverting = false;
+        counter = 0;
     }
 
     public override void Revert()
     {
         //this.transform.Translate(movement);
-        mat.material.color = activeCol;
-        bc.enabled = false;
+        reverting = true;
+        counter = 0;
     }
 }
