@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23894131923810188}
   - component: {fileID: 114704291012826062}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: PhaseWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -107,4 +107,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ebc1aa097815c46a4f30ee0a0c103f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActuated: 0
   fadeTime: 1

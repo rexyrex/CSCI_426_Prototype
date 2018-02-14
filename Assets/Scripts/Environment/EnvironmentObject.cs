@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnvironmentObject : MonoBehaviour {
+    public bool isActuated;
 
 	// Use this for initialization
 	void Start () {

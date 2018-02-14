@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerEffect : MonoBehaviour {
+public class Switch : MonoBehaviour
+{
     //For a pressure plate
     public GameObject connectedThing;
     protected EnvironmentObject thing;
     protected Press plate;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         thing = connectedThing.GetComponent<EnvironmentObject>();
         plate = this.GetComponentInParent<Press>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     protected void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Heres");
-        if (other.gameObject.tag == "Player2Tag")
+        if (other.gameObject.tag == "Player2Tag" || other.gameObject.tag == "Player1Tag")
         {
             //Debug.Log("Activate");
             plate.Actuate();
@@ -32,11 +35,10 @@ public class TriggerEffect : MonoBehaviour {
 
     protected void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player2Tag")
+        if (other.gameObject.tag == "Player2Tag" || other.gameObject.tag == "Player1Tag")
         {
             //Debug.Log("Deactivate");
             plate.Revert();
-            thing.Revert();
         }
     }
 }
