@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ChainScript : MonoBehaviour {
 
+	public enum ChainDistance {Close, Medium, Far};
+
     private LineRenderer lineRenderer;
+	private ChainDistance chainState;
 
     public Transform p1Trans;
     public Transform p2Trans;
@@ -29,6 +32,10 @@ public class ChainScript : MonoBehaviour {
         lineRenderer.positionCount = 2;
         lineRenderer.material = inactiveMat;
         isChainActive = false;
+	}
+
+	public ChainDistance getChainState(){
+		return chainState;
 	}
 	
 	// Update is called once per frame
@@ -55,12 +62,18 @@ public class ChainScript : MonoBehaviour {
 
 			if (dist < damageDistanceThreshold/3+1) {
 				lineRenderer.material = activeCloseMat;
+				chainState = ChainDistance.Close;
+				GlobalDataController.gdc.chainState = GlobalDataController.ChainDistance.Close;
 				//Debug.Log ("close");
 			} else if (dist < damageDistanceThreshold * 2/3+1) {
 				lineRenderer.material = activeMediumMat;
+				chainState = ChainDistance.Medium;
+				GlobalDataController.gdc.chainState = GlobalDataController.ChainDistance.Medium;
 				//Debug.Log ("med");
 			} else if (dist < damageDistanceThreshold) {
 				lineRenderer.material = activeFarMat;
+				chainState = ChainDistance.Far;
+				GlobalDataController.gdc.chainState = GlobalDataController.ChainDistance.Far;
 				//Debug.Log ("far");
 			} else {
 				lineRenderer.material = activeMat;
@@ -103,8 +116,11 @@ public class ChainScript : MonoBehaviour {
             {
                 case "SphereTag": if(isChainActive) Destroy(hit.transform.gameObject);  break;
                 case "Sphere2Tag": Destroy(hit.transform.gameObject); break;
-			case "SizeChangeEnemyTag": hit.transform.gameObject.GetComponent<SizeChangeEnemyScript>().OnHitByChain(1,isChainActive); break;
-                default: break;
+				case "SizeChangeEnemyTag": hit.transform.gameObject.GetComponent<SizeChangeEnemyScript>().OnHitByChain(1,isChainActive); break;
+			case "Enemy":
+				hit.transform.gameObject.GetComponent<BasicEnemyScript> ().OnHitByChain (1, true);
+				break;
+				default: break;
             }
             
         }    

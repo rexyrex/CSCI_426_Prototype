@@ -12,6 +12,7 @@ TagManager:
   - Environment
   - SizeChangeEnemyTag
   - ChargeWeapon
+  - Enemy
   layers:
   - Default
   - TransparentFX

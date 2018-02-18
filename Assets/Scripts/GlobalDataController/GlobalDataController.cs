@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class GlobalDataController : MonoBehaviour {
 
+
+
     public static GlobalDataController gdc;
 
     private GameObject player1Reference;
     private GameObject player2Reference;
+
+	public enum ChainDistance {Close, Medium, Far};
 
     //Player Health
     public float p1maxHealth;
@@ -26,6 +30,7 @@ public class GlobalDataController : MonoBehaviour {
     public bool tooFar;
     public float decayRate;
     public bool tetherPull;
+	public ChainDistance chainState;
 
     //Player Positions
     public Vector3 p1pos;
@@ -52,6 +57,7 @@ public class GlobalDataController : MonoBehaviour {
         p2currentHealth = p2defaultHealth;
         currentMana = defaultMana;
         tooFar = false;
+		chainState = ChainDistance.Close;
     }
 
     public void UpdatePlayerStats()
@@ -69,6 +75,8 @@ public class GlobalDataController : MonoBehaviour {
     void Start () {
         player1Reference = GameObject.FindGameObjectWithTag("Player1Tag");
         player2Reference = GameObject.FindGameObjectWithTag("Player2Tag");
+		setUpStats ();
+
     }
 	
 
