@@ -13,7 +13,12 @@ public class ChainScript : MonoBehaviour {
     public Material activeMat;
     public Material toofarMat;
 
-    public float damageThreshold;
+
+	public Material activeCloseMat;
+	public Material activeMediumMat;
+	public Material activeFarMat;
+
+    public float damageDistanceThreshold;
     public float pullThreshold;
 
     bool isChainActive;
@@ -29,33 +34,50 @@ public class ChainScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		//Determining the length of the chain
+		float dist = Vector3.Distance(p1Trans.position, p2Trans.position);
+		//Debug.Log (dist);
+		float width = 1 - dist / damageDistanceThreshold;
+		if (width > 0.7f){
+			width = 0.7f;
+		}
+		else if (width < 0.05){
+			width = 0.05f;
+		}
+
         //Activating and Deactivating the Chain
         if(GlobalDataController.gdc.currentMana >= 100){
             isChainActive = true;
         }
-        if (isChainActive && GlobalDataController.gdc.currentMana >=0){
-            GlobalDataController.gdc.currentMana -= 0.17f;
-            lineRenderer.material = activeMat;
-        } else{
-            isChainActive = false;
-            lineRenderer.material = inactiveMat;
-        }
+		if (isChainActive && GlobalDataController.gdc.currentMana >= 0) {
+			GlobalDataController.gdc.currentMana -= 0.12f;
+			//lineRenderer.material = activeMat;
 
-        //Determining the length of the chain
-        float dist = Vector3.Distance(p1Trans.position, p2Trans.position);
-        float width = 1 - dist / damageThreshold;
-        if (width > 0.7f){
-            width = 0.7f;
-        }
-        else if (width < 0.05){
-            width = 0.05f;
-        }
+			if (dist < damageDistanceThreshold/3+1) {
+				lineRenderer.material = activeCloseMat;
+				//Debug.Log ("close");
+			} else if (dist < damageDistanceThreshold * 2/3+1) {
+				lineRenderer.material = activeMediumMat;
+				//Debug.Log ("med");
+			} else if (dist < damageDistanceThreshold) {
+				lineRenderer.material = activeFarMat;
+				//Debug.Log ("far");
+			} else {
+				lineRenderer.material = activeMat;
+				//Debug.Log ("error");
+			}
+		} else {
+			lineRenderer.material = inactiveMat;
+		}
+
+
+
 
         //If the players are too far apart...
-        if (dist>=damageThreshold){
+        if (dist>=damageDistanceThreshold){
             GlobalDataController.TetherBreak();
             isChainActive = false;
-            
+			//Debug.Log ("Too Far");
             //GlobalDataController.gdc.currentMana = 1;
             lineRenderer.material = toofarMat;
         }

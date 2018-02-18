@@ -57,7 +57,10 @@ MonoBehaviour:
   inactiveMat: {fileID: 2100000, guid: a8d672264663574428c07cd932a6b3e5, type: 2}
   activeMat: {fileID: 2100000, guid: 75fd3840f7d8c754dacdfd007db055a4, type: 2}
   toofarMat: {fileID: 2100000, guid: 7c918432df9c24a45acc1c82d3523828, type: 2}
-  damageThreshold: 10
+  activeCloseMat: {fileID: 2100000, guid: d7332128930c2ab4ca368ac59a5757f3, type: 2}
+  activeMediumMat: {fileID: 2100000, guid: 6e0f4e45cbab25145aa00dd08016de44, type: 2}
+  activeFarMat: {fileID: 2100000, guid: 07455bc33a7ff094f981484b10def95e, type: 2}
+  damageDistanceThreshold: 12
   pullThreshold: 7
 --- !u!120 &120520948623427294
 LineRenderer:
