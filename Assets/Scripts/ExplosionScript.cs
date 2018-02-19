@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Add this script to an explosion. Plays particlesystem and destroys itself after.
 public class ExplosionScript : MonoBehaviour {
 
 	// Use this for initialization
