@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1084414284649774}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.780001, y: 0.91999984, z: -3.67}
+  m_LocalPosition: {x: 12.780001, y: 3.4, z: -3.67}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manaObject: {fileID: 1979483110936726, guid: 1dbf91b582d83764186ed9889e8a1ee4, type: 2}
+  explosion: {fileID: 1450095327165696, guid: 1b7aef4c8b0f0c4439024402ad721e56, type: 2}
 --- !u!135 &135174496216563778
 SphereCollider:
   m_ObjectHideFlags: 1
