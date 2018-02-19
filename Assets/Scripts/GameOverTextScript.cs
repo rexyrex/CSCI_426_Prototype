@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+//Alter the gameover screen's text. Attatch to the text gameobject
 public class GameOverTextScript : MonoBehaviour {
 	Text text;
 	// Use this for initialization
