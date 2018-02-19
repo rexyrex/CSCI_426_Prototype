@@ -90,7 +90,7 @@ public class Player2Movement : PlayerMovement {
 
         if (Input.GetButtonDown("Fire2"))
         {
-            Debug.Log("FIRE!");
+            //Debug.Log("FIRE!");
             weapon.Fire(direction);
         }
 

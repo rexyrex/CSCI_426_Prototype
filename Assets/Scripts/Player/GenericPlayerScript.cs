@@ -13,9 +13,11 @@ public class GenericPlayerScript : MonoBehaviour {
 
     public Slider healthBar;
 
+    protected GameObject otherPlayer;
+
 
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
         currentHealth = defaultHealth;
         
 	}

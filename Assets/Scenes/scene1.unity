@@ -4208,11 +4208,6 @@ Prefab:
       propertyPath: p2Trans
       value: 
       objectReference: {fileID: 1885592078}
-    - target: {fileID: 114662813712849698, guid: 98f6552307d32d14ea4f80486b049b4b,
-        type: 2}
-      propertyPath: brokenChainMat
-      value: 
-      objectReference: {fileID: 2100000, guid: 527c461b69c0f0e479ee0f912fdc36a0, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98f6552307d32d14ea4f80486b049b4b, type: 2}
   m_IsPrefabParent: 0

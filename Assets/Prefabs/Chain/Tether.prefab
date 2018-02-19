@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1294534919110910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.61, y: 4.97, z: -3.6941235}
+  m_LocalPosition: {x: -0.4763273, y: 2.3924728e-17, z: -1.077474}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,6 +60,7 @@ MonoBehaviour:
   activeCloseMat: {fileID: 2100000, guid: d7332128930c2ab4ca368ac59a5757f3, type: 2}
   activeMediumMat: {fileID: 2100000, guid: 6e0f4e45cbab25145aa00dd08016de44, type: 2}
   activeFarMat: {fileID: 2100000, guid: 07455bc33a7ff094f981484b10def95e, type: 2}
+  brokenChainMat: {fileID: 2100000, guid: 527c461b69c0f0e479ee0f912fdc36a0, type: 2}
   damageDistanceThreshold: 12
   pullThreshold: 7
 --- !u!120 &120520948623427294
