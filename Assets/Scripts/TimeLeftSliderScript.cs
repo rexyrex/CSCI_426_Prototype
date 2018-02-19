@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//Update the time slider according to time left. Attatch this directly to the slider
 public class TimeLeftSliderScript : MonoBehaviour {
 	Slider slider;
 	// Use this for initialization
