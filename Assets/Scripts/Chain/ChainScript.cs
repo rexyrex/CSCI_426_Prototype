@@ -57,7 +57,7 @@ public class ChainScript : MonoBehaviour {
             isChainActive = true;
         }
 		if (isChainActive && GlobalDataController.gdc.currentMana >= 0) {
-			GlobalDataController.gdc.currentMana -= 0.12f;
+			GlobalDataController.gdc.currentMana -= 0.07f;
 			//lineRenderer.material = activeMat;
 
 			if (dist < damageDistanceThreshold/3+1) {

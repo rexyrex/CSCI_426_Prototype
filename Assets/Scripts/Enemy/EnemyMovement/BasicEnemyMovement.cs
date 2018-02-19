@@ -18,6 +18,8 @@ public class BasicEnemyMovement : MonoBehaviour {
         p1Trans = GameObject.FindGameObjectsWithTag("Player1Tag")[0].transform;
         p2Trans = GameObject.FindGameObjectsWithTag("Player2Tag")[0].transform;
     }
+
+
 	
 
 	void FixedUpdate () {
