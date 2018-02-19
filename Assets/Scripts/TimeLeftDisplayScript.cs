@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//Updates the time left text component
 public class TimeLeftDisplayScript : MonoBehaviour {
 	Text text;
 	// Use this for initialization
