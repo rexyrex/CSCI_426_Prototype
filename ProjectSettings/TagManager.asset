@@ -14,6 +14,7 @@ TagManager:
   - ChargeWeapon
   - Enemy
   - Boss
+  - ChainBreaker
   layers:
   - Default
   - TransparentFX

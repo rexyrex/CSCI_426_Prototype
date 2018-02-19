@@ -20,11 +20,14 @@ public class ChainScript : MonoBehaviour {
 	public Material activeCloseMat;
 	public Material activeMediumMat;
 	public Material activeFarMat;
+    public Material brokenChainMat;
 
     public float damageDistanceThreshold;
     public float pullThreshold;
 
     bool isChainActive;
+    bool isChainBroken;
+    float breakCounter;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +35,7 @@ public class ChainScript : MonoBehaviour {
         lineRenderer.positionCount = 2;
         lineRenderer.material = inactiveMat;
         isChainActive = false;
+        isChainBroken = false;
 	}
 
 	public ChainDistance getChainState(){
@@ -82,7 +86,15 @@ public class ChainScript : MonoBehaviour {
 		} else {
 			lineRenderer.material = inactiveMat;
 		}
-
+        if (isChainBroken)
+        {
+            breakCounter += Time.deltaTime;
+            if (breakCounter >= 3) isChainBroken = false;
+            else
+            {
+                lineRenderer.material = brokenChainMat;
+            }
+        }
 
 
 
@@ -111,20 +123,25 @@ public class ChainScript : MonoBehaviour {
         RaycastHit hit;
         if(Physics.Raycast(p1Trans.position, p2Trans.position - p1Trans.position, out hit))
         {
-            //Debug.Log("we hit a " + hit.transform.gameObject.tag);
-            switch (hit.transform.gameObject.tag)
+            if (!isChainBroken)
             {
-                case "SphereTag": if(isChainActive) Destroy(hit.transform.gameObject);  break;
-                case "Sphere2Tag": Destroy(hit.transform.gameObject); break;
-				case "SizeChangeEnemyTag": hit.transform.gameObject.GetComponent<SizeChangeEnemyScript>().OnHitByChain(1,isChainActive); break;
-			case "Enemy":
-				hit.transform.gameObject.GetComponent<BasicEnemyScript> ().OnHitByChain (1, isChainActive);
-				break;
-			case "Boss":
-				hit.transform.gameObject.GetComponent<BasicEnemyScript> ().OnHitByChain (1, isChainActive);
-				break;
-				default: break;
+                //Debug.Log("we hit a " + hit.transform.gameObject.tag);
+                switch (hit.transform.gameObject.tag)
+                {
+                    case "ChainBreaker": if (!isChainActive) isChainBroken = true; breakCounter = 0; break;
+                    case "SphereTag": if (isChainActive) Destroy(hit.transform.gameObject); break;
+                    case "Sphere2Tag": Destroy(hit.transform.gameObject); break;
+                    case "SizeChangeEnemyTag": hit.transform.gameObject.GetComponent<SizeChangeEnemyScript>().OnHitByChain(1, isChainActive); break;
+                    case "Enemy":
+                        hit.transform.gameObject.GetComponent<BasicEnemyScript>().OnHitByChain(1, isChainActive);
+                        break;
+                    case "Boss":
+                        hit.transform.gameObject.GetComponent<BasicEnemyScript>().OnHitByChain(1, isChainActive);
+                        break;
+                    default: break;
+                }
             }
+            
             
         }    
         
