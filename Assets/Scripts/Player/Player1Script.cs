@@ -7,16 +7,18 @@ public class Player1Script : GenericPlayerScript {
 	protected override void Update () {
         currentHealth = GlobalDataController.gdc.p1currentHealth;
         base.Update();
+		if (GlobalDataController.gdc.p1currentHealth <= 0)
+		{
+			GlobalDataController.gdc.gameover = true;
+			Destroy(gameObject);
+		}
 	}
 
     public override void Damage(float value)
     {
         base.Damage(value);
         GlobalDataController.gdc.p1currentHealth -= value;
-        if (GlobalDataController.gdc.p1currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+
     }
 
 }

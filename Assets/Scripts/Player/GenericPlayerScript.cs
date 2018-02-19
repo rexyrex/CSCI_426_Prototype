@@ -41,9 +41,15 @@ public class GenericPlayerScript : MonoBehaviour {
             Destroy(col.gameObject);
         }
 
+		if (col.gameObject.tag == "Enemy")
+		{
+			Damage(10);
+			Destroy(col.gameObject);
+		}
+
         if (col.gameObject.tag == "ManaTag")
         {
-            GlobalDataController.gdc.currentMana += 20;
+            GlobalDataController.gdc.currentMana += 30;
             Destroy(col.gameObject);
         }
     }

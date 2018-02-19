@@ -57,7 +57,7 @@ public class ChainScript : MonoBehaviour {
             isChainActive = true;
         }
 		if (isChainActive && GlobalDataController.gdc.currentMana >= 0) {
-			GlobalDataController.gdc.currentMana -= 0.07f;
+			GlobalDataController.gdc.currentMana -= 0.01f;
 			//lineRenderer.material = activeMat;
 
 			if (dist < damageDistanceThreshold/3+1) {
@@ -118,7 +118,10 @@ public class ChainScript : MonoBehaviour {
                 case "Sphere2Tag": Destroy(hit.transform.gameObject); break;
 				case "SizeChangeEnemyTag": hit.transform.gameObject.GetComponent<SizeChangeEnemyScript>().OnHitByChain(1,isChainActive); break;
 			case "Enemy":
-				hit.transform.gameObject.GetComponent<BasicEnemyScript> ().OnHitByChain (1, true);
+				hit.transform.gameObject.GetComponent<BasicEnemyScript> ().OnHitByChain (1, isChainActive);
+				break;
+			case "Boss":
+				hit.transform.gameObject.GetComponent<BasicEnemyScript> ().OnHitByChain (1, isChainActive);
 				break;
 				default: break;
             }

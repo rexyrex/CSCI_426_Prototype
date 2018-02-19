@@ -8,8 +8,12 @@ public class GlobalDataController : MonoBehaviour {
 
     public static GlobalDataController gdc;
 
+	public bool gameover;
+
     private GameObject player1Reference;
     private GameObject player2Reference;
+
+	public GameObject gameOverCanvas;
 
 	public enum ChainDistance {Close, Medium, Far};
 
@@ -36,6 +40,11 @@ public class GlobalDataController : MonoBehaviour {
     public Vector3 p1pos;
     public Vector3 p2pos;
 
+	//Timers
+	float timeInitialized;
+	public float timeLimit = 120f;
+	public float timeLeft;
+
     void Awake()
     {
         if (gdc == null)
@@ -52,6 +61,9 @@ public class GlobalDataController : MonoBehaviour {
 
     void setUpStats()
     {
+		timeLeft = timeLimit;
+		timeInitialized = Time.time;
+		gameover = false;
         UpdatePlayerStats();
         p1currentHealth = p1defaultHealth;
         p2currentHealth = p2defaultHealth;
@@ -81,6 +93,18 @@ public class GlobalDataController : MonoBehaviour {
 	
 
 	void Update () {
-		
+		if (currentMana > 100) {
+			currentMana = 100;
+		}
+
+		if (gameover) {
+			gameOverCanvas.SetActive (true);
+		}
+		if (!gameover) {
+			timeLeft = timeLimit - (Time.time - timeInitialized);
+		}
+		if (timeLeft < 0) {
+			gameover = true;
+		}
 	}
 }

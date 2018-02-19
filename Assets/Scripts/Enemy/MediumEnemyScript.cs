@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MediumEnemyScript : BasicEnemyScript {
 
+	public GameObject manaObject;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,8 +18,13 @@ public class MediumEnemyScript : BasicEnemyScript {
 
 	public override void OnHitByChain(float damage, bool isChainActive)
 	{
-		if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Medium) {
+		if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Medium && isChainActive) {
+
+			Vector3 pos = gameObject.transform.position;
+			Quaternion quat = new Quaternion(0, 0, 0, 0);
+			GameObject inst = Instantiate(manaObject, pos, quat);
 			Destroy (gameObject);
+
 		}
 	}
 }

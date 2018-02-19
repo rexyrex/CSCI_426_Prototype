@@ -9,15 +9,17 @@ public class Player2Script : GenericPlayerScript
     {
         currentHealth = GlobalDataController.gdc.p2currentHealth;
         base.Update();
+		if (GlobalDataController.gdc.p2currentHealth <= 0)
+		{
+			GlobalDataController.gdc.gameover = true;
+			Destroy(gameObject);
+		}
     }
 
     public override void Damage(float value)
     {
         base.Damage(value);
         GlobalDataController.gdc.p2currentHealth -= value;
-        if (GlobalDataController.gdc.p2currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+
     }
 }
