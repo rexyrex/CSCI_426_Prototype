@@ -16,7 +16,7 @@ public class ColorSpawnBossMovement : MonoBehaviour {
 	void Start () {
 		playerAgent = GetComponent<NavMeshAgent>();
 		changeDestLast = Time.time;
-
+		playerAgent.destination =  (RandomNavSphere (new Vector3 (0, 0, 0), 50f, -1));
 	}
 
 	Vector3 RandomNavSphere (Vector3 origin, float distance, int layermask) {
