@@ -45,6 +45,9 @@ public class GlobalDataController : MonoBehaviour {
 	public float timeLimit = 120f;
 	public float timeLeft;
 
+	//Counter
+	public int enemyCount;
+
     void Awake()
     {
         if (gdc == null)
@@ -61,6 +64,7 @@ public class GlobalDataController : MonoBehaviour {
 
     void setUpStats()
     {
+		
 		timeLeft = timeLimit;
 		timeInitialized = Time.time;
 		gameover = false;

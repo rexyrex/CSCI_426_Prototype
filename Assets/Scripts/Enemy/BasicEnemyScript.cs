@@ -6,4 +6,5 @@ public abstract class BasicEnemyScript : MonoBehaviour {
 	public abstract void OnHitByChain (float damage, bool isChainActive);
 
 
+
 }
