@@ -7,7 +7,7 @@ public class Press : EnvironmentObject {
 
     // Use this for initialization
     void Start () {
-        movement = new Vector3(0, this.transform.position.y * 2+0.01f, 0);
+        movement = new Vector3(0, this.transform.position.y * 2+0.005f, 0);
     }
 	
 	// Update is called once per frame
