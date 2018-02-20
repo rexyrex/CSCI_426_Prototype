@@ -8,12 +8,14 @@ public class Switch : MonoBehaviour
     public GameObject connectedThing;
     protected EnvironmentObject thing;
     protected Press plate;
+    protected bool on;
 
     // Use this for initialization
     void Start()
     {
         thing = connectedThing.GetComponent<EnvironmentObject>();
         plate = this.GetComponentInParent<Press>();
+        on = false;
     }
 
     // Update is called once per frame
@@ -29,7 +31,18 @@ public class Switch : MonoBehaviour
         {
             //Debug.Log("Activate");
             plate.Actuate();
-            thing.Actuate();
+
+            if (!on)
+            {
+                thing.Actuate();
+                on = true;
+            }
+
+            else{
+                thing.Revert();
+                on = false;
+            }
+            
         }
     }
 

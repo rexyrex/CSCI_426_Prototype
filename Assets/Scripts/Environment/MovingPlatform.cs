@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovingPlatform : EnvironmentObject {
     public float distance;
+    public float moveTime;
     protected Vector3 movement;
     protected Vector3 start;
     protected Vector3 end;
@@ -29,7 +30,7 @@ public class MovingPlatform : EnvironmentObject {
             }
             else
             {
-                this.transform.Translate(movement*Time.deltaTime);
+                this.transform.Translate(movement/moveTime*Time.deltaTime);
             }
         }
         if(way == -1)
@@ -41,7 +42,7 @@ public class MovingPlatform : EnvironmentObject {
             }
             else
             {
-                this.transform.Translate(-1 * movement * Time.deltaTime);
+                this.transform.Translate(-1 * movement/moveTime * Time.deltaTime);
             }
         }
 	}

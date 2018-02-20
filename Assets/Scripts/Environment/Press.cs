@@ -7,7 +7,8 @@ public class Press : EnvironmentObject {
 
     // Use this for initialization
     void Start () {
-        movement = new Vector3(0, this.transform.position.y * 2+0.005f, 0);
+        float yDist = transform.localScale.y / 2;
+        movement = new Vector3(0, yDist, 0);
     }
 	
 	// Update is called once per frame
@@ -17,11 +18,11 @@ public class Press : EnvironmentObject {
 
     public override void Actuate()
     {
-        this.transform.Translate(movement * -1);
+        this.transform.Translate(movement*-1);
     }
 
     public override void Revert()
     {
-        this.transform.Translate(movement);
+      this.transform.Translate(movement);
     }
 }
