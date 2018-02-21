@@ -61,6 +61,10 @@ public class PlayerMovement : MonoBehaviour {
         rb.AddForce(speed * direction);
     }
 
+    /// <summary>
+    /// Gets the world point that the mouse cursor is over.
+    /// </summary>
+    /// <returns>The mouse world point or null if the raycast failed.</returns>
     Vector3? GetMouseWorldPoint() {
         // Turning the Player
         Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -86,6 +90,11 @@ public class PlayerMovement : MonoBehaviour {
         rb.MoveRotation(rb.rotation * deltaRotation);
     }
 
+    /// <summary>
+    /// Turns the player based on given child
+    /// </summary>
+    /// <returns>The direction we're turning.</returns>
+    /// <param name="child">The PlayerMovement object for the child.</param>
     protected Vector3 TurnPlayer(PlayerMovement child) {
         Vector3 target = transform.forward;
 
@@ -110,6 +119,10 @@ public class PlayerMovement : MonoBehaviour {
         return target;
     }
 
+    /// <summary>
+    /// Unknown player exception. Represents a failure of a function to type the
+    /// child player movment correctly.
+    /// </summary>
     sealed class UnknownPlayerException : System.Exception {
         public UnknownPlayerException(string message) : base(message) {}
 
