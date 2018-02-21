@@ -15,11 +15,7 @@ public class Player1Movement : PlayerMovement {
     }
 
     protected override void FixedUpdate() {
-        // Turning the Player
-        Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit h;
-        if (Physics.Raycast(r, out h, 500.0f, LayerMask.NameToLayer("Environment")))
-            TurnToward(h.point);
+        TurnPlayer(this);
 
         //Moving the Player
         //Debug.Log(rb.velocity.x);

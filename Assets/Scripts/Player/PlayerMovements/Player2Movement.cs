@@ -17,17 +17,7 @@ public class Player2Movement : PlayerMovement {
     }
 
     protected override void FixedUpdate() {
-        // Which point in the game world is the cursor pointing to?
-        Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit h;
-
-        if (Physics.Raycast(r, out h, 500.0f, LayerMask.NameToLayer("Environment")))
-        {
-            direction = h.point;
-            TurnToward(direction);
-        }
-            
-        
+        direction = TurnPlayer(this);
 
         float moveHorizontal = Input.GetAxis("Horizontal2");
         float moveVertical = Input.GetAxis("Vertical2");

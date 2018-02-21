@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [System.Serializable]
@@ -13,6 +11,10 @@ public class PlayerMovement : MonoBehaviour {
     protected Rigidbody rb;
     [SerializeField]
     protected float rotationSpeedScale = 20.0f;
+
+    protected enum ControllerType { Mouse, Joystick };
+    [SerializeField]
+    protected ControllerType controllerType = ControllerType.Joystick;
 
 	protected virtual void Start () {
         rb = GetComponent<Rigidbody>();
@@ -59,11 +61,20 @@ public class PlayerMovement : MonoBehaviour {
         rb.AddForce(speed * direction);
     }
 
+    Vector3? GetMouseWorldPoint() {
+        // Turning the Player
+        Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit h;
+        if (Physics.Raycast(r, out h, 500.0f, LayerMask.NameToLayer("Environment")))
+            return h.point;
+        return null;
+    }
+
     /// <summary>
     /// Turns the player character toward a given point using the rigidbody.
     /// </summary>
     /// <param name="target">The target point.</param>
-    protected void TurnToward(Vector3 target) {
+    void TurnToward(Vector3 target) {
         Vector3 targetDirection = target - transform.position;
         Vector3 forward = transform.forward;
         Vector3 localTarget = transform.InverseTransformPoint(target);
@@ -73,5 +84,36 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 eulerAngleVelocity = rotationSpeedScale * new Vector3(0, angle, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.fixedDeltaTime);
         rb.MoveRotation(rb.rotation * deltaRotation);
+    }
+
+    protected Vector3 TurnPlayer(PlayerMovement child) {
+        Vector3 target = transform.forward;
+
+        switch (controllerType) {
+            case ControllerType.Mouse:
+                var mouseWorldPoint = GetMouseWorldPoint();
+                if (mouseWorldPoint.HasValue)
+                    target = mouseWorldPoint.Value;
+                break;
+            case ControllerType.Joystick:
+                if (child is Player1Movement) {
+                    target = new Vector3(Input.GetAxis("RightJoystickX1"), 0.0f, Input.GetAxis("RightJoystickY1"));
+                } else if (child is Player2Movement) {
+                    target = new Vector3(Input.GetAxis("RightJoystickX2"), 0.0f, Input.GetAxis("RightJoystickY2"));
+                } else {
+                    throw new UnknownPlayerException("Child player does not have known derived class");
+                }
+                break;
+        }
+
+        TurnToward(target);
+        return target;
+    }
+
+    sealed class UnknownPlayerException : System.Exception {
+        public UnknownPlayerException(string message) : base(message) {}
+
+        public UnknownPlayerException(string message, System.Exception inner)
+            : base(message, inner) {}
     }
 }
