@@ -391,7 +391,7 @@ InputManager:
     joyNum: 1
   - serializedVersion: 3
     m_Name: Horizontal2
-    descriptiveName: Horizontal Axis for player 1 (joystick)
+    descriptiveName: Horizontal Axis for player 2 (joystick)
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
@@ -403,11 +403,11 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 1
-    joyNum: 0
+    axis: 0
+    joyNum: 2
   - serializedVersion: 3
     m_Name: Vertical2
-    descriptiveName: Vertical Axis for player 1 (joystick)
+    descriptiveName: Vertical Axis for player 2 (joystick)
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
@@ -420,7 +420,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 0
+    joyNum: 2
   - serializedVersion: 3
     m_Name: Cancel
     descriptiveName: 
