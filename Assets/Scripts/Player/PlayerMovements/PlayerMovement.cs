@@ -112,6 +112,7 @@ public class PlayerMovement : MonoBehaviour {
                 } else {
                     throw new UnknownPlayerException("Child player does not have known derived class");
                 }
+                target += transform.position;
                 break;
         }
 
