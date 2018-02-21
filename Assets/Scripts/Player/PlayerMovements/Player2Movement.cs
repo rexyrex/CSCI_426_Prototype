@@ -78,7 +78,7 @@ public class Player2Movement : PlayerMovement {
             rb.AddForce(up * jumpHeight, ForceMode.Impulse);
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire1_2"))
         {
             //Debug.Log("FIRE!");
             weapon.Fire(direction);

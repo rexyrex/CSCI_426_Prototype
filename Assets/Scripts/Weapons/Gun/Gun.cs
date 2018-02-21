@@ -33,7 +33,7 @@ public class Gun : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected virtual void Update () {
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Fire1_1")) {
             // Get the bullet spawner object
             GameObject p = Instantiate(projectile, bulletSpawner.position, bulletSpawner.rotation);
             p.transform.SetParent(bulletSpawner);
