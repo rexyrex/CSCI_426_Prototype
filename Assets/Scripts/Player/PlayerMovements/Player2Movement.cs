@@ -72,7 +72,7 @@ public class Player2Movement : PlayerMovement {
 
         rb.AddForce(speed * movement);
 
-        if (Input.GetButtonDown("Jump2"))
+        if (Input.GetButtonDown("Fire3"))
         {
             Vector3 up = new Vector3(0.0f, 1.0f, 0.0f);
             rb.AddForce(up * jumpHeight, ForceMode.Impulse);

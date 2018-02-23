@@ -11,6 +11,8 @@ public class Gun : MonoBehaviour {
     public float damage = 1.0f;
     public float speed = 100.0f;
     public float range = 1000.0f;
+    public float rateOfFire = 5.0f;
+    bool canFire = false;
 
     public GameObject projectile;
 
@@ -33,7 +35,12 @@ public class Gun : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected virtual void Update () {
-        if (Input.GetButtonDown("Fire1_1")) {
+        StartCoroutine(Fire());
+    }
+
+    IEnumerator Fire () {
+        if (Input.GetButton("Fire1_1") && canFire) {
+            canFire = false;
             // Get the bullet spawner object
             GameObject p = Instantiate(projectile, bulletSpawner.position, bulletSpawner.rotation);
             p.transform.SetParent(bulletSpawner);
@@ -45,6 +52,8 @@ public class Gun : MonoBehaviour {
 
             // Destroy after we travel the given distance
             p.GetComponent<Projectile>().DestroyIn = range / speed;
+            yield return new WaitForSeconds(1.0f/rateOfFire);
+            canFire = true;
         }
     }
 }
