@@ -17,11 +17,17 @@ public class DamageTextController : MonoBehaviour {
 	}
 
 	public static void CreateFloatingText(string text, Transform location){
+		if (damageText == null) {
+			Debug.Log ("Expect a null");
+		}
 		DamageTextScript instance = Instantiate (damageText);
+
+		Vector2 screenPosition = Camera.main.WorldToScreenPoint (location.position);
 		if (instance == null) {
 			Debug.Log ("Null damage text instance");
 		}
 		instance.transform.SetParent (canvas.transform, false);
+		instance.transform.position = screenPosition;
 		instance.SetText (text);
 	}
 }

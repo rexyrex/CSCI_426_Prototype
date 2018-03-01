@@ -135,10 +135,12 @@ public class ChainScript : MonoBehaviour {
                     case "Sphere2Tag": Destroy(hit.transform.gameObject); break;
                     case "SizeChangeEnemyTag": hit.transform.gameObject.GetComponent<SizeChangeEnemyScript>().OnHitByChain(1, isChainActive); break;
 				case "Enemy":
-					DamageTextController.CreateFloatingText ("100", hit.transform.gameObject.transform);
+					//DamageTextController.CreateFloatingText ("100", hit.transform.gameObject.transform);
                         hit.transform.gameObject.GetComponent<BasicEnemyScript>().OnHitByChain(1, isChainActive);
                         break;
-                    case "Boss":
+				case "Boss":
+					int rand = Random.Range (1,100);
+					//DamageTextController.CreateFloatingText (rand.ToString(), hit.transform.gameObject.transform);
                         hit.transform.gameObject.GetComponent<BasicEnemyScript>().OnHitByChain(1, isChainActive);
                         break;
                     default: break;

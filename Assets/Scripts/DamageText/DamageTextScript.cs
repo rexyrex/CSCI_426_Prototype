@@ -16,7 +16,10 @@ public class DamageTextScript : MonoBehaviour {
 	}
 
 	public void SetText(string text){
-		damageText = animator.GetComponent<Text>();
+		//damageText = 
+		//animator.GetComponent<Text>();
+		animator.GetComponent<Text>().text = text;
+		Debug.Log ("Setting text");
 	}
 	
 	// Update is called once per frame
