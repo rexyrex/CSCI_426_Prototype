@@ -24,7 +24,7 @@ public class Player1Movement : PlayerMovement {
     protected override void FixedUpdate() {
         base.FixedUpdate();
 
-        GlobalDataController.gdc.p1pos = this.transform.position;
+        GlobalDataController.gdc.p1pos = transform.position;
     }
         
     protected override void Update()

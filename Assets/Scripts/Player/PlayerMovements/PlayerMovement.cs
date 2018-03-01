@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     public int playerId = -1;
 
-    [SerializeField]
     public float speed = -1.0f;
     public float maxSpeed;
     public float acceleration;
@@ -25,10 +24,9 @@ public class PlayerMovement : MonoBehaviour {
         player = ReInput.players.GetPlayer(playerId);
     }
 
-	protected virtual void Start () {
+    protected virtual void Start() {
         rb = GetComponent<Rigidbody>();
-	}
-
+    }
 
 	protected virtual void Update () {
         
@@ -42,6 +40,7 @@ public class PlayerMovement : MonoBehaviour {
     void Move() {
         float moveHorizontal = player.GetAxis("Move Horizontal");
         float moveVertical = player.GetAxis("Move Vertical");
+
         //Making Movement Feel Nicer
         if (moveHorizontal > 0)
         {

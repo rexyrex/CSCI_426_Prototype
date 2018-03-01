@@ -26,7 +26,7 @@ public class Player2Movement : PlayerMovement {
     protected override void FixedUpdate() {
         base.FixedUpdate();
 
-        GlobalDataController.gdc.p2pos = this.transform.position;
+        GlobalDataController.gdc.p2pos = transform.position;
     }
 
     protected override void Update()
