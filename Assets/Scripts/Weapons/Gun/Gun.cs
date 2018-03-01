@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Rewired;
 
 /// <summary>
 /// Base component for guns.
@@ -8,6 +7,8 @@ using UnityEngine;
 [RequireComponent (typeof(Collider))]
 [System.Serializable]
 public class Gun : MonoBehaviour {
+    public int playerId = 0;
+
     public float damage = 1.0f;
     public float speed = 100.0f;
     public float range = 1000.0f;
@@ -20,6 +21,8 @@ public class Gun : MonoBehaviour {
     Transform bulletSpawner;
     Rigidbody owner;
 
+    Player player;
+
 	// Use this for initialization
 	protected virtual void Start () {
         if (projectile == null)
@@ -29,11 +32,13 @@ public class Gun : MonoBehaviour {
 
         bulletSpawner = GetComponentInChildren<BulletSpawner>().transform;
         owner = GetComponentInParent<Rigidbody>();
+
+        player = ReInput.players.GetPlayer(GetComponentInParent<PlayerMovement>().playerId);
 	}
 	
 	// Update is called once per frame
 	protected virtual void Update () {
-        if (Input.GetButtonDown("Fire1")) {
+        if (player.GetButtonDown("Basic Attack")) {
             // Get the bullet spawner object
             GameObject p = Instantiate(projectile, bulletSpawner.position, bulletSpawner.rotation);
             p.transform.SetParent(bulletSpawner);

@@ -1,10 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Rewired;
 
 [RequireComponent(typeof(Rigidbody))]
 [System.Serializable]
 public class PlayerMovement : MonoBehaviour {
+    /// <summary>
+    /// The player identifier. Leave as -1 for the script to assign default 
+    /// values.
+    /// </summary>
+    public int playerId = -1;
+
     [SerializeField]
     public float speed = -1.0f;
     public float maxSpeed;
@@ -13,6 +18,12 @@ public class PlayerMovement : MonoBehaviour {
     protected Rigidbody rb;
     [SerializeField]
     protected float rotationSpeedScale = 20.0f;
+
+    protected Player player;
+
+    protected virtual void Awake () {
+        player = ReInput.players.GetPlayer(playerId);
+    }
 
 	protected virtual void Start () {
         rb = GetComponent<Rigidbody>();
@@ -24,7 +35,61 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
     protected virtual void FixedUpdate () {
-        
+        Move();
+        Turn();
+    }
+
+    void Move() {
+        float moveHorizontal = player.GetAxis("Move Horizontal");
+        float moveVertical = player.GetAxis("Move Vertical");
+        //Making Movement Feel Nicer
+        if (moveHorizontal > 0)
+        {
+            if (rb.velocity.x <= maxSpeed)
+            {
+                moveHorizontal *= acceleration;
+            }
+            else
+            {
+                moveHorizontal = acceleration * moveHorizontal / rb.velocity.x;
+            }
+        }
+        if (moveHorizontal < 0)
+        {
+            if (rb.velocity.x >= -1 * maxSpeed)
+            {
+                moveHorizontal *= acceleration;
+            }
+            else
+            {
+                moveHorizontal = -1 * acceleration * moveHorizontal / rb.velocity.x;
+            }
+        }
+
+        if (moveVertical > 0)
+        {
+            if (rb.velocity.z <= maxSpeed)
+            {
+                moveVertical *= acceleration;
+            }
+            else
+            {
+                moveVertical = acceleration * moveVertical / rb.velocity.z;
+            }
+        }
+        if (moveVertical < 0)
+        {
+            if (rb.velocity.z >= -1 * maxSpeed)
+            {
+                moveVertical *= acceleration;
+            }
+            else
+            {
+                moveVertical = -1 * acceleration * moveVertical / rb.velocity.z;
+            }
+        }
+
+        MoveInDirection(moveHorizontal, 0.0f, moveVertical);
     }
 
     /// <summary>
@@ -57,6 +122,12 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         rb.AddForce(speed * direction);
+    }
+
+    void Turn() {
+        var target = new Vector3(player.GetAxis("Turn X"), 0.0f, player.GetAxis("Turn Y"));
+        target += transform.position;
+        TurnToward(target);
     }
 
     /// <summary>
