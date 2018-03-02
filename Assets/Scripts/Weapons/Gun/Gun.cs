@@ -23,6 +23,11 @@ public class Gun : MonoBehaviour {
 
     Player player;
 
+    void Awake() {
+        playerId = GetComponentInParent<PlayerMovement>().playerId;
+        player = ReInput.players.GetPlayer(playerId);
+    }
+
 	// Use this for initialization
 	protected virtual void Start () {
         if (projectile == null)
@@ -32,8 +37,6 @@ public class Gun : MonoBehaviour {
 
         bulletSpawner = GetComponentInChildren<BulletSpawner>().transform;
         owner = GetComponentInParent<Rigidbody>();
-
-        player = ReInput.players.GetPlayer(GetComponentInParent<PlayerMovement>().playerId);
 	}
 	
 	// Update is called once per frame
