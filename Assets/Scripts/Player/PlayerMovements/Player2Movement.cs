@@ -7,7 +7,7 @@ using Rewired;
 /// Movement script for player 2.
 /// </summary>
 public class Player2Movement : PlayerMovement {
-    protected chargeweapon weapon;
+    protected ChargeWeapon weapon;
     protected Vector3 direction;
 
     protected override void Awake()
@@ -20,7 +20,7 @@ public class Player2Movement : PlayerMovement {
         base.Start();
         if (speed < 0.0f)
             speed = 15f;
-        weapon = GameObject.FindGameObjectWithTag("ChargeWeapon").GetComponent<chargeweapon>();
+        weapon = GameObject.FindGameObjectWithTag("ChargeWeapon").GetComponent<ChargeWeapon>();
     }
 
     protected override void FixedUpdate() {

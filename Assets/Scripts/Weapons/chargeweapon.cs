@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class chargeweapon : MonoBehaviour {
+public class ChargeWeapon : MonoBehaviour {
     private GameObject player;
     private bool isAttacking;
     public float chargeDistance;
