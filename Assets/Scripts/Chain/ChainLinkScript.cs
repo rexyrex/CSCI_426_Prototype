@@ -87,7 +87,7 @@ public class ChainLinkScript : MonoBehaviour {
     //Updates control with this object's length
     protected void UpdateLength()
     {
-        control.updateLength(oldLength, length);
+        //control.updateLength(oldLength, length);
     }
 
     //Sets this object's material

@@ -7,8 +7,7 @@ public class GlobalChainScript : MonoBehaviour {
 
     public GameObject player1;
     public GameObject player2;
-    public GameObject midLink;
-    public GameObject normLink;
+    public GameObject link;
     public float damageDistanceThreshold;
     public int numLinks;
     public Material activeMat;
@@ -25,7 +24,7 @@ public class GlobalChainScript : MonoBehaviour {
     private Material currentMat;
     private Material oldMat;
     private bool isChainActive;
-    private ChainLinkScript[] nodes;
+    private ChainJoint[] nodes;
     private GameObject[] nodeObjects;
     private Quaternion quat = new Quaternion(0, 0, 0, 0);
     private Vector3 startpos = new Vector3(0, 0, 0);
@@ -37,95 +36,38 @@ public class GlobalChainScript : MonoBehaviour {
         if (numLinks % 2 != 1) numLinks++;
 
         idealLength = Vector3.Distance(player1.transform.position, player2.transform.position) / numLinks;
-        nodes = new ChainLinkScript[numLinks];
+        nodes = new ChainJoint[numLinks];
         nodeObjects = new GameObject[numLinks];
 
-        /* Original imlementation */
         //Building objects
         for(int i = 0; i < numLinks; i++)
         {
-            nodeObjects[i] = ((GameObject)Instantiate(midLink, startpos, quat));
+            nodeObjects[i] = ((GameObject)Instantiate(link));
         }
 
-        for(int i = 0; i < numLinks; i++)
+        //Determining neighbors and Initializing
+        for (int i = 0; i < numLinks; i++)
         {
-            //Determining neighbors
-            GameObject e1;
-            GameObject e2;
+            GameObject other;
+            ChainJoint cj = nodeObjects[i].GetComponent<ChainJoint>();
             if (i == 0)
             {
-                e1 = player1;
-                e2 = nodeObjects[i + 1];
+                other = player1;
+                cj.CenterAnchor();
             }
-            else if (i == numLinks - 1)
+            else 
             {
-                e1 = nodeObjects[i - 1];
-                e2 = player2;
+                other = nodeObjects[i - 1];
+                
+                if (i == numLinks - 1)//Attach player 2
+                {
+                    //cj.AttachPlayer(player2);
+                }
             }
-            else
-            {
-                e1 = nodeObjects[i - 1];
-                e2 = nodeObjects[i + 1];
-            }
-
-            MiddleLinkScript middle = nodeObjects[i].GetComponent<MiddleLinkScript>();
-            middle.InitializeMiddleLink(this, inactiveMat, e1, e2);
-            nodes[i] = middle;
+            cj.Initialize(this, inactiveMat, other);
+            cj.SetSize(0.6f, idealLength);
+            nodes[i] = cj;
         }
-
-
-        /* Alternative implementation
-        //Building objects
-        for(int i = 0; i < numLinks; i++)
-        {
-            if(i == (numLinks - 1) / 2)
-            {
-                nodeObjects[i] = ((GameObject)Instantiate(midLink));
-            }
-            else
-            {
-                nodeObjects[i] = ((GameObject)Instantiate(normLink));
-            }
-            
-        }
-
-        for(int i = 0; i < numLinks; i++)
-        {
-            //Determining neighbors
-            GameObject e1;
-            if(i== (numLinks - 1) / 2)
-            {
-                e1 = nodeObjects[i - 1];
-                GameObject e2 = nodeObjects[i + 1];
-                MiddleLinkScript middle = nodeObjects[i].GetComponent<MiddleLinkScript>();
-                middle.InitializeMiddleLink(this, inactiveMat, e1, e2);
-                nodes[i] = middle;
-                continue;
-            }
-            else if (i == 0)
-            {
-                e1 = player1;
-            }
-            else if (i == numLinks - 1)
-            {
-                e1 = player2;
-            }
-            else if (i < (numLinks - 1) / 2)
-            {
-                e1 = nodeObjects[i - 1];
-            }else
-            {
-                e1 = nodeObjects[i + 1];
-            }
-
-            NormalLinkScript norm = nodeObjects[i].GetComponent<NormalLinkScript>();
-            norm.InitializeNormalLink(this, inactiveMat, e1);
-            nodes[i] = norm;
-
-            //MiddleLinkScript middle = nodeObjects[i].GetComponent<MiddleLinkScript>();
-            //middle.InitializeMiddleLink(this, inactiveMat, e1, e2);
-            //nodes[i] = middle;
-        }*/
         
         //All nodes ignore collisions with other nodes and with the players
         for(int i = 0; i < numLinks; i++)
@@ -148,7 +90,18 @@ public class GlobalChainScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        idealLength = Vector3.Distance(player1.transform.position, player2.transform.position)/numLinks;
+        //Finding Basic Parameters
+        totalDist = Vector3.Distance(player1.transform.position, player2.transform.position);
+        idealLength = totalDist/numLinks;
+        width = 1 - totalDist / damageDistanceThreshold;
+        if (width > 0.5f)
+        {
+            width = 0.5f;
+        }
+        else if (width < 0.05)
+        {
+            width = 0.05f;
+        }
 
         // Do they have full mana?
         if (GlobalDataController.gdc.currentMana >= 100)
@@ -159,7 +112,7 @@ public class GlobalChainScript : MonoBehaviour {
         // Are they too far?
         if (totalDist >= damageDistanceThreshold)
         {
-            GlobalDataController.TetherBreak();
+            //GlobalDataController.TetherBreak();
             isChainActive = false;
             currentMat = tooFarMat;
         }
@@ -195,17 +148,6 @@ public class GlobalChainScript : MonoBehaviour {
             currentMat = inactiveMat;
         }
 
-        //Setting Width
-        width = 1 - totalDist / damageDistanceThreshold;
-        if (width > 0.5f)
-        {
-            width = 0.5f;
-        }
-        else if (width < 0.05)
-        {
-            width = 0.05f;
-        }
-
         //Update all chains
         if (oldMat != currentMat)
         {
@@ -217,18 +159,12 @@ public class GlobalChainScript : MonoBehaviour {
         }
         for (int i = 0; i < numLinks; i++)
         {
-            nodes[i].SetWidth(width);
-            nodes[i].SetNormDist(idealLength);
+            nodes[i].SetSize(width, idealLength);
         }
     }
 
     public ChainDistance getChainState()
     {
         return chainState;
-    }
-
-    public void updateLength(float oldDist, float newDist)
-    {
-        totalDist = totalDist - oldDist + newDist;
     }
 }
