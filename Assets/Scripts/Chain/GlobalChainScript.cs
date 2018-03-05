@@ -48,24 +48,31 @@ public class GlobalChainScript : MonoBehaviour {
         //Determining neighbors and Initializing
         for (int i = 0; i < numLinks; i++)
         {
-            GameObject other;
+            GameObject o1;
+            GameObject o2;
             ChainJoint cj = nodeObjects[i].GetComponent<ChainJoint>();
             if (i == 0)
             {
-                other = player1;
-                cj.CenterAnchor();
+                o1 = player1;
+                if (numLinks == 1) o2 = player2;
+                else o2 = nodeObjects[i + 1];
+                cj.CenterAnchor(true);
             }
-            else 
+            else if (i == numLinks - 1)//Attach player 2
             {
-                other = nodeObjects[i - 1];
-                
-                if (i == numLinks - 1)//Attach player 2
-                {
-                    //cj.AttachPlayer(player2);
-                }
+                o1 = nodeObjects[i - 1];
+                o2 = player2;
+                cj.CenterAnchor(false);
             }
-            cj.Initialize(this, inactiveMat, other);
-            cj.SetSize(0.6f, idealLength);
+            else
+            {
+                o1 = nodeObjects[i - 1];
+                o2 = nodeObjects[i - 1];
+            }
+
+            cj.Initialize(this, inactiveMat, o1, o2);
+            //cj.SetSize(0.6f, idealLength);
+            
             nodes[i] = cj;
         }
         

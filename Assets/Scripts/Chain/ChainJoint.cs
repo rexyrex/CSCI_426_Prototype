@@ -13,8 +13,8 @@ public class ChainJoint : MonoBehaviour {
     protected Transform trans2;
 
     protected GameObject other;
-    public HingeJoint hj;
-    public HingeJoint phj;
+    public HingeJoint fhj;
+    public HingeJoint bhj;
 
     protected MeshRenderer mesh;
     protected float length;
@@ -30,34 +30,45 @@ public class ChainJoint : MonoBehaviour {
 		
 	}
 
-    public void Initialize(GlobalChainScript controller, Material startMat, GameObject other)
+    public void Initialize(GlobalChainScript controller, Material startMat, GameObject e1, GameObject e2)
     {
         pullDist = 0.5f;
 
         mat = startMat;
         control = controller;
 
+        end1 = e1.GetComponent<Rigidbody>();
+        end2 = e2.GetComponent<Rigidbody>();
+
         mesh = this.GetComponent<MeshRenderer>();
         mesh.material = mat;
 
-        hj.connectedBody = other.GetComponent<Rigidbody>();
-        hj.anchor.Set(0, length / 2, 0);
+        fhj.anchor.Set(0, 1, 0);
+        fhj.connectedBody = e1.GetComponent<Rigidbody>(); 
+        fhj.autoConfigureConnectedAnchor = false;
+        fhj.connectedAnchor.Set(0, -1, 0);
+
+        bhj.anchor.Set(0, -1, 0);
+        bhj.connectedBody = e2.GetComponent<Rigidbody>();
+        bhj.autoConfigureConnectedAnchor = false;
+        bhj.connectedAnchor.Set(0, 1, 0);
 
         isChainActive = false;
     }
 
-    public void CenterAnchor()
+    public void CenterAnchor(bool front)
     {
-        hj.autoConfigureConnectedAnchor = false;
-        hj.connectedAnchor.Set(0, 0, 0);
-    }
-
-    public void AttachPlayer(GameObject player)
-    {
-        phj.connectedBody = player.GetComponent<Rigidbody>();
-        phj.anchor.Set(0, -1 * length / 2, 0);
-        phj.autoConfigureConnectedAnchor = false;
-        phj.connectedAnchor.Set(0, 0, 0);
+        if (front)
+        {
+            fhj.autoConfigureConnectedAnchor = false;
+            fhj.connectedAnchor.Set(0, 0, 0);
+        }
+        else
+        {
+            bhj.autoConfigureConnectedAnchor = false;
+            bhj.connectedAnchor.Set(0, 0, 0);
+        }
+        
     }
 
     protected void OnTriggerEnter(Collider other)
@@ -78,8 +89,8 @@ public class ChainJoint : MonoBehaviour {
     public void SetSize(float width, float length)
     {
         this.length = length;
-        this.transform.localScale.Set(width, length, width);
-        hj.anchor.Set(0, length / 2, 0);
+        //this.transform.localScale.Set(width, length, width);
+        //hj.anchor.Set(0, length / 2, 0);
     }
 
     //Sets this object's material
