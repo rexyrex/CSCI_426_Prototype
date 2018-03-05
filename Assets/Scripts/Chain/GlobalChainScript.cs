@@ -7,7 +7,7 @@ public class GlobalChainScript : MonoBehaviour {
 
     public GameObject player1;
     public GameObject player2;
-    public GameObject link;
+    //public GameObject link;
     public float damageDistanceThreshold;
     public int numLinks;
     public Material activeMat;
@@ -29,21 +29,63 @@ public class GlobalChainScript : MonoBehaviour {
     private Quaternion quat = new Quaternion(0, 0, 0, 0);
     private Vector3 startpos = new Vector3(0, 0, 0);
 
+    //painful but yes right now we are instantiating them all manually -_-
+    public GameObject startNode;
+    public GameObject n1;
+    public GameObject n2;
+    public GameObject n3;
+    public GameObject n4;
+    public GameObject n5;
+    public GameObject n6;
+    public GameObject n7;
+    public GameObject n8;
+    public GameObject n9;
+    public GameObject endNode;
 
     // Use this for initialization
     void Start () {
-        if (numLinks < 0) numLinks = 1;
-        if (numLinks % 2 != 1) numLinks++;
+        //Numlinks needs to be preset
+        /*if (numLinks < 0) numLinks = 1;
+        if (numLinks % 2 != 1) numLinks++;*/
 
         idealLength = Vector3.Distance(player1.transform.position, player2.transform.position) / numLinks;
-        nodes = new ChainJoint[numLinks];
+        //nodes = new ChainJoint[numLinks];
         nodeObjects = new GameObject[numLinks];
 
-        //Building objects
-        for(int i = 0; i < numLinks; i++)
+        //For easy access. Yes painful still I know...
+        nodeObjects[0] = startNode;
+        nodeObjects[1] = n1;
+        nodeObjects[2] = n2;
+        nodeObjects[3] = n3;
+        nodeObjects[4] = n4;
+        nodeObjects[5] = n5;
+        nodeObjects[6] = n6;
+        nodeObjects[7] = n7;
+        nodeObjects[8] = n8;
+        nodeObjects[9] = n9;
+        nodeObjects[10] = endNode;
+
+        //All nodes ignore collisions with other nodes and with the players
+        for (int i = 0; i < numLinks; i++)
+        {
+            for (int j = 0; j < numLinks; j++)
+            {
+                if (i < j)
+                {
+                    Physics.IgnoreCollision(nodeObjects[i].GetComponent<Collider>(), nodeObjects[j].GetComponent<Collider>());
+                }
+            }
+            Physics.IgnoreCollision(nodeObjects[i].GetComponent<Collider>(), player1.GetComponent<Collider>());
+            Physics.IgnoreCollision(nodeObjects[i].GetComponent<Collider>(), player2.GetComponent<Collider>());
+        }
+
+        // An artifact of a more efficient iteration...
+        /*for (int i = 0; i < numLinks; i++)
         {
             nodeObjects[i] = ((GameObject)Instantiate(link));
         }
+
+
 
         //Determining neighbors and Initializing
         for (int i = 0; i < numLinks; i++)
@@ -56,43 +98,29 @@ public class GlobalChainScript : MonoBehaviour {
                 o1 = player1;
                 if (numLinks == 1) o2 = player2;
                 else o2 = nodeObjects[i + 1];
-                cj.CenterAnchor(true);
+                //cj.CenterAnchor(true);
             }
             else if (i == numLinks - 1)//Attach player 2
             {
                 o1 = nodeObjects[i - 1];
                 o2 = player2;
-                cj.CenterAnchor(false);
+                //cj.CenterAnchor(false);
             }
             else
             {
                 o1 = nodeObjects[i - 1];
                 o2 = nodeObjects[i - 1];
             }
-
-            cj.Initialize(this, inactiveMat, o1, o2);
-            //cj.SetSize(0.6f, idealLength);
             
             nodes[i] = cj;
-        }
-        
-        //All nodes ignore collisions with other nodes and with the players
-        for(int i = 0; i < numLinks; i++)
-        {
-            for(int j = 0; j < numLinks; j++)
-            {
-                if (i < j)
-                {
-                    Physics.IgnoreCollision(nodeObjects[i].GetComponent<Collider>(), nodeObjects[j].GetComponent<Collider>());
-                    Debug.Log(i + " " + j);
-                }
-            }
-            Physics.IgnoreCollision(nodeObjects[i].GetComponent<Collider>(), player1.GetComponent<Collider>());
-            Physics.IgnoreCollision(nodeObjects[i].GetComponent<Collider>(), player2.GetComponent<Collider>());
-        }
+        }*/
 
+        totalDist = Vector3.Distance(player1.transform.position, player2.transform.position);
+        idealLength = totalDist / numLinks;
+        width = 0.3f;
         oldMat = inactiveMat;
         currentMat = inactiveMat;
+        UpdateChain();
 	}
 	
 	// Update is called once per frame
@@ -155,18 +183,21 @@ public class GlobalChainScript : MonoBehaviour {
             currentMat = inactiveMat;
         }
 
-        //Update all chains
-        if (oldMat != currentMat)
+        UpdateChain();
+    }
+
+    void UpdateChain()
+    {
+        float length = nodeObjects[1].transform.localScale.y;
+        length = length + (idealLength - length) * Time.deltaTime;
+        Vector3 scale = new Vector3(width, length, width);
+        float magic = length - 2; //Honestly idk where I came up with this lol but 
+        if (magic < 1) magic = 1; //I feel a magic number is gonna help here
+        for(int i = 0; i < numLinks; i++)
         {
-            oldMat = currentMat;
-            for(int i = 0; i < numLinks; i++)
-            {
-                nodes[i].SetMat(currentMat);
-            }
-        }
-        for (int i = 0; i < numLinks; i++)
-        {
-            nodes[i].SetSize(width, idealLength);
+            nodeObjects[i].GetComponent<MeshRenderer>().material = currentMat;
+            nodeObjects[i].transform.localScale = scale;
+            nodeObjects[i].GetComponent<HingeJoint>().anchor = new Vector3(0, length/magic, 0);
         }
     }
 
