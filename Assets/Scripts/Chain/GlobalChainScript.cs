@@ -191,7 +191,8 @@ public class GlobalChainScript : MonoBehaviour {
     void UpdateChain()
     {
         float length = nodeObjects[1].transform.localScale.y;
-        length = length + (idealLength - length) * Time.deltaTime;
+        
+        //length = length + (idealLength - length) * Time.deltaTime;
         Vector3 scale = new Vector3(width, length, width);
         float magic = length - 2; //Honestly idk where I came up with this lol but 
         if (magic < 1) magic = 1; //I feel a magic number is gonna help here
@@ -199,9 +200,9 @@ public class GlobalChainScript : MonoBehaviour {
         {
             nodeObjects[i].GetComponent<MeshRenderer>().material = currentMat;
             nodeObjects[i].transform.localScale = scale;
-            nodeObjects[i].GetComponent<HingeJoint>().anchor = new Vector3(0, length/magic, 0);
-            if(i!=0 && i!=numLinks-1)
-                    nodeObjects[i].GetComponent<HingeJoint>().connectedAnchor = new Vector3(0, -1*length / magic, 0);
+            //nodeObjects[i].GetComponent<HingeJoint>().anchor = new Vector3(0, length/magic, 0);
+            //if(i!=0 && i!=numLinks-1)
+            //        nodeObjects[i].GetComponent<HingeJoint>().connectedAnchor = new Vector3(0, -1*length / magic, 0);
         }
     }
 
