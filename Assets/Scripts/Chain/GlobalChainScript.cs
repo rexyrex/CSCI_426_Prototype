@@ -127,8 +127,6 @@ public class GlobalChainScript : MonoBehaviour {
 	void Update () {
         //Finding Basic Parameters
         totalDist = Vector3.Distance(player1.transform.position, player2.transform.position);
-        //Debug.Log(totalDist);
-        if (totalDist > 17) totalDist = 17;
         idealLength = totalDist/(numLinks+3);
         width = 1 - totalDist / damageDistanceThreshold;
         if (width > 0.5f)
@@ -190,19 +188,21 @@ public class GlobalChainScript : MonoBehaviour {
 
     void UpdateChain()
     {
-        float length = nodeObjects[1].transform.localScale.y;
-        
-        //length = length + (idealLength - length) * Time.deltaTime;
-        Vector3 scale = new Vector3(width, length, width);
-        float magic = length - 2; //Honestly idk where I came up with this lol but 
-        if (magic < 1) magic = 1; //I feel a magic number is gonna help here
+
+        float length = 0;// idealLength;// nodeObjects[1].transform.localScale.y;
+        for (int i = 0; i < numLinks; i++)
+        {
+            if (i == 0) length += Vector3.Distance(nodeObjects[i].transform.position, player1.transform.position);
+            else length += Vector3.Distance(nodeObjects[i].transform.position, nodeObjects[i - 1].transform.position);
+            if (i >= numLinks - 1) length += Vector3.Distance(nodeObjects[i].transform.position, player2.transform.position);
+        }
+
+        idealLength = length / numLinks /2;
+        Vector3 scale = new Vector3(width, idealLength, width);
         for(int i = 0; i < numLinks; i++)
         {
             nodeObjects[i].GetComponent<MeshRenderer>().material = currentMat;
             nodeObjects[i].transform.localScale = scale;
-            //nodeObjects[i].GetComponent<HingeJoint>().anchor = new Vector3(0, length/magic, 0);
-            //if(i!=0 && i!=numLinks-1)
-            //        nodeObjects[i].GetComponent<HingeJoint>().connectedAnchor = new Vector3(0, -1*length / magic, 0);
         }
     }
 
