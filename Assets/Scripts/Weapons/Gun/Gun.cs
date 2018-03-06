@@ -7,7 +7,7 @@ using Rewired;
 [RequireComponent (typeof(Collider))]
 [System.Serializable]
 public class Gun : MonoBehaviour {
-    public int playerId = 0;
+    public int playerId;
 
     public float damage = 1.0f;
     public float speed = 100.0f;

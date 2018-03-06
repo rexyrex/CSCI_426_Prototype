@@ -4,6 +4,7 @@ using Rewired;
 public class ChargeWeapon : MonoBehaviour {
     int playerId;
     Player player;
+
     float counter;
 
     public float chargeDistance;
@@ -34,7 +35,7 @@ public class ChargeWeapon : MonoBehaviour {
         }
 	}
 
-    public void Fire()
+    void Fire()
     {
         isAttacking = true;
         counter = 0;

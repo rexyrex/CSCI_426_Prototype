@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Rewired;
+﻿using UnityEngine;
 
 /// <summary>
 /// Movement script for player 1.
@@ -15,7 +12,7 @@ public class Player1Movement : PlayerMovement {
         base.Awake();
     }
 
-    protected override void Start () {
+    protected override void Start() {
         base.Start();
         if (speed < 0.0f)
             speed = 20.0f;

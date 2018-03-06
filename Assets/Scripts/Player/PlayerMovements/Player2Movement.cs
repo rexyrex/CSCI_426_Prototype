@@ -1,14 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Rewired;
+﻿using UnityEngine;
 
 /// <summary>
 /// Movement script for player 2.
 /// </summary>
 public class Player2Movement : PlayerMovement {
-    protected Vector3 direction;
-
     protected override void Awake()
     {
         if (playerId < 0) playerId = 1;
