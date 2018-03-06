@@ -127,7 +127,9 @@ public class GlobalChainScript : MonoBehaviour {
 	void Update () {
         //Finding Basic Parameters
         totalDist = Vector3.Distance(player1.transform.position, player2.transform.position);
-        idealLength = totalDist/numLinks;
+        //Debug.Log(totalDist);
+        if (totalDist > 17) totalDist = 17;
+        idealLength = totalDist/(numLinks+3);
         width = 1 - totalDist / damageDistanceThreshold;
         if (width > 0.5f)
         {
@@ -198,6 +200,8 @@ public class GlobalChainScript : MonoBehaviour {
             nodeObjects[i].GetComponent<MeshRenderer>().material = currentMat;
             nodeObjects[i].transform.localScale = scale;
             nodeObjects[i].GetComponent<HingeJoint>().anchor = new Vector3(0, length/magic, 0);
+            if(i!=0 && i!=numLinks-1)
+                    nodeObjects[i].GetComponent<HingeJoint>().connectedAnchor = new Vector3(0, -1*length / magic, 0);
         }
     }
 
