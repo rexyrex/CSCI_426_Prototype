@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 54735473814415282}
   - component: {fileID: 114952548411738566}
   - component: {fileID: 114442139294854208}
+  - component: {fileID: 114743850170929498}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player2Tag
@@ -116,6 +117,7 @@ GameObject:
   - component: {fileID: 54677817947263334}
   - component: {fileID: 114975220517143322}
   - component: {fileID: 114259578423759392}
+  - component: {fileID: 114422586998463044}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player1Tag
@@ -227,7 +229,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1623886730409120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.76, y: 0.28, z: -3.6600008}
+  m_LocalPosition: {x: 10.76, y: 29.95, z: -3.6600008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4187385587464106}
@@ -245,7 +247,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -261,7 +262,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -279,7 +279,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -295,7 +294,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -313,7 +311,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -329,7 +326,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -347,7 +343,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -363,7 +358,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -498,6 +492,18 @@ MonoBehaviour:
   range: 100
   projectile: {fileID: 1620197580836026, guid: 0a92be2275c5c4ff4addd3ca18bc243e, type: 2}
   gunAimDelay: {fileID: 0}
+--- !u!114 &114422586998463044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1634013533705212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fef63d1994f87549ba3103d5c6909a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
 --- !u!114 &114442139294854208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -553,6 +559,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeDistance: 20
+--- !u!114 &114743850170929498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214367678718342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fef63d1994f87549ba3103d5c6909a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
 --- !u!114 &114782786956613650
 MonoBehaviour:
   m_ObjectHideFlags: 1
