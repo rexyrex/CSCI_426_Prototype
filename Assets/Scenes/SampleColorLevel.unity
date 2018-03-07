@@ -266,23 +266,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 34565692}
---- !u!1 &68448366 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1214367678718342, guid: 5ed6733018f920240af0d2e25053ad6f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1236948765}
---- !u!114 &68448367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 68448366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fef63d1994f87549ba3103d5c6909a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 959773651}
 --- !u!4 &68448374 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4625651005011156, guid: 5ed6733018f920240af0d2e25053ad6f,
@@ -1878,12 +1861,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 114259578423759392, guid: 5ed6733018f920240af0d2e25053ad6f,
+    - target: {fileID: 114743850170929498, guid: 5ed6733018f920240af0d2e25053ad6f,
         type: 2}
-      propertyPath: healthBar
+      propertyPath: spawnPoint
       value: 
-      objectReference: {fileID: 1532247185}
-    - target: {fileID: 114259578423759392, guid: 5ed6733018f920240af0d2e25053ad6f,
+      objectReference: {fileID: 959773651}
+    - target: {fileID: 114422586998463044, guid: 5ed6733018f920240af0d2e25053ad6f,
+        type: 2}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1849992925}
+    - target: {fileID: 114442139294854208, guid: 5ed6733018f920240af0d2e25053ad6f,
         type: 2}
       propertyPath: manaBar
       value: 
@@ -1893,11 +1881,16 @@ Prefab:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1532247184}
-    - target: {fileID: 114442139294854208, guid: 5ed6733018f920240af0d2e25053ad6f,
+    - target: {fileID: 114259578423759392, guid: 5ed6733018f920240af0d2e25053ad6f,
         type: 2}
       propertyPath: manaBar
       value: 
       objectReference: {fileID: 1532247186}
+    - target: {fileID: 114259578423759392, guid: 5ed6733018f920240af0d2e25053ad6f,
+        type: 2}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1532247185}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ed6733018f920240af0d2e25053ad6f, type: 2}
   m_IsPrefabParent: 0
@@ -2938,23 +2931,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1837849454}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1846088641 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1634013533705212, guid: 5ed6733018f920240af0d2e25053ad6f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1236948765}
---- !u!114 &1846088642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1846088641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fef63d1994f87549ba3103d5c6909a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 1849992925}
 --- !u!4 &1846088648 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4187385587464106, guid: 5ed6733018f920240af0d2e25053ad6f,

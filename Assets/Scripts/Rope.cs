@@ -94,13 +94,16 @@ public class Rope : MonoBehaviour
 
     void EvaluateColor()
     {
-        if (playerDistance <= maxClosestDistance)
-            currentColor = closestColor;
-        else if (playerDistance <= maxMiddleDistance)
-            currentColor = middleColor;
-        else if (playerDistance <= maxFarthestDistance)
-            currentColor = farthestColor;
-        else
+		if (playerDistance <= maxClosestDistance) {
+			currentColor = closestColor;
+			GlobalDataController.gdc.chainState = GlobalDataController.ChainDistance.Close;
+		} else if (playerDistance <= maxMiddleDistance) {
+			currentColor = middleColor;
+			GlobalDataController.gdc.chainState = GlobalDataController.ChainDistance.Medium;
+		} else if (playerDistance <= maxFarthestDistance) {
+			currentColor = farthestColor;
+			GlobalDataController.gdc.chainState = GlobalDataController.ChainDistance.Far;
+		}else
             currentColor = deathColor;
     }
 

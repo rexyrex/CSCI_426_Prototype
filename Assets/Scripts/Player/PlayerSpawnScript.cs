@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSpawnScript : MonoBehaviour {
 
 	public Transform spawnPoint;
-	float spawnDelay = 1;
+	float spawnDelay = 0.5f;
 	float elapsed;
 	bool posSet;
 
