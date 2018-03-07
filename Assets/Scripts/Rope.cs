@@ -68,28 +68,53 @@ public class Rope : MonoBehaviour
 
         EvaluateColor();
         PaintColor();
+		GlobalDataController.gdc.chainCharged = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		UpdateChainCharge ();
         EvaluateColor();
         PaintColor();
 	}
 
+	void UpdateChainCharge(){
+		if(GlobalDataController.gdc.currentMana >= 100){
+			GlobalDataController.gdc.chainCharged = true;
+		}
+		if(GlobalDataController.gdc.currentMana <=0){
+			GlobalDataController.gdc.chainCharged = false;
+		}
+
+		if (GlobalDataController.gdc.chainCharged) {
+			GlobalDataController.gdc.currentMana -= 0.04f;
+		}
+	}
+
     void PaintColor()
     {
-        foreach (Material m in materials)
-        {
-            m.color = currentColor;
+		if (GlobalDataController.gdc.chainCharged) {
+			foreach (Material m in materials) {
+				m.color = currentColor;
 
-            float emission = charged ? emissionIntensityCharged : emissionIntensityUncharged;
+				float emission = charged ? emissionIntensityCharged : emissionIntensityUncharged;
 
-            if (pingPong)
-                emission = Mathf.PingPong(Time.time, emission);
+				if (pingPong)
+					emission = Mathf.PingPong (Time.time, emission);
 
-            Color emissionColor = currentColor * Mathf.LinearToGammaSpace(emission);
-            m.SetColor("_EmissionColor", emissionColor);
-        }
+				Color emissionColor = currentColor * Mathf.LinearToGammaSpace (emission);
+				m.SetColor ("_EmissionColor", emissionColor);
+			}
+		} else {
+			foreach (Material m in materials) {
+				m.color = Color.grey;
+				//Color emissionColor = currentColor * Mathf.LinearToGammaSpace (emission);
+				m.SetColor ("_EmissionColor", Color.black);
+			}
+		}
+        
+
+
     }
 
     void EvaluateColor()

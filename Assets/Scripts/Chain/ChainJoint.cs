@@ -19,7 +19,7 @@ public class ChainJoint : MonoBehaviour {
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<BasicEnemyScript>().OnHitByChain(1, gcs.IsActive());
+			other.gameObject.GetComponent<BasicEnemyScript>().OnHitByChain(1, GlobalDataController.gdc.chainCharged);
         }
     }
 
@@ -28,7 +28,7 @@ public class ChainJoint : MonoBehaviour {
         //Debug.Log("Heres");
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<BasicEnemyScript>().OnHitByChain(1, gcs.IsActive());
+			other.gameObject.GetComponent<BasicEnemyScript>().OnHitByChain(1, GlobalDataController.gdc.chainCharged);
         }
     }
 
