@@ -124,4 +124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextTile: {fileID: 0}
+  redMat: {fileID: 2100000, guid: 7c918432df9c24a45acc1c82d3523828, type: 2}
   timeTillNextTile: 1

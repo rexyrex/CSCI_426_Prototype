@@ -7,6 +7,7 @@ public class FallingTilesScript : MonoBehaviour {
 	public GameObject nextTile;
 	bool activate;
 	Rigidbody rb;
+	public Material redMat;
 
 	public float timeTillNextTile = 1f;
 	float activationTime;
@@ -23,12 +24,14 @@ public class FallingTilesScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (activate) {
-			rb.useGravity = true;
+			
 			//activationTime = Time.time;
 			activateCounter += Time.deltaTime;
+			GetComponent<Renderer> ().material = redMat;
 		}
 
 		if (activateCounter > timeTillNextTile) {
+			rb.useGravity = true;
 			activateNextTile ();
 		}
 	}
