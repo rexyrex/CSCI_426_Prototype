@@ -372,6 +372,7 @@ public class Rope : MonoBehaviour
         var y = p1rb.position.y;
         var step = (p2rb.position.y - p1rb.position.y) / (float) numNodes;
 
+
         foreach (var rb in rigidbodies)
             rb.constraints = RigidbodyConstraints.None;
         foreach (var rb in rigidbodies)
