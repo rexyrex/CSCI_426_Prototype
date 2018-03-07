@@ -29,8 +29,8 @@ public class Player2Movement : PlayerMovement {
             
         
 
-        float moveHorizontal = Input.GetAxis("Horizontal2");
-        float moveVertical = Input.GetAxis("Vertical2");
+        float moveHorizontal = Input.GetAxis("Horizontal2")*100.0f;
+        float moveVertical = Input.GetAxis("Vertical2")*100.0f;
         //Making Movement Feel Nicer
         if (moveHorizontal > 0)
         {

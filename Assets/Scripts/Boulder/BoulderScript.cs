@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class BoulderScript : MonoBehaviour {
 
-	List<string> pushableList;
-	List<string> unpushableList;
+    public string[] canPushObjects;
+    HashSet<string> canPush;
 
 	// Use this for initialization
 	void Start () {
-		pushableList = new List<string> (new string[] { "" });
-		unpushableList = new List<string> (new string[] { "" });
+        canPush = new HashSet<string>();
+        foreach (var s in canPushObjects)
+            canPush.Add(s);
 	}
 	
 	// Update is called once per frame
@@ -20,10 +21,10 @@ public class BoulderScript : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (pushableList.Contains( collision.gameObject.tag)){// || collision.gameObject.tag == "Player2Tag") {
+		if (canPush.Contains(collision.gameObject.tag)) {
 			gameObject.GetComponent<Rigidbody> ().mass = 3;
 		} else {
-			gameObject.GetComponent<Rigidbody> ().mass = 100000;
+            gameObject.GetComponent<Rigidbody> ().mass = 100000;
 		}
 	}
 

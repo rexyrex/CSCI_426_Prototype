@@ -29,6 +29,8 @@ public class GlobalChainScript : MonoBehaviour {
     private Quaternion quat = new Quaternion(0, 0, 0, 0);
     private Vector3 startpos = new Vector3(0, 0, 0);
 
+    Vector3[] intersections;
+
     //painful but yes right now we are instantiating them all manually -_-
     public GameObject startNode;
     public GameObject n1;
@@ -64,6 +66,8 @@ public class GlobalChainScript : MonoBehaviour {
         nodeObjects[8] = n8;
         nodeObjects[9] = n9;
         nodeObjects[10] = endNode;
+
+        intersections = new Vector3[nodeObjects.Length - 1];
 
         //All nodes ignore collisions with other nodes and with the players
         for (int i = 0; i < numLinks; i++)
@@ -202,9 +206,17 @@ public class GlobalChainScript : MonoBehaviour {
         Vector3 scale = new Vector3(width, idealLength, width);
         for(int i = 0; i < numLinks; i++)
         {
-            nodeObjects[i].GetComponent<MeshRenderer>().material = currentMat;
-            nodeObjects[i].transform.localScale = scale;
+            
         }
+
+        //for(int i = 0; i < numLinks; i++)
+        //{
+        //    nodeObjects[i].GetComponent<MeshRenderer>().material = currentMat;
+        //    nodeObjects[i].transform.localScale = scale;
+        //    //nodeObjects[i].GetComponent<HingeJoint>().anchor = new Vector3(0, length/magic, 0);
+        //    //if(i!=0 && i!=numLinks-1)
+        //    //        nodeObjects[i].GetComponent<HingeJoint>().connectedAnchor = new Vector3(0, -1*length / magic, 0);
+        //}
     }
 
     public ChainDistance GetChainState()
