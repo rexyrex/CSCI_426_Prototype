@@ -85,8 +85,6 @@ public class GlobalChainScript : MonoBehaviour {
             nodeObjects[i] = ((GameObject)Instantiate(link));
         }
 
-
-
         //Determining neighbors and Initializing
         for (int i = 0; i < numLinks; i++)
         {
@@ -182,22 +180,25 @@ public class GlobalChainScript : MonoBehaviour {
         {
             currentMat = inactiveMat;
         }
-
         UpdateChain();
     }
 
+    /// <summary>
+    /// Directly updates the width, length, and color of the chain.
+    /// </summary>
     void UpdateChain()
     {
-
-        float length = 0;// idealLength;// nodeObjects[1].transform.localScale.y;
+        float curveLength = 0;// idealLength;// nodeObjects[1].transform.localScale.y;
         for (int i = 0; i < numLinks; i++)
         {
-            if (i == 0) length += Vector3.Distance(nodeObjects[i].transform.position, player1.transform.position);
-            else length += Vector3.Distance(nodeObjects[i].transform.position, nodeObjects[i - 1].transform.position);
-            if (i >= numLinks - 1) length += Vector3.Distance(nodeObjects[i].transform.position, player2.transform.position);
+            if (i == 0) curveLength += Vector3.Distance(nodeObjects[i].transform.position, player1.transform.position);
+            else curveLength += Vector3.Distance(nodeObjects[i].transform.position, nodeObjects[i - 1].transform.position);
+            if (i >= numLinks - 1) curveLength += Vector3.Distance(nodeObjects[i].transform.position, player2.transform.position);
         }
 
-        idealLength = length / numLinks /2;
+        float idealCurveLength = curveLength / numLinks /2;
+        idealLength = idealCurveLength;
+
         Vector3 scale = new Vector3(width, idealLength, width);
         for(int i = 0; i < numLinks; i++)
         {
@@ -206,8 +207,13 @@ public class GlobalChainScript : MonoBehaviour {
         }
     }
 
-    public ChainDistance getChainState()
+    public ChainDistance GetChainState()
     {
         return chainState;
+    }
+
+    public bool IsActive()
+    {
+        return isChainActive;
     }
 }

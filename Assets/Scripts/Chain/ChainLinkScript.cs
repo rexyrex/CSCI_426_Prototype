@@ -112,7 +112,7 @@ public class ChainLinkScript : MonoBehaviour {
     //Used to check the state of this chain
     public GlobalChainScript.ChainDistance getChainState()
     {
-        return control.getChainState();
+        return control.GetChainState();
     }
 
     protected Vector3 findForce(Rigidbody end1, Rigidbody end2, Vector3 force, float length)
