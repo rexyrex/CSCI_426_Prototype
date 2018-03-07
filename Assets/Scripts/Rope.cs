@@ -214,6 +214,7 @@ public class Rope : MonoBehaviour
         {
             GameObject n = Instantiate(nodeAsset, pos, nodeAsset.transform.rotation);
             n.name = nodeName + " (" + i.ToString() + ")";
+            n.tag = "Chain";
             n.transform.parent = transform;
 
             Physics.IgnoreCollision(n.GetComponent<Collider>(), p1col);
