@@ -147,7 +147,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375745319076896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.17, y: 0.22, z: 3.6600008}
+  m_LocalPosition: {x: 29.5, y: 1.2, z: -0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4177376760441214}
@@ -161,7 +161,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1845456786977572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.17, y: 2.39, z: -3.6600008}
+  m_LocalPosition: {x: 9.24, y: 3.28, z: -3.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000305516282590}
@@ -204,8 +204,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1809505522477346}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.038559, y: 1.12, z: 0}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_LocalPosition: {x: 33.06, y: 2.74, z: -1.54}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4324422051558454}
   m_Father: {fileID: 4108956054832218}
@@ -519,8 +519,8 @@ MonoBehaviour:
   activeMediumMat: {fileID: 2100000, guid: 6e0f4e45cbab25145aa00dd08016de44, type: 2}
   activeFarMat: {fileID: 2100000, guid: 07455bc33a7ff094f981484b10def95e, type: 2}
   brokenChainMat: {fileID: 0}
-  damageDistanceThreshold: 20
-  pullThreshold: 7
+  damageDistanceThreshold: 150
+  pullThreshold: 10
 --- !u!114 &114250361960136870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b8f549191964ac6a8797c529072a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  speed: 15
   maxSpeed: 0.8
   acceleration: 4
   jumpHeight: 5
@@ -608,7 +608,7 @@ MonoBehaviour:
   acceleration: 5
   jumpHeight: 7
   rotationSpeedScale: 20
-  pullIntensity: 10
+  pullIntensity: 3
 --- !u!120 &120574844131422654
 LineRenderer:
   m_ObjectHideFlags: 1

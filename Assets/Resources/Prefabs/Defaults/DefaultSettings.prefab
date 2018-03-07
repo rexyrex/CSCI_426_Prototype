@@ -386,7 +386,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1740810973867520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.17, y: 0.28, z: -3.6600008}
+  m_LocalPosition: {x: 10.442003, y: 0.28, z: -3.6600008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4938548911630642}
@@ -690,6 +690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27151c27a2ada5b46bcbed0eeb9ee81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameover: 0
+  gameOverCanvas: {fileID: 0}
   p1maxHealth: 100
   p1currentHealth: 100
   p2maxHealth: 100
@@ -699,8 +701,12 @@ MonoBehaviour:
   tooFar: 0
   decayRate: 0.25
   tetherPull: 0
+  chainState: 0
   p1pos: {x: 0, y: 0, z: 0}
   p2pos: {x: 0, y: 0, z: 0}
+  timeLimit: 120
+  timeLeft: 0
+  enemyCount: 0
 --- !u!114 &114428491793512692
 MonoBehaviour:
   m_ObjectHideFlags: 1
