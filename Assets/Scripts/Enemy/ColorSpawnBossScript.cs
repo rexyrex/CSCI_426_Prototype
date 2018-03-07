@@ -10,13 +10,13 @@ public class ColorSpawnBossScript : BasicEnemyScript {
 	float spawnEnemyFreq = 10f;
 	float spawnEnemyLast;
 
-	float maxhealth = 100f;
-	float health = 100f;
+	float maxhealth = 10000f;
+	float health = 10000f;
 
 	public Slider healthBar;
 
 	private float lastHitTime;
-	private float hitFreq = 0.02f;
+	private float hitFreq = 0.4f;
 
 	public Material closeMat;
 	public Material medMat;
@@ -112,21 +112,22 @@ public class ColorSpawnBossScript : BasicEnemyScript {
 
 	public override void OnHitByChain(float damage, bool isChainActive)
 	{
+		int rand = Random.Range (100,700);
 		if (isChainActive) {
 			switch (mode) {
 			case bossMode.Close:
 				if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Close) {
-					getDamaged (1);
+					getDamaged (rand);
 				}
 				break;
 			case bossMode.Medium:
 				if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Medium) {
-					getDamaged (1);
+					getDamaged (rand);
 				}
 				break;
 			case bossMode.Far:
 				if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Far) {
-					getDamaged (1);
+					getDamaged (rand);
 				}
 				break;
 			default:
@@ -139,8 +140,10 @@ public class ColorSpawnBossScript : BasicEnemyScript {
 	void getDamaged(int damage){
 		if(Time.time - lastHitTime > hitFreq)
 		{
+			
 			//Debug.Log("Health is now: " + health);
 			health -= damage;
+			DamageTextController.CreateFloatingText (damage.ToString(), gameObject.transform);
 			lastHitTime = Time.time;
 		}
 	}

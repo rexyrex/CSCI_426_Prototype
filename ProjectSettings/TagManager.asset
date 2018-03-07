@@ -15,6 +15,7 @@ TagManager:
   - Enemy
   - Boss
   - ChainBreaker
+  - BoulderTag
   layers:
   - Default
   - TransparentFX
