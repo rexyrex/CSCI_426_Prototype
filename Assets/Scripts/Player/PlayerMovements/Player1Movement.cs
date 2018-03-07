@@ -23,8 +23,8 @@ public class Player1Movement : PlayerMovement {
 
         //Moving the Player
         //Debug.Log(rb.velocity.x);
-        float moveHorizontal = Input.GetAxis("Horizontal1");
-        float moveVertical = Input.GetAxis("Vertical1");
+        float moveHorizontal = Input.GetAxis("Horizontal1")*100.0f;
+        float moveVertical = Input.GetAxis("Vertical1")*100.0f;
         //Making Movement Feel Nicer
         if(moveHorizontal > 0)
         {

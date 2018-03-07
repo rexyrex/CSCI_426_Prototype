@@ -29,6 +29,8 @@ public class GlobalChainScript : MonoBehaviour {
     private Quaternion quat = new Quaternion(0, 0, 0, 0);
     private Vector3 startpos = new Vector3(0, 0, 0);
 
+    Vector3[] intersections;
+
     //painful but yes right now we are instantiating them all manually -_-
     public GameObject startNode;
     public GameObject n1;
@@ -64,6 +66,8 @@ public class GlobalChainScript : MonoBehaviour {
         nodeObjects[8] = n8;
         nodeObjects[9] = n9;
         nodeObjects[10] = endNode;
+
+        intersections = new Vector3[nodeObjects.Length - 1];
 
         //All nodes ignore collisions with other nodes and with the players
         for (int i = 0; i < numLinks; i++)
@@ -186,26 +190,61 @@ public class GlobalChainScript : MonoBehaviour {
         UpdateChain();
     }
 
+
     void UpdateChain()
     {
+        float length = nodeObjects[1].transform.localScale.y;
 
-        float length = 0;// idealLength;// nodeObjects[1].transform.localScale.y;
-        for (int i = 0; i < numLinks; i++)
+        //length = length + (idealLength - length) * Time.deltaTime;
+        Vector3 scale = new Vector3(width, length, width);
+
+        for (int i = 0; i < nodeObjects.Length - 1; ++i)
         {
-            if (i == 0) length += Vector3.Distance(nodeObjects[i].transform.position, player1.transform.position);
-            else length += Vector3.Distance(nodeObjects[i].transform.position, nodeObjects[i - 1].transform.position);
-            if (i >= numLinks - 1) length += Vector3.Distance(nodeObjects[i].transform.position, player2.transform.position);
+            var p1 = nodeObjects[i].transform.position;
+            var p2 = nodeObjects[i + 1].transform.position;
+            var f1 = nodeObjects[i].transform.rotation * Vector3.forward * 10.0f;
+            var f2 = nodeObjects[i + 1].transform.rotation * Vector3.forward * 10.0f;
+
+            p1.y = 0; p2.y = 0; f1.y = 0; f2.y = 0;
+
+            LineLineIntersection(out intersections[i], p1, f1, p2, f2);
         }
 
-        idealLength = length / numLinks /2;
-        Vector3 scale = new Vector3(width, idealLength, width);
-        for(int i = 0; i < numLinks; i++)
+        for (int i = 0; i < intersections.Length - 1; ++i) 
         {
-            nodeObjects[i].GetComponent<MeshRenderer>().material = currentMat;
-            nodeObjects[i].transform.localScale = scale;
+            
         }
+
+        //for(int i = 0; i < numLinks; i++)
+        //{
+        //    nodeObjects[i].GetComponent<MeshRenderer>().material = currentMat;
+        //    nodeObjects[i].transform.localScale = scale;
+        //    //nodeObjects[i].GetComponent<HingeJoint>().anchor = new Vector3(0, length/magic, 0);
+        //    //if(i!=0 && i!=numLinks-1)
+        //    //        nodeObjects[i].GetComponent<HingeJoint>().connectedAnchor = new Vector3(0, -1*length / magic, 0);
+        //}
     }
 
+
+    public static bool LineLineIntersection(out Vector3 intersection, Vector3 linePoint1, Vector3 lineVec1, Vector3 linePoint2, Vector3 lineVec2)
+    {
+        Vector3 lineVec3 = linePoint2 - linePoint1;
+        Vector3 crossVec1and2 = Vector3.Cross(lineVec1, lineVec2);
+        Vector3 crossVec3and2 = Vector3.Cross(lineVec3, lineVec2);
+
+        float planarFactor = Vector3.Dot(lineVec3, crossVec1and2);
+
+        //is coplanar, and not parrallel
+        if (Mathf.Abs(planarFactor) < 0.0001f && crossVec1and2.sqrMagnitude > 0.0001f)
+        {
+            float s = Vector3.Dot(crossVec3and2, crossVec1and2) / crossVec1and2.sqrMagnitude;
+            intersection = linePoint1 + (lineVec1 * s);
+            return true;
+        }
+
+        intersection = Vector3.zero;
+        return false;
+    }
     public ChainDistance getChainState()
     {
         return chainState;
