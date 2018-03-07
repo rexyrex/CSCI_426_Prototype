@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -168,6 +168,31 @@ Prefab:
       propertyPath: p2T
       value: 
       objectReference: {fileID: 1251968084}
+    - target: {fileID: 224902392843502806, guid: bfbe8f3e848c2324e94199b927f59c8c,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224902392843502806, guid: bfbe8f3e848c2324e94199b927f59c8c,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224274388785502272, guid: bfbe8f3e848c2324e94199b927f59c8c,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224274388785502272, guid: bfbe8f3e848c2324e94199b927f59c8c,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224166668424586300, guid: bfbe8f3e848c2324e94199b927f59c8c,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfbe8f3e848c2324e94199b927f59c8c, type: 2}
   m_IsPrefabParent: 0
@@ -203,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 1934048577}
   player2: {fileID: 1251968076}
-  windspeed1: 20
+  windspeed1: 2000
   windspeed2: 0
   direction: 290
 --- !u!23 &347053214
