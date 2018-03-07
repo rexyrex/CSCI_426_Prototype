@@ -19,6 +19,7 @@ TagManager:
   - ClosingWall
   - Block
   - ClosingWall2
+  - Chain
   layers:
   - Default
   - TransparentFX

@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 92845153396964646}
   - component: {fileID: 124863580626921274}
   - component: {fileID: 81263742437431894}
+  - component: {fileID: 114289908332226702}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -386,7 +387,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1740810973867520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.442003, y: 0.28, z: -3.6600008}
+  m_LocalPosition: {x: 7.17, y: 0.28, z: -3.6600008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4938548911630642}
@@ -666,6 +667,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114289908332226702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1854701946365192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: b5efdf38925034c2aa7a02095ca7a558, type: 2}
 --- !u!114 &114310625466655402
 MonoBehaviour:
   m_ObjectHideFlags: 1
