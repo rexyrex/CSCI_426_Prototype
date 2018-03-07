@@ -16,6 +16,9 @@ TagManager:
   - Boss
   - ChainBreaker
   - BoulderTag
+  - ClosingWall
+  - Block
+  - ClosingWall2
   layers:
   - Default
   - TransparentFX

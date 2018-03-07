@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4538727533330930}
   - component: {fileID: 120574844131422654}
-  - component: {fileID: 114143137155649972}
+  - component: {fileID: 114829595017675430}
   m_Layer: 0
   m_Name: Tether
   m_TagString: Untagged
@@ -161,7 +161,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1845456786977572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+
   m_LocalPosition: {x: 9.24, y: 3.28, z: -3.71}
+
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000305516282590}
@@ -499,6 +501,7 @@ MonoBehaviour:
   defaultHealth: 100
   manaBar: {fileID: 0}
   healthBar: {fileID: 0}
+
 --- !u!114 &114143137155649972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -521,6 +524,7 @@ MonoBehaviour:
   brokenChainMat: {fileID: 0}
   damageDistanceThreshold: 150
   pullThreshold: 10
+
 --- !u!114 &114250361960136870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -608,7 +612,32 @@ MonoBehaviour:
   acceleration: 5
   jumpHeight: 7
   rotationSpeedScale: 20
+
   pullIntensity: 3
+
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1858795561996874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6653bef69ecca645916a82313ab9acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 1375745319076896}
+  player2: {fileID: 1809505522477346}
+  midLink: {fileID: 1234613921535332, guid: e889c5b46dfefa841a3ae573ce174eed, type: 2}
+  normLink: {fileID: 1992118384030218, guid: 3eaabe3b34f33084f848a217307ef48d, type: 2}
+  damageDistanceThreshold: 15
+  numLinks: 2
+  activeMat: {fileID: 2100000, guid: 75fd3840f7d8c754dacdfd007db055a4, type: 2}
+  activeCloseMat: {fileID: 2100000, guid: d7332128930c2ab4ca368ac59a5757f3, type: 2}
+  activeMediumMat: {fileID: 2100000, guid: 6e0f4e45cbab25145aa00dd08016de44, type: 2}
+  activeFarMat: {fileID: 2100000, guid: 07455bc33a7ff094f981484b10def95e, type: 2}
+  inactiveMat: {fileID: 2100000, guid: a8d672264663574428c07cd932a6b3e5, type: 2}
+  tooFarMat: {fileID: 2100000, guid: 7c918432df9c24a45acc1c82d3523828, type: 2}
+>>>>>>> 9052c11031785d66c24bc990619c61a259545eba
 --- !u!120 &120574844131422654
 LineRenderer:
   m_ObjectHideFlags: 1

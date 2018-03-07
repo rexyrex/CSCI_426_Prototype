@@ -12,6 +12,7 @@ public class CamFollowScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         distance = new Vector3(camXPos, camYPos, camZPos);
+        //distance *= 3;
         cam.transform.eulerAngles = new Vector3(camAngle, 0, 0);
     }
 	
