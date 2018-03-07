@@ -8,6 +8,7 @@ public class ClosingWall : MonoBehaviour {
     public GameObject block;
     public float spawnFrequency;
     public float time;
+    public Material blockColor;
 
     public int axis; //0 for x, 1 for z
 
@@ -29,16 +30,16 @@ public class ClosingWall : MonoBehaviour {
         else if (axis == 1) wallMove = new Vector3(0, 0, 5);
 
         xBound = new float[2];
-        xBound[0] = this.transform.position.x - this.transform.localScale.x;
-        xBound[1] = this.transform.position.x + this.transform.localScale.x;
+        xBound[0] = this.transform.position.x - this.transform.localScale.x*5;
+        xBound[1] = this.transform.position.x + this.transform.localScale.x*5;
 
         yBound = new float[2];
         yBound[0] = this.transform.position.y + 5;
         yBound[1] = this.transform.position.y + 20;
 
         zBound = new float[2];
-        zBound[0] = this.transform.position.z - this.transform.localScale.z;
-        zBound[1] = this.transform.position.z + this.transform.localScale.z;
+        zBound[0] = this.transform.position.z - this.transform.localScale.z*5;
+        zBound[1] = this.transform.position.z + this.transform.localScale.z*5;
 
         Random.InitState((int)(Time.deltaTime));
         int number = Random.Range(1, 4);
@@ -78,13 +79,13 @@ public class ClosingWall : MonoBehaviour {
         // Resize bounds
         if (axis == 0)
         {
-            xBound[0] += wallMove.x * speedScale;
-            xBound[1] -= wallMove.x * speedScale;
+            xBound[0] += wallMove.x * speedScale * 5;
+            xBound[1] -= wallMove.x * speedScale * 5;
         }
         else
         {
-            zBound[0] += wallMove.z * speedScale;
-            zBound[1] -= wallMove.z * speedScale;
+            zBound[0] += wallMove.z * speedScale * 5;
+            zBound[1] -= wallMove.z * speedScale * 5;
         }
     }
 
@@ -100,14 +101,15 @@ public class ClosingWall : MonoBehaviour {
             float z = Random.Range(zBound[0], zBound[1]);
             Vector3 location = new Vector3(x, y, z);
 
-            x = Random.Range(4, 10);
-            y = Random.Range(4, 10);
-            z = Random.Range(4, 10);
+            x = Random.Range(1, 3);
+            y = Random.Range(1, 3);
+            z = Random.Range(1, 3);
             Vector3 size = new Vector3(x, y, z);
 
             GameObject go = Instantiate(block);
             go.GetComponent<BlockWall>().SetCW(this);
             go.GetComponent<BlockWall>().SetID(IDcounter);
+            go.GetComponent<MeshRenderer>().material = blockColor;
             go.transform.position = location;
             go.transform.localScale = size;
 
