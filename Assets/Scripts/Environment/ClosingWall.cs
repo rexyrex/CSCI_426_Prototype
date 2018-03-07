@@ -18,6 +18,7 @@ public class ClosingWall : MonoBehaviour {
     float timeCounter;
     Vector3 wallMove;
     bool closing;
+    float IDcounter;
 
     Random rand;
     
@@ -39,9 +40,11 @@ public class ClosingWall : MonoBehaviour {
         zBound[0] = this.transform.position.z - this.transform.localScale.z;
         zBound[1] = this.transform.position.z + this.transform.localScale.z;
 
-        timeCounter = 0;
-
         Random.InitState((int)(Time.deltaTime));
+        int number = Random.Range(1, 4);
+        Spawn(number);
+        timeCounter = 0;
+        IDcounter = 0;
 
         closing = true;
     }
@@ -103,8 +106,12 @@ public class ClosingWall : MonoBehaviour {
             Vector3 size = new Vector3(x, y, z);
 
             GameObject go = Instantiate(block);
+            go.GetComponent<BlockWall>().SetCW(this);
+            go.GetComponent<BlockWall>().SetID(IDcounter);
             go.transform.position = location;
             go.transform.localScale = size;
+
+            IDcounter++;
         }
     }
 
