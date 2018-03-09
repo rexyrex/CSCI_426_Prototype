@@ -24,13 +24,14 @@ public class FallingTilesScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (activate) {
-			
-			//activationTime = Time.time;
+            Debug.Log(transform.name);
 			activateCounter += Time.deltaTime;
 			GetComponent<Renderer> ().material = redMat;
 		}
 
 		if (activateCounter > timeTillNextTile) {
+            Debug.Log("fall");
+            rb.constraints = RigidbodyConstraints.None;
 			rb.useGravity = true;
 			activateNextTile ();
 		}
