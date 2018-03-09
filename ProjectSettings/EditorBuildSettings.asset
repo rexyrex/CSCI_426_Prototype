@@ -4,7 +4,4 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/maze_overpass.unity
-    guid: 2432871c5861516498da52e30ec3a000
+  m_Scenes: []

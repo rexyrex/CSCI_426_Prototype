@@ -123,4 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5fcae14263ef7469d1f81d50e88426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canPushObjects: []
+  canPushObjects:
+  - Chain
