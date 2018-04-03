@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
     protected virtual void Update()
     {
-        Debug.Log(player.name);
     }
 
     protected virtual void FixedUpdate()
@@ -47,8 +46,6 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveHorizontal = player.GetAxis("Move Horizontal");
         float moveVertical = player.GetAxis("Move Vertical");
-
-        Debug.Log(string.Format("moveHorizontal = {0}, moveVertical = {1}", moveHorizontal, moveVertical));
 
         //Making Movement Feel Nicer
         if (moveHorizontal > 0)
@@ -130,9 +127,6 @@ public class PlayerMovement : MonoBehaviour
             GlobalDataController gdc = GlobalDataController.gdc;
             direction += (gdc.p2pos - gdc.p1pos) / 100 * pullIntensity;
         }
-
-        Debug.Log(direction);
-        Debug.Log(speed);
 
         rb.AddForce(speed * direction);
     }
