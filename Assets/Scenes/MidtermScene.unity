@@ -925,6 +925,21 @@ Prefab:
       propertyPath: jumpHeight
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 114952548411738566, guid: 5ed6733018f920240af0d2e25053ad6f,
+        type: 2}
+      propertyPath: speed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114975220517143322, guid: 5ed6733018f920240af0d2e25053ad6f,
+        type: 2}
+      propertyPath: speed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114952548411738566, guid: 5ed6733018f920240af0d2e25053ad6f,
+        type: 2}
+      propertyPath: acceleration
+      value: 5.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ed6733018f920240af0d2e25053ad6f, type: 2}
   m_IsPrefabParent: 0
