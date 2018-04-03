@@ -29,11 +29,12 @@ public class PlayerMovement : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
+        speed *= 100;
     }
 
     protected virtual void Update()
     {
-
+        Debug.Log(player.name);
     }
 
     protected virtual void FixedUpdate()
@@ -46,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveHorizontal = player.GetAxis("Move Horizontal");
         float moveVertical = player.GetAxis("Move Vertical");
+
+        Debug.Log(string.Format("moveHorizontal = {0}, moveVertical = {1}", moveHorizontal, moveVertical));
 
         //Making Movement Feel Nicer
         if (moveHorizontal > 0)
@@ -122,11 +125,14 @@ public class PlayerMovement : MonoBehaviour
             throw new System.ArgumentNullException("speed has not been set to " +
                                                    "a value in movement script");
 
-        if (pullIntensity < 1.0f)
+        if (pullIntensity > 0.0f)
         {
             GlobalDataController gdc = GlobalDataController.gdc;
             direction += (gdc.p2pos - gdc.p1pos) / 100 * pullIntensity;
         }
+
+        Debug.Log(direction);
+        Debug.Log(speed);
 
         rb.AddForce(speed * direction);
     }

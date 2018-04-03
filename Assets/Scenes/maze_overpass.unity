@@ -407,7 +407,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4076995060893894, guid: 4b823606a69551b4b884a8b322ac83ad, type: 2}
       propertyPath: m_RootOrder
-      value: 33
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 1230065419714242, guid: 4b823606a69551b4b884a8b322ac83ad, type: 2}
       propertyPath: m_Name
@@ -5602,6 +5602,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b823606a69551b4b884a8b322ac83ad, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1441462457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1441462458}
+  m_Layer: 0
+  m_Name: P2Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1441462458
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1441462457}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.549999, y: 5.3999996, z: -3.3084812}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1441785185
 Prefab:
   m_ObjectHideFlags: 0
@@ -6032,6 +6060,34 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1660212656}
+--- !u!1 &1666615733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1666615734}
+  m_Layer: 0
+  m_Name: P1Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1666615734
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1666615733}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.89, y: 5.4, z: -3.3084812}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666771378 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1230065419714242, guid: 4b823606a69551b4b884a8b322ac83ad,
@@ -6332,6 +6388,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 234274830}
     m_Modifications:
+    - target: {fileID: 114553019696744904, guid: 563c056351f014128a76738d579195cb,
+        type: 2}
+      propertyPath: _userData.keyboardLayouts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4893973074344734, guid: 563c056351f014128a76738d579195cb, type: 2}
       propertyPath: m_LocalPosition.x
       value: -17.612003
@@ -6363,6 +6424,41 @@ Prefab:
     - target: {fileID: 4893973074344734, guid: 563c056351f014128a76738d579195cb, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553019696744904, guid: 563c056351f014128a76738d579195cb,
+        type: 2}
+      propertyPath: _userData.configVars.updateLoop
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553019696744904, guid: 563c056351f014128a76738d579195cb,
+        type: 2}
+      propertyPath: _userData.players.Array.data[2]._excludeFromControllerAutoAssignment
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553019696744904, guid: 563c056351f014128a76738d579195cb,
+        type: 2}
+      propertyPath: _userData.players.Array.data[1]._defaultKeyboardMaps.Array.data[0]._enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553019696744904, guid: 563c056351f014128a76738d579195cb,
+        type: 2}
+      propertyPath: _userData.keyboardLayouts.Array.data[1]._name
+      value: Layout0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553019696744904, guid: 563c056351f014128a76738d579195cb,
+        type: 2}
+      propertyPath: _userData.keyboardLayouts.Array.data[1]._descriptiveName
+      value: Layout0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553019696744904, guid: 563c056351f014128a76738d579195cb,
+        type: 2}
+      propertyPath: _userData.keyboardLayouts.Array.data[1]._id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553019696744904, guid: 563c056351f014128a76738d579195cb,
+        type: 2}
+      propertyPath: _userData.keyboardLayoutIdCounter
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 563c056351f014128a76738d579195cb, type: 2}
@@ -6682,6 +6778,16 @@ Prefab:
       propertyPath: maxFarthestDistance
       value: 15.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114422586998463044, guid: 5ed6733018f920240af0d2e25053ad6f,
+        type: 2}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1666615734}
+    - target: {fileID: 114743850170929498, guid: 5ed6733018f920240af0d2e25053ad6f,
+        type: 2}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1441462458}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ed6733018f920240af0d2e25053ad6f, type: 2}
   m_IsPrefabParent: 0
