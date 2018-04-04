@@ -22,7 +22,7 @@ public class ChainJoint : MonoBehaviour {
 			other.gameObject.GetComponent<BasicEnemyScript>().OnHitByChain(1, GlobalDataController.gdc.chainCharged);
         }else if (other.gameObject.tag == "breakable")
         {
-            other.gameObject.GetComponent<BreakScript>().
+            other.gameObject.GetComponent<BreakScript>().Break();
         }
     }
 
