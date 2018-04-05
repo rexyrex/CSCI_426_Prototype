@@ -37,6 +37,9 @@ public class GlobalDataController : MonoBehaviour {
     public bool tetherPull;
 	public ChainDistance chainState;
 
+	//boulder state
+	public ChainDistance boulderState;
+
     //Player Positions
     public Vector3 p1pos;
     public Vector3 p2pos;
@@ -75,6 +78,7 @@ public class GlobalDataController : MonoBehaviour {
         currentMana = defaultMana;
         tooFar = false;
 		chainState = ChainDistance.Close;
+		boulderState = ChainDistance.Close;
     }
 
     public void UpdatePlayerStats()
