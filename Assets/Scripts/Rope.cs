@@ -146,8 +146,21 @@ public class Rope : MonoBehaviour
             AddNodeToMiddle();
         }
 
-
-        //UpdateRopeYPosition();
+        /*Vector3 b = player2.transform.position - player1.transform.position;
+        b.y = 0;
+        for(int i = 0; i < rigidbodies.Count; i++)
+        {
+            Vector3 z = b.normalized * b.magnitude * i / rigidbodies.Count;
+            Vector3 direction = (z - rigidbodies[i].transform.position);
+            direction.y = 0;
+            //float orthDist = Mathf.Abs(Vector3.Magnitude(a) * Mathf.Cos(Vector3.Angle(a, b) * Mathf.PI / 180));
+            //Vector3 a = rigidbodies[i].transform.position - player1.transform.position;
+            //a.y = 0;
+            //float dist = Mathf.Abs(Vector3.Magnitude(a) * Mathf.Sin(Vector3.Angle(a, b) * Mathf.PI / 180));//Absolute distance from the line between the players
+            
+            rigidbodies[i].AddForce(direction / 100);
+        }*/
+            //UpdateRopeYPosition();
     }
 
     void SetAutoConfigureConnectedAnchor(int i, bool val)
