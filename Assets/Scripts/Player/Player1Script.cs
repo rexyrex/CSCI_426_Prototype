@@ -41,7 +41,7 @@ public class Player1Script : GenericPlayerScript {
 
         // pull
         // Pull yourself toward the other player
-        if (Input.GetButtonDown("Pull1"))
+        if (player.GetButtonDown("pull"))
         {
             if (pulling && pullCounter > 1)
             {
@@ -60,7 +60,7 @@ public class Player1Script : GenericPlayerScript {
 
         // push
         // If the other player is pulling, you will get swung around them
-        if(Input.GetButtonDown("Push1"))
+        if(player.GetButtonDown("push"))
         {
             if (/*otherPlayer.GetComponent<GenericPlayerScript>().IsPulling() &&*/ !pulling)
             {
@@ -69,6 +69,7 @@ public class Player1Script : GenericPlayerScript {
                 spinCounter = 0;
                 spinRadius = Vector3.Distance(otherPlayer.transform.position, this.transform.position);
                 Vector3 centripetal = otherPlayer.transform.position - this.transform.position;
+                centripetal.y = 0;
                 centripetal = centripetal.normalized;
                 
                 Vector3 angular = new Vector3(centripetal.z, 0, centripetal.x*-1);
@@ -98,11 +99,11 @@ public class Player1Script : GenericPlayerScript {
             spinning = false;
 
             Vector3 centripetal = otherPlayer.transform.position - this.transform.position;
+            centripetal.y = 0;
             centripetal = centripetal.normalized;
 
-            Vector3 angular = new Vector3(centripetal.z, 0, centripetal.x * -1);
-            angular = angular.normalized;
-            this.GetComponent<Rigidbody>().AddForce(angular * forcemod, ForceMode.Impulse);
+            Vector3 angular = this.GetComponent<Rigidbody>().velocity * -1;
+            this.GetComponent<Rigidbody>().AddForce(angular * forcemod * 0.5f, ForceMode.Impulse);
 
             return;
         }

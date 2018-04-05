@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     protected float rotationSpeedScale = 20.0f;
 
-    protected Player player;
+    public Player player { get; private set; }
 
     protected virtual void Awake()
     {

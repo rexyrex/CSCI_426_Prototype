@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Rewired;
 
 public class GenericPlayerScript : MonoBehaviour {
     public float forcemod;
     public float currentHealth;
     public float maxHealth;
     public float defaultHealth;
+    public Player player;
 
     public Slider manaBar;
 
@@ -24,6 +26,7 @@ public class GenericPlayerScript : MonoBehaviour {
         pulling = false;
         pullCounter = 0;
         mass = this.GetComponent<Rigidbody>().mass;
+        player = this.GetComponent<PlayerMovement>().player;
 	}
 	
 	// Update is called once per frame

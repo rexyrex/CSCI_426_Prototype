@@ -29,7 +29,7 @@ public class Player2Script : GenericPlayerScript
 
         // pull
         // Pull yourself toward the other player
-        if (Input.GetButtonDown("Pull2"))
+        if (player.GetButtonDown("pull"))
         {
             if (pulling && pullCounter > 1)
             {
@@ -48,7 +48,7 @@ public class Player2Script : GenericPlayerScript
 
         // push
         // If the other player is pulling and is close enough, will throw them forward
-        if (Input.GetButtonDown("Push2"))
+        if (player.GetButtonDown("push"))
         {
             if (otherPlayer.GetComponent<GenericPlayerScript>().IsPulling() && !pulling)
             {
