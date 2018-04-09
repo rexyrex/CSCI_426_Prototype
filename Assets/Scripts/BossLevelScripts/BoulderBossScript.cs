@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BoulderBossScript : MonoBehaviour {
-	float changeModeFreq = 10f;
+	float changeModeFreq = 20f;
 	float changeModeLast;
 
 	float spawnEnemyFreq = 10f;
@@ -16,7 +16,7 @@ public class BoulderBossScript : MonoBehaviour {
 	public Slider healthBar;
 
 	private float lastHitTime;
-	private float hitFreq = 0.4f;
+	private float hitFreq = 1.2f;
 
 	public Material closeMat;
 	public Material medMat;
@@ -31,7 +31,20 @@ public class BoulderBossScript : MonoBehaviour {
 
 	public enum bossMode {Close, Medium, Far, Invincible}
 
+	public Transform[] boulderSpawnPoints;
+
+
 	bossMode mode;
+	public GameObject boulder;
+
+	void spawnNewBoulder(){
+		int n = Random.Range (0, boulderSpawnPoints.Length);
+		Vector3 pos = boulderSpawnPoints [n].position;
+		pos.y += 4;
+		Quaternion quat = new Quaternion(0, 0, 0, 0);
+		Instantiate (boulder, pos, quat);
+	}
+
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +53,7 @@ public class BoulderBossScript : MonoBehaviour {
 		spawnEnemyLast = Time.time;
 		mode = bossMode.Invincible;
 		updateMaterial ();
+
 	}
 
 	// Update is called once per frame
@@ -64,7 +78,7 @@ public class BoulderBossScript : MonoBehaviour {
 			Quaternion quat = new Quaternion(0, 0, 0, 0);
 			int spawnType = Random.Range (0, 2);
 			spawnEnemyFreq = Random.Range (1, 10);
-			GameObject inst;
+			/*GameObject inst;
 			switch (spawnType) {
 			case 0:
 				inst = Instantiate(closeEnemyObject, pos, quat);
@@ -80,7 +94,7 @@ public class BoulderBossScript : MonoBehaviour {
 				break;
 			default:
 				break;
-			}
+			}*/
 
 
 		}
@@ -114,22 +128,28 @@ public class BoulderBossScript : MonoBehaviour {
 	void OnCollisionEnter(Collision collision)
 	{
 		
-		int rand = Random.Range (100,700);
-		if (GlobalDataController.gdc.chainCharged && collision.gameObject.tag == "Chain") {
+		int rand = Random.Range (420,1700);
+		if (GlobalDataController.gdc.chainCharged && collision.gameObject.tag == "BoulderTag") {
 			switch (mode) {
 			case bossMode.Close:
-				if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Close) {
+				if (GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Close) {
 					getDamaged (rand);
+					collision.gameObject.GetComponent<ColorBoulderScript> ().destroyBoulder (1);
+					spawnNewBoulder ();
 				}
 				break;
 			case bossMode.Medium:
-				if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Medium) {
+				if (GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Medium) {
 					getDamaged (rand);
+					collision.gameObject.GetComponent<ColorBoulderScript> ().destroyBoulder (2);
+					spawnNewBoulder ();
 				}
 				break;
 			case bossMode.Far:
-				if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Far) {
+				if (GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Far) {
 					getDamaged (rand);
+					collision.gameObject.GetComponent<ColorBoulderScript> ().destroyBoulder (3);
+					spawnNewBoulder ();
 				}
 				break;
 			default:
@@ -145,7 +165,7 @@ public class BoulderBossScript : MonoBehaviour {
 
 			//Debug.Log("Health is now: " + health);
 			health -= damage;
-			DamageTextController.CreateFloatingText (damage.ToString(), gameObject.transform);
+			//DamageTextController.CreateFloatingText (damage.ToString(), gameObject.transform);
 			lastHitTime = Time.time;
 		}
 	}
