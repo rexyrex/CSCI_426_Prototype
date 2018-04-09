@@ -15,14 +15,14 @@ public class ColorChangerScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		Debug.Log ("COLLIDEDEDEDED");
+		//Debug.Log ("COLLIDEDEDEDED");
 		if (other.tag == "Chain" && GlobalDataController.gdc.chainCharged) {
 			GlobalDataController.gdc.boulderState = GlobalDataController.gdc.chainState;
 		}			
 	}
 
 	void OnCollisionEnter(Collision other){
-		Debug.Log ("COLLIDEDEDEDED");
+		//Debug.Log ("COLLIDEDEDEDED");
 		if (other.collider.tag == "Chain"&& GlobalDataController.gdc.chainCharged) {
 			GlobalDataController.gdc.boulderState = GlobalDataController.gdc.chainState;
 		}			
