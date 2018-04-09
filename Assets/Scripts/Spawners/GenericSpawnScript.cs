@@ -9,7 +9,15 @@ public class GenericSpawnScript : MonoBehaviour {
 	public float distanceFromPlayerToSpawn;
 
 	public float enemySpawnFreq;
+    public float waveTime;
+    public float difficulty; // 0-3;
+    float numToSpawn;
+    float growthRate;
+    int numLeft;
 	float lastSpawnedTime = 0f;
+    float lastWave = 0.0f;
+    int spawnmax = 10;
+    bool spawning = false;
 
 	public Material activeMat;
 	public Material inactiveMat;
@@ -40,6 +48,28 @@ public class GenericSpawnScript : MonoBehaviour {
 			boulderT [counter] = b.transform;
 			counter++;
 		}
+
+        // Sets the difficulty of the spawner
+        if (difficulty <= 0)
+        {
+            numToSpawn = 2;
+            growthRate = 0.2f;
+        }
+        else if (difficulty == 1)
+        {
+            numToSpawn = 3;
+            growthRate = 0.34f;
+        }
+        else if (difficulty == 2)
+        {
+            numToSpawn = 3;
+            growthRate = 0.5f;
+        }
+        else if (difficulty >= 3)
+        {
+            numToSpawn = 4;
+            growthRate = 1f;
+        }
 	}
 	
 	// Update is called once per frame
@@ -70,9 +100,29 @@ public class GenericSpawnScript : MonoBehaviour {
 			rend.material = inactiveMat;
 		}
 
-		if (Time.time - lastSpawnedTime > enemySpawnFreq && Mathf.Min (distanceFromP1, distanceFromP2) < distanceFromPlayerToSpawn && spawnerActive) {
-			Spawn(pos);
-		}
+        if (spawning)
+        {
+            if (numLeft > 0)
+            {
+                if (Time.time - lastSpawnedTime > enemySpawnFreq && Mathf.Min(distanceFromP1, distanceFromP2) < distanceFromPlayerToSpawn && spawnerActive)
+                {
+                    Spawn(pos);
+                    numLeft--;
+                }
+            }
+            else
+            {
+                spawning = false;
+            }
+        }
+        else if(Time.time - lastWave > waveTime && Mathf.Min(distanceFromP1, distanceFromP2) < distanceFromPlayerToSpawn && spawnerActive)
+        {
+            numLeft = (int)numToSpawn;
+            lastWave = Time.time;
+            spawning = true;
+            numToSpawn++;
+        }
+		
 
 
 
