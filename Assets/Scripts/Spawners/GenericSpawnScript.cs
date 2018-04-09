@@ -100,6 +100,7 @@ public class GenericSpawnScript : MonoBehaviour {
 			rend.material = inactiveMat;
 		}
 
+        // Stuff For Spawning
         if (spawning)
         {
             if (numLeft > 0)
@@ -118,17 +119,19 @@ public class GenericSpawnScript : MonoBehaviour {
         else if(Time.time - lastWave > waveTime && Mathf.Min(distanceFromP1, distanceFromP2) < distanceFromPlayerToSpawn && spawnerActive)
         {
             numLeft = (int)numToSpawn;
+            if (numLeft > spawnmax) numLeft = spawnmax;
             lastWave = Time.time;
             spawning = true;
             numToSpawn++;
         }
-		
-
-
-
 	}
 
-	void Spawn(Vector3 pos){
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject other = collision.gameObject;
+    }
+
+    void Spawn(Vector3 pos){
 		
 		Quaternion quat = new Quaternion(0, 0, 0, 0);
 		lastSpawnedTime = Time.time;
