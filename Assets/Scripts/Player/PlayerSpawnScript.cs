@@ -25,11 +25,11 @@ public class PlayerSpawnScript : MonoBehaviour {
 		elapsed += Time.deltaTime;
 		if (elapsed >= spawnDelay && posSet == false) {
 			posSet = true;
-			setPos();
+			SetPos();
 		}
 	}
 
-	void setPos(){
+	void SetPos(){
 		gameObject.GetComponent<Rigidbody> ().useGravity = true;
 		gameObject.transform.position = spawnPoint.position;
 	}

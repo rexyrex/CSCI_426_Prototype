@@ -95,8 +95,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnObjects:
+  - {fileID: 1084414284649774, guid: daa5a200c9c21854aaa8c02337da05a8, type: 2}
+  - {fileID: 1778059781510776, guid: 93359d9a1f554e04cafb23e12999510e, type: 2}
   - {fileID: 1084414284649774, guid: d36d3c87701f7ba4da3af0476af97b03, type: 2}
   distanceFromPlayerToSpawn: 20
   enemySpawnFreq: 3
+  waveTime: 0
+  difficulty: 0
   activeMat: {fileID: 2100000, guid: d7332128930c2ab4ca368ac59a5757f3, type: 2}
   inactiveMat: {fileID: 2100000, guid: 7c918432df9c24a45acc1c82d3523828, type: 2}

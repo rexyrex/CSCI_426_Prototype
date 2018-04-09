@@ -53,8 +53,11 @@ public class GenericPlayerScript : MonoBehaviour {
 
 		if (col.gameObject.tag == "Enemy")
 		{
-			Damage(10);
-			Destroy(col.gameObject);
+            GameObject enemy = col.gameObject;
+			Damage(enemy.GetComponent<BasicEnemyScript>().Damage());
+            Vector3 push = (this.transform.position - enemy.transform.position).normalized * 100;
+            push.y = 10;
+            enemy.GetComponent<Rigidbody>().AddForce(push, ForceMode.Impulse);
 		}
 
         if (col.gameObject.tag == "ManaTag")

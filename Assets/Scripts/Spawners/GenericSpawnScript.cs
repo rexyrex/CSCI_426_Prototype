@@ -21,7 +21,7 @@ public class GenericSpawnScript : MonoBehaviour {
 
 	public Material activeMat;
 	public Material inactiveMat;
-
+    LineRenderer tether;
 	Renderer rend;
 
 	bool spawnerActive;
@@ -29,8 +29,8 @@ public class GenericSpawnScript : MonoBehaviour {
 
 	Transform p1T;
 	Transform p2T;
-	Transform[] boulderT;
-	GameObject[] boulders;
+	Transform boulderT;
+	GameObject boulder;
 
 	// Use this for initialization
 	void Start () {
@@ -38,16 +38,10 @@ public class GenericSpawnScript : MonoBehaviour {
 		rend  = GetComponent<Renderer>();
 		p1T = GameObject.FindGameObjectWithTag ("Player1Tag").transform;
 		p2T = GameObject.FindGameObjectWithTag ("Player2Tag").transform;
-
-		boulders = GameObject.FindGameObjectsWithTag ("BoulderTag");
-
-		boulderT = new Transform[boulders.Length];
-
-		int counter = 0;
-		foreach (GameObject b in boulders) {
-			boulderT [counter] = b.transform;
-			counter++;
-		}
+        tether = this.GetComponent<LineRenderer>();
+        
+        boulder = null;
+        boulderT = null;
 
         // Sets the difficulty of the spawner
         if (difficulty <= 0)
@@ -74,33 +68,34 @@ public class GenericSpawnScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        
+        // Seeing if players are close enough to be active
+        Vector3 pos = this.transform.position;
 		float distanceFromP1 = Vector3.Distance (pos, p1T.position);
 		float distanceFromP2 = Vector3.Distance (pos, p2T.position);
 
-		float minDistanceFromB = float.MaxValue;
-		Transform minT = boulderT [0];
-		foreach (Transform t in boulderT) {
-			if (Vector3.Distance (pos, t.position) < minDistanceFromB) {
-				minT = t;
-				minDistanceFromB = Vector3.Distance (pos, t.position);
-			}
-				
-		}
+        // Checking whether a boulder is blocking it
+        if (boulder != null)
+        {
+            HoldBoulder();
+            float distanceFromB = Vector3.Distance(pos, boulderT.position);
 
+            if (distanceFromB > 4)
+            {
+                Activate();
+            }
+            else
+            {
+                Deactivate();
+            }
+            
+        }
+        else
+        {
+            Activate();
+        }		
 
-		float distanceFromB = Vector3.Distance (pos, minT.position);
-
-		if (distanceFromB > 2) {
-			spawnerActive = true;
-			rend.material = activeMat;
-		} else {
-			spawnerActive = false;
-			rend.material = inactiveMat;
-		}
-
-        // Stuff For Spawning
+        // Spawning enemies if desired
         if (spawning)
         {
             if (numLeft > 0)
@@ -126,9 +121,42 @@ public class GenericSpawnScript : MonoBehaviour {
         }
 	}
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        GameObject other = collision.gameObject;
+        GameObject o = other.gameObject;
+        if (o.tag == "BoulderTag")
+        {
+            boulder = o;
+            boulderT = o.transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "BoulderTag")
+        {
+            boulder = null;
+            boulderT = null;
+        }
+    }
+
+    private void HoldBoulder()
+    {
+        /*
+        //int sign = 1;
+        Vector3 velocity = boulder.GetComponent<Rigidbody>().velocity;
+        if (boulderT.position.x > this.transform.position.x) velocity.x = -1 * Mathf.Abs(velocity.x);
+        else velocity.x = Mathf.Abs(velocity.x);
+        if (boulderT.position.y > this.transform.position.y) velocity.y = -1 * Mathf.Abs(velocity.y);
+        else velocity.y = Mathf.Abs(velocity.y);
+        if (boulderT.position.z > this.transform.position.z) velocity.z = -1 * Mathf.Abs(velocity.z);
+        else velocity.z = Mathf.Abs(velocity.z);
+
+        //if (Vector3.Distance(boulderT.position + velocity, this.transform.position) > Vector3.Distance(this.transform.position, boulderT.position))sign = -1;
+        
+        //float vel = velocity.magnitude;
+        //if (vel < 1) vel = 1;*/
+        boulder.GetComponent<Rigidbody>().AddForce((this.transform.position - boulderT.position).normalized * 1000);        
     }
 
     void Spawn(Vector3 pos){
@@ -138,4 +166,16 @@ public class GenericSpawnScript : MonoBehaviour {
 		int objInd = Random.Range (0, spawnObjects.Length-1);
 		GameObject inst = Instantiate(spawnObjects[objInd], pos, quat);
 	}
+
+    void Activate()
+    {
+        spawnerActive = true;
+        rend.material = activeMat;
+    }
+
+    void Deactivate()
+    {
+        spawnerActive = false;
+        rend.material = inactiveMat;
+    }
 }
