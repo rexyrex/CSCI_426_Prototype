@@ -1339,6 +1339,7 @@ GameObject:
   - component: {fileID: 1119542574}
   - component: {fileID: 1119542573}
   - component: {fileID: 1119542578}
+  - component: {fileID: 1119542579}
   m_Layer: 0
   m_Name: ColorBoulder
   m_TagString: Untagged
@@ -1442,6 +1443,19 @@ MonoBehaviour:
   medMat: {fileID: 2100000, guid: 148c3bb31e862e141926871e604c6367, type: 2}
   farMat: {fileID: 2100000, guid: d330a5e9f561d3743ba6729c47d47705, type: 2}
   invincibleMat: {fileID: 2100000, guid: 48320b49af8978940a9561e91eae3373, type: 2}
+--- !u!114 &1119542579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119542572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59efe977560fba42b823322eac7ac73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canPushObjects:
+  - Chain
 --- !u!1 &1181288364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,6 +1468,7 @@ GameObject:
   - component: {fileID: 1181288366}
   - component: {fileID: 1181288365}
   - component: {fileID: 1181288369}
+  - component: {fileID: 1181288370}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -1548,6 +1563,28 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1181288370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1181288364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b2ff53e82caf649a0bbd6bafc85216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  closeMat: {fileID: 0}
+  medMat: {fileID: 0}
+  farMat: {fileID: 0}
+  invincibleMat: {fileID: 0}
+  closeEnemyObject: {fileID: 1084414284649774, guid: daa5a200c9c21854aaa8c02337da05a8,
+    type: 2}
+  mediumEnemyObject: {fileID: 1918503876161478, guid: 437379727cb48b34b8e538125020b535,
+    type: 2}
+  farEnemyObject: {fileID: 0}
+  manaObject: {fileID: 0}
 --- !u!4 &1184282365 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: c4e96a0b6b147884aad7986f1bf21ce6, type: 3}
