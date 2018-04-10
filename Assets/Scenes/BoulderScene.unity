@@ -2849,7 +2849,7 @@ Prefab:
     - target: {fileID: 135387732435052172, guid: fe97b7afcb327ca4f866967a882a79ba,
         type: 2}
       propertyPath: m_Radius
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1659046362064090, guid: fe97b7afcb327ca4f866967a882a79ba, type: 2}
       propertyPath: m_TagString
@@ -2858,6 +2858,11 @@ Prefab:
     - target: {fileID: 1744331942336824, guid: fe97b7afcb327ca4f866967a882a79ba, type: 2}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 135387732435052172, guid: fe97b7afcb327ca4f866967a882a79ba,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe97b7afcb327ca4f866967a882a79ba, type: 2}

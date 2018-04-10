@@ -17,7 +17,6 @@ public class CloseEnemyScript : BasicEnemyScript {
 
 	public override void OnHitByChain(float damage, bool isChainActive)
 	{
-        Debug.Log("hit");
 		if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Close && isChainActive) {
 
 			Vector3 pos = gameObject.transform.position;

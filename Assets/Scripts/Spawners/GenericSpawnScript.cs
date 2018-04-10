@@ -77,6 +77,11 @@ public class GenericSpawnScript : MonoBehaviour {
         // Checking whether a boulder is blocking it
         if (boulder != null)
         {
+            Vector3[] vertex = { this.transform.position, boulderT.position };
+            tether.SetPositions(vertex);
+            tether.endWidth = 0.5f/(1+Vector3.Distance(this.transform.position, boulderT.position));
+            tether.startWidth = 0.5f / (1 + Vector3.Distance(this.transform.position, boulderT.position));
+
             HoldBoulder();
             float distanceFromB = Vector3.Distance(pos, boulderT.position);
 
@@ -128,6 +133,7 @@ public class GenericSpawnScript : MonoBehaviour {
         {
             boulder = o;
             boulderT = o.transform;
+            tether.enabled = true;
         }
     }
 
@@ -137,6 +143,7 @@ public class GenericSpawnScript : MonoBehaviour {
         {
             boulder = null;
             boulderT = null;
+            tether.enabled = false;
         }
     }
 
@@ -156,7 +163,24 @@ public class GenericSpawnScript : MonoBehaviour {
         
         //float vel = velocity.magnitude;
         //if (vel < 1) vel = 1;*/
-        boulder.GetComponent<Rigidbody>().AddForce((this.transform.position - boulderT.position).normalized * 1000);        
+
+        Rigidbody rb = boulder.GetComponent<Rigidbody>();
+        int factor = 50;
+        Vector3 movement = this.transform.position - boulderT.position;
+        if (spawnerActive)
+        {
+            movement = movement.normalized;
+            rb.velocity += movement * 1.5f;
+            /*if (rb.velocity.magnitude < 1f)
+            {
+                movement = movement.normalized;
+                rb.velocity += movement * 10;
+            }*/
+            if (rb.velocity.magnitude > 12) rb.velocity = rb.velocity / 1.1f;
+        }
+        else if (rb.velocity.magnitude > 0) rb.velocity = rb.velocity / 3;
+        
+        
     }
 
     void Spawn(Vector3 pos){
