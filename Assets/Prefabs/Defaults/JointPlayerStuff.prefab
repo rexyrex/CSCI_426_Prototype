@@ -202,7 +202,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214367678718342}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.25, y: 0, z: 0}
+  m_LocalPosition: {x: 13.29, y: 0, z: 0}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_Children:
   - {fileID: 4702109163533708}
@@ -229,7 +229,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1623886730409120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.76, y: 29.95, z: -3.6600008}
+  m_LocalPosition: {x: -16.8, y: -13, z: 7.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4187385587464106}
@@ -479,6 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b971216b91b744e81d046b9371c462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forcemod: 0
   currentHealth: 100
   maxHealth: 100
   defaultHealth: 100
@@ -511,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fef63d1994f87549ba3103d5c6909a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 4986539664427170}
 --- !u!114 &114442139294854208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -523,6 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144eaa22a44a03945be5a04563d0f847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forcemod: 0
   currentHealth: 100
   maxHealth: 100
   defaultHealth: 100
@@ -550,6 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d4881677507184786ec0400c69f93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forcemod: 0
   currentHealth: 100
   maxHealth: 100
   defaultHealth: 100
@@ -578,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fef63d1994f87549ba3103d5c6909a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 4986539664427170}
 --- !u!114 &114782786956613650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -621,6 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b8f549191964ac6a8797c529072a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerId: -1
   speed: 25
   maxSpeed: 0.8
   acceleration: 4
@@ -637,6 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7746d5d3e6634418d93840541fd4c21b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerId: -1
   speed: 25
   maxSpeed: 1
   acceleration: 5

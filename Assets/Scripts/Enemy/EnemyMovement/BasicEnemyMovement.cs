@@ -11,10 +11,10 @@ public class BasicEnemyMovement : MonoBehaviour {
     GameObject[] objs;
 
     NavMeshAgent playerAgent;
-	float destChangeFreq = 4f;
+	float destChangeFreq = 1f;
 	float lastDestChange;
 
-	float dFromPToActivate = 15;
+	float dFromPToActivate = 25;
 
 
     void Start () {
@@ -27,24 +27,24 @@ public class BasicEnemyMovement : MonoBehaviour {
 
 
 
-	void FixedUpdate () {
+	void Update () {
 		float distanceFromP1 = Vector3.Distance (transform.position, p1Trans.position);
 		float distanceFromP2 = Vector3.Distance (transform.position, p2Trans.position);
 
        
 		if (playerAgent.isActiveAndEnabled && Mathf.Min(distanceFromP1, distanceFromP2) < dFromPToActivate) {
 			if (Vector3.Distance(gameObject.transform.position, p1Trans.position) < Vector3.Distance(gameObject.transform.position, p2Trans.position)){
-				setDest (p1Trans);
+				SetDest (p1Trans);
 				//playerAgent.destination = p1Trans.position;
 			} else
 			{
-				setDest (p2Trans);
+				SetDest (p2Trans);
 				//playerAgent.destination = p2Trans.position;
 			}
 		}  
     }
 
-	void setDest(Transform dest){
+	void SetDest(Transform dest){
 		float distFromDest=playerAgent.remainingDistance; 
 		bool arrived = distFromDest!=Mathf.Infinity && playerAgent.pathStatus==NavMeshPathStatus.PathComplete && playerAgent.remainingDistance==0;
 
