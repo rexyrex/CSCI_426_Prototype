@@ -5,9 +5,10 @@ using UnityEngine;
 public class CloseEnemyScript : BasicEnemyScript {
 	public GameObject manaObject;
 	public GameObject explosion;
+	bool dead;
 	// Use this for initialization
 	void Start () {
-		
+		dead = false;
 	}
 	
 	// Update is called once per frame
@@ -17,7 +18,8 @@ public class CloseEnemyScript : BasicEnemyScript {
 
 	public override void OnHitByChain(float damage, bool isChainActive)
 	{
-		if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Close && isChainActive) {
+		if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Close && isChainActive &&!dead) {
+			dead = true;
 			GetComponent<SphereCollider> ().enabled = false;
 			Vector3 pos = gameObject.transform.position;
 

@@ -6,9 +6,10 @@ public class FarEnemyScript : BasicEnemyScript {
 
 	public GameObject manaObject;
 	public GameObject explosion;
+	bool dead;
 	// Use this for initialization
 	void Start () {
-		
+		dead = false;
 	}
 	
 	// Update is called once per frame
@@ -18,7 +19,8 @@ public class FarEnemyScript : BasicEnemyScript {
 
 	public override void OnHitByChain(float damage, bool isChainActive)
 	{
-		if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Far && isChainActive) {
+		if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Far && isChainActive && !dead) {
+			dead = true;
 			GetComponent<SphereCollider> ().enabled = false;
 			Vector3 pos = gameObject.transform.position;
 
