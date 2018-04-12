@@ -11,8 +11,15 @@ public class ColorBoulderScript : MonoBehaviour {
 	public GameObject explosionMed;
 	public GameObject explosionFar;
 
+	GameObject boss;
+	float distanceFromBoss;
+	float distanceLimit = 50;
+
 	// Use this for initialization
 	void Start () {
+
+		boss = GameObject.FindGameObjectWithTag ("Boss");
+		distanceFromBoss = Vector3.Distance (boss.transform.position, transform.position);
 		canPush = new HashSet<string>();
 		foreach (var s in canPushObjects)
 			canPush.Add(s);
@@ -20,13 +27,16 @@ public class ColorBoulderScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		if (Vector3.Distance (boss.transform.position, transform.position) > distanceLimit) {
+			boss.GetComponent<BoulderBossScript> ().spawnNewBoulder ();
+			Destroy (gameObject);
+		}
 	}
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (canPush.Contains(collision.gameObject.tag) && GlobalDataController.gdc.chainState == GlobalDataController.gdc.boulderState) {
-			gameObject.GetComponent<Rigidbody> ().mass = 3;
+		if (canPush.Contains(collision.gameObject.tag) && GlobalDataController.gdc.chainState == GlobalDataController.gdc.boulderState && GlobalDataController.gdc.chainCharged) {
+			gameObject.GetComponent<Rigidbody> ().mass = 5;
 		} else {
 			gameObject.GetComponent<Rigidbody> ().mass = 100000;
 		}

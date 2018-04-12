@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class BoulderBossScript : MonoBehaviour {
 	float changeModeFreq = 20f;
@@ -9,6 +10,9 @@ public class BoulderBossScript : MonoBehaviour {
 
 	float spawnEnemyFreq = 10f;
 	float spawnEnemyLast;
+
+	float changeLocFreq = 10f;
+	float changeLocLast;
 
 	float maxhealth = 10000f;
 	float health = 10000f;
@@ -33,11 +37,13 @@ public class BoulderBossScript : MonoBehaviour {
 
 	public Transform[] boulderSpawnPoints;
 
+	public Transform[] bossLocs;
+	NavMeshAgent bossAgent;
 
 	bossMode mode;
 	public GameObject boulder;
 
-	void spawnNewBoulder(){
+	public void spawnNewBoulder(){
 		int n = Random.Range (0, boulderSpawnPoints.Length);
 		Vector3 pos = boulderSpawnPoints [n].position;
 		pos.y += 4;
@@ -51,8 +57,10 @@ public class BoulderBossScript : MonoBehaviour {
 		changeModeLast = Time.time;
 		lastHitTime = Time.time;
 		spawnEnemyLast = Time.time;
+		changeLocLast = Time.time;
 		mode = bossMode.Invincible;
 		updateMaterial ();
+		bossAgent = GetComponent<NavMeshAgent> ();
 
 	}
 
@@ -71,30 +79,36 @@ public class BoulderBossScript : MonoBehaviour {
 			Debug.Log ("mode changed to " + mode);
 		}
 
+		if (Time.time - changeLocLast > changeLocFreq) {
+			changeLocLast = Time.time;
+			int locInd = Random.Range (0, bossLocs.Length);
+			bossAgent.destination = bossLocs [locInd].position;
+		}
+
 		if (Time.time - spawnEnemyLast > spawnEnemyFreq) {
 			spawnEnemyLast = Time.time;
 			Vector3 pos = gameObject.transform.position;
 			Vector3 manapos = new Vector3 (pos.x, pos.y + 10, pos.x);
 			Quaternion quat = new Quaternion(0, 0, 0, 0);
 			int spawnType = Random.Range (0, 2);
-			spawnEnemyFreq = Random.Range (1, 10);
-			/*GameObject inst;
+			//spawnEnemyFreq = Random.Range (1, 10);
+			GameObject inst;
 			switch (spawnType) {
 			case 0:
 				inst = Instantiate(closeEnemyObject, pos, quat);
-				Instantiate(manaObject, manapos, quat);
+				//Instantiate(manaObject, manapos, quat);
 				break;
 			case 1:
 				inst = Instantiate(mediumEnemyObject, pos, quat);
-				Instantiate(manaObject, manapos, quat);
+				//Instantiate(manaObject, manapos, quat);
 				break;
 			case 2:
 				inst = Instantiate(farEnemyObject, pos, quat);
-				Instantiate(manaObject, manapos, quat);
+				//Instantiate(manaObject, manapos, quat);
 				break;
 			default:
 				break;
-			}*/
+			}
 
 
 		}

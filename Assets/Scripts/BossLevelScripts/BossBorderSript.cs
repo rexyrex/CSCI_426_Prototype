@@ -10,12 +10,16 @@ public class BossBorderSript : MonoBehaviour {
 	bool p2Inside;
 	public Canvas hurtCanvas;
 
+	float scaleIncFreq = 2f;
+	float scaleLastInc;
+
 	// Use this for initialization
 	void Start () {
 		p1 = GameObject.FindGameObjectWithTag ("Player1Tag");
 		p2 = GameObject.FindGameObjectWithTag ("Player2Tag");
 		p1Inside = false;
 		p2Inside = false;
+		scaleLastInc = Time.time;
 
 	}
 	
@@ -35,6 +39,16 @@ public class BossBorderSript : MonoBehaviour {
 		} else {
 			hurtCanvas.enabled = false;
 		}
+
+
+		if (Time.time - scaleLastInc > scaleIncFreq) {
+			scaleLastInc = Time.time;
+			transform.localScale += new Vector3(0.03F, 0.03F, 0.03F);
+
+		}
+
+
+
 	}
 
 	void OnTriggerEnter(Collider other){
