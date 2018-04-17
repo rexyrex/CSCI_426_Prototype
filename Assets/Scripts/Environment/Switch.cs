@@ -5,15 +5,15 @@ using UnityEngine;
 public class Switch : MonoBehaviour
 {
     //For a pressure plate
-    public GameObject connectedThing;
-    protected EnvironmentObject thing;
+    public EnvironmentObject[] connectedThings;
+    //protected EnvironmentObject thing;
     protected Press plate;
     protected bool on;
 
     // Use this for initialization
     void Start()
     {
-        thing = connectedThing.GetComponent<EnvironmentObject>();
+        //thing = connectedThings.GetComponent<EnvironmentObject>();
         plate = this.GetComponentInParent<Press>();
         on = false;
     }
@@ -34,12 +34,12 @@ public class Switch : MonoBehaviour
 
             if (!on)
             {
-                thing.Actuate();
+                for(int i = 0; i < connectedThings.Length; i++) connectedThings[i].Switch();
                 on = true;
             }
 
             else{
-                thing.Revert();
+                for(int i = 0; i < connectedThings.Length; i++) connectedThings[i].Switch();
                 on = false;
             }
             
