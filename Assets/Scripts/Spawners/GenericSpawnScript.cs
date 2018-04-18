@@ -24,7 +24,7 @@ public class GenericSpawnScript : MonoBehaviour {
     LineRenderer tether;
 	Renderer rend;
 
-	bool spawnerActive;
+	public bool spawnerActive;
 
 
 	Transform p1T;
