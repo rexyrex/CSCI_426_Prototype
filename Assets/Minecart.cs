@@ -8,6 +8,7 @@ public class Minecart : MonoBehaviour {
     public float min;
     public float axis;
     float startPos;
+    List<Rail> rails;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,7 @@ public class Minecart : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (rails.Count != 1) return;
         if (axis == 1)
         {
             float x = startPos;
@@ -53,5 +55,15 @@ public class Minecart : MonoBehaviour {
             parentTrans.position.Set(x, y, z);
         }
 
+    }
+
+    public void AddRail(Rail item)
+    {
+        rails.Add(item);
+    }
+
+    public void RemoveRail(Rail item)
+    {
+        rails.Remove(item);
     }
 }
