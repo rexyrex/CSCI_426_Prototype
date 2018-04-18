@@ -14,4 +14,24 @@ public class Rail : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "BoulderTag")
+        {
+            Minecart cart = other.GetComponent<Minecart>();
+            if (cart == null) return;
+            cart.AddRail(this);
+        }    
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "BoulderTag")
+        {
+            Minecart cart = other.GetComponent<Minecart>();
+            if (cart == null) return;
+            cart.RemoveRail(this);
+        }
+    }
 }
