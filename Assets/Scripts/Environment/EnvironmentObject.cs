@@ -17,11 +17,17 @@ public class EnvironmentObject : MonoBehaviour {
 
     public virtual void Actuate()
     {
-
+        isActuated = true;
     }
 
     public virtual void Revert()
     {
+        isActuated = false;
+    }
 
+    public virtual void Switch()
+    {
+        if (isActuated) Revert();
+        else Actuate();
     }
 }

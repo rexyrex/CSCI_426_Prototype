@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rope : MonoBehaviour
 {
     public bool pingPong;
+    public GameObject[] toIgnore;
 
     public float emissionIntensityUncharged = 0.0f;
     public float emissionIntensityCharged = 10.0f;
@@ -260,6 +261,12 @@ public class Rope : MonoBehaviour
 
             Physics.IgnoreCollision(n.GetComponent<Collider>(), p1col);
             Physics.IgnoreCollision(n.GetComponent<Collider>(), p2col);
+
+            for(int j = 0; j < toIgnore.Length; j++)
+            {
+                Physics.IgnoreCollision(n.GetComponent<Collider>(), toIgnore[j].GetComponent<Collider>());
+            }
+            
 
             nodes.Add(n);
             materials.Add(n.GetComponent<Renderer>().material);
