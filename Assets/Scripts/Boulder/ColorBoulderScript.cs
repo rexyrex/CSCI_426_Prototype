@@ -38,7 +38,7 @@ public class ColorBoulderScript : MonoBehaviour {
 		if (canPush.Contains(collision.gameObject.tag) && GlobalDataController.gdc.chainState == GlobalDataController.gdc.boulderState && GlobalDataController.gdc.chainCharged) {
 			gameObject.GetComponent<Rigidbody> ().mass = 5;
 		} else {
-			gameObject.GetComponent<Rigidbody> ().mass = 100000;
+			//gameObject.GetComponent<Rigidbody> ().mass = 100000;
 		}
 
 		if (collision.gameObject.tag == "Boss" ) {

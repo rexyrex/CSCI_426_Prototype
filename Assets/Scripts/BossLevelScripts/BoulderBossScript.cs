@@ -8,7 +8,7 @@ public class BoulderBossScript : MonoBehaviour {
 	float changeModeFreq = 20f;
 	float changeModeLast;
 
-	float spawnEnemyFreq = 10f;
+	float spawnEnemyFreq = 6f;
 	float spawnEnemyLast;
 
 	float changeLocFreq = 10f;
@@ -85,7 +85,7 @@ public class BoulderBossScript : MonoBehaviour {
 			bossAgent.destination = bossLocs [locInd].position;
 		}
 
-		if (Time.time - spawnEnemyLast > spawnEnemyFreq) {
+		if (Time.time - spawnEnemyLast > spawnEnemyFreq && mode==bossMode.Invincible) {
 			spawnEnemyLast = Time.time;
 			Vector3 pos = gameObject.transform.position;
 			Vector3 manapos = new Vector3 (pos.x, pos.y + 10, pos.x);
