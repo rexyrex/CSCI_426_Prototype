@@ -37,7 +37,7 @@ public class RocketSpawnerScript : MonoBehaviour {
 		}
 
 		if (other.tag == "Enemy" ) {
-			other.gameObject.GetComponent<BasicEnemyScript> ().OnHitByChain (1000, true);
+			other.gameObject.GetComponent<BasicColorEnemyScript> ().Die ();
 			FireRocket ();
 
 		}	
