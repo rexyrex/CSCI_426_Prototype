@@ -230,7 +230,7 @@ MonoBehaviour:
   player2: {fileID: 1251968076}
   windspeed1: 2000
   windspeed2: 0
-  direction: 290
+  direction: 360
 --- !u!23 &347053214
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -470,7 +470,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4986539664427170, guid: 5ed6733018f920240af0d2e25053ad6f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -12.3
+      value: -7.34
       objectReference: {fileID: 0}
     - target: {fileID: 4986539664427170, guid: 5ed6733018f920240af0d2e25053ad6f, type: 2}
       propertyPath: m_LocalPosition.y
@@ -478,7 +478,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4986539664427170, guid: 5ed6733018f920240af0d2e25053ad6f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -3.6600008
+      value: -32.06
       objectReference: {fileID: 0}
     - target: {fileID: 4986539664427170, guid: 5ed6733018f920240af0d2e25053ad6f, type: 2}
       propertyPath: m_LocalRotation.x
