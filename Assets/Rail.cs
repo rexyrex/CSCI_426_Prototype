@@ -15,6 +15,7 @@ public class Rail : MonoBehaviour {
 		
 	}
 
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "BoulderTag")
@@ -33,5 +34,5 @@ public class Rail : MonoBehaviour {
             if (cart == null) return;
             cart.RemoveRail(this);
         }
-    }
+    }*/
 }
