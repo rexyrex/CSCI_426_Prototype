@@ -44,7 +44,6 @@ public class SpawnMana : MonoBehaviour {
                 if (spawned[i] == null || spawned[i].Equals(null))
                 {
                     float x = Random.Range(nrx, prx);
-                    Debug.Log("x = " + x);
                     float z = Random.Range(nrz, prz);
 
                     spawned[i] = Instantiate(manaType, new Vector3(x, y, z), quat);

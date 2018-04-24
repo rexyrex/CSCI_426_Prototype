@@ -129,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.AddForce(speed * direction);
+        if (rb.velocity.magnitude > maxSpeed) rb.velocity = rb.velocity.normalized * maxSpeed;
     }
 
     void Turn()
