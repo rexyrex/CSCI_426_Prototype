@@ -21,6 +21,8 @@ public class Minecart : MonoBehaviour {
         parentTrans = this.GetComponentInParent<Transform>();
 
         rb = this.GetComponent<Rigidbody>();
+
+        FreezeZ();
     }
 	
 	// Update is called once per frame
@@ -39,6 +41,7 @@ public class Minecart : MonoBehaviour {
 
     public void LeaveRail(int id, Rail rail)
     {
+        Debug.Log("leaverail");
         // Checks if the front trigger is on a rail. If not, then the cart has gone over and it should stop.
         if (id == 0) // Middle Trigger
         {
@@ -78,34 +81,23 @@ public class Minecart : MonoBehaviour {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     // Let's the cart only move in Z
     public void FreezeX()
     {
         rb.constraints = RigidbodyConstraints.None;
-        Vector3 v = new Vector3(1, 0, 0);
+        Vector3 v = transform.rotation.eulerAngles;
         transform.rotation = Quaternion.FromToRotation(Vector3.right, v);
-        rb.freezeRotation = true;
         rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
+        rb.freezeRotation = true;
     }
 
     // Let's the cart only move in X
     public void FreezeZ()
     {
         rb.constraints = RigidbodyConstraints.None;
-        Vector3 v = new Vector3(0, 0, 1);
+        Vector3 v = transform.rotation.eulerAngles;
         transform.rotation = Quaternion.FromToRotation(Vector3.forward, v);
         rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionY;
+        rb.freezeRotation = true;
     }
 }

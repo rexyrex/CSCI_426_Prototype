@@ -7,7 +7,11 @@ public class Rail : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        if (this.GetComponentInParent<Transform>().transform.rotation.y % 180 == 0)
+        {
+            axis = 0; // use FreezeZ()
+        }
+        else axis = 1; // use FreezeX()
 	}
 	
 	// Update is called once per frame

@@ -11,7 +11,11 @@ public class CartTrigger : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rails = new List<Rail>();
-        if (startRail != null) rails.Add(startRail);
+        if (startRail != null)
+        {
+            Debug.Log("adding startrail");
+            rails.Add(startRail);
+        }
     }
 	
 	// Update is called once per frame
@@ -30,9 +34,11 @@ public class CartTrigger : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log(other.tag);
         if (other.tag == "Rail" && rails.Contains(other.GetComponent<Rail>()))
         {
             rails.Remove(other.GetComponent<Rail>());
+            cart.LeaveRail(id, other.GetComponent<Rail>());
         }
     }
 
