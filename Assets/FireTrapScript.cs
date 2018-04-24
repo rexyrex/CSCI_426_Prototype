@@ -50,7 +50,9 @@ public class FireTrapScript : EnvironmentObject {
         this.transform.localScale = new Vector3(0, 0, 0);
         isOn = true;
         grown = false;
+        //"about to enable mesh"
         mesh.enabled = true;
+        Debug.Log("was mesh enabled: "+ mesh.enabled);
     }
 
     public override void Revert()
@@ -64,14 +66,14 @@ public class FireTrapScript : EnvironmentObject {
         if (!isOn) this.Actuate();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void AddBurn(GameObject other)
     {
         Debug.Log("something to burn: " + other.tag);
         if (other.tag == "Player1Tag" || other.tag == "Player2Tag" || other.tag == "Boss") burning.Add(other.gameObject);
         else if (other.tag == "breakable") Destroy(other.gameObject);
     }
 
-    private void OnTriggerExit(Collider other)
+    public void RemoveBurn(GameObject other)
     {
         if (burning.Contains(other.gameObject)) burning.Remove(other.gameObject);
     }
@@ -82,8 +84,8 @@ public class FireTrapScript : EnvironmentObject {
         {
             Debug.Log("Burning " + burning[i].tag);
             if (burning[i].tag == "Boss") burning[i].GetComponent<ChaseBossScript>().getDamaged(1500);
-            else if (burning[i].tag == "Player1Tag") burning[i].GetComponent<Player1Script>().Damage(15);
-            else burning[i].GetComponent<Player2Script>().Damage(15);
+            else if (burning[i].tag == "Player1Tag") burning[i].GetComponent<Player1Script>().Damage(0);
+            else burning[i].GetComponent<Player2Script>().Damage(0);
         }
     }
 }

@@ -19,12 +19,21 @@ public class SwitchPuzzleComponent : EnvironmentObject {
 
     protected void OnTriggerEnter(Collider other)
     {
+        Debug.Log("here1" + other.tag);
         if (!on) return;
+        Debug.Log("here2");
         if (other.gameObject.tag == "Player2Tag" || other.gameObject.tag == "Player1Tag")
         {
+            Debug.Log("here3" + other.tag);
             this.Actuate();
             for (int i = 0; i < connectedThings.Length; i++) connectedThings[i].Switch();
         }
+        Debug.Log("here4");
+    }
+
+    protected void OnTriggerExit(Collider other)
+    {
+        
     }
 
     // Can't use anymore

@@ -130,11 +130,11 @@ public class ChaseBossScript : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player1Tag")
         {
-            player1Obj.GetComponent<Player1Script>().Damage(Random.Range(40, 60));
+            player1Obj.GetComponent<Player1Script>().Damage(Random.Range(10, 20));
         }
         else if (collision.gameObject.tag == "Player2Tag")
         {
-            player2Obj.GetComponent<Player2Script>().Damage(Random.Range(40, 60));
+            player2Obj.GetComponent<Player2Script>().Damage(Random.Range(10, 20));
         }
         else if (collision.gameObject.tag == "Trap")
         {

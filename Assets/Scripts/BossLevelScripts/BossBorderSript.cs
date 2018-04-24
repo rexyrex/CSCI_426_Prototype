@@ -54,14 +54,14 @@ public class BossBorderSript : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		//Debug.Log ("COLLIDEDEDEDED");
 		if (other.tag == "Player1Tag" ) {
-			other.GetComponent<Player1Script> ().Damage (10f);
+			other.GetComponent<Player1Script> ().Damage (4f);
 			p1Inside = true;
 
 			//Debug.Log ("ouch");
 		}
 
 		if (other.tag == "Player2Tag" ) {
-			other.GetComponent<Player2Script> ().Damage (10f);
+			other.GetComponent<Player2Script> ().Damage (4f);
 			p2Inside = true;
 		}	
 	}

@@ -47,7 +47,9 @@ public class RisingManaPillar : BreakScript {
     {
         if(GlobalDataController.gdc.chainState == killDist)
         {
-            Instantiate(explosion);
+            Vector3 pos = gameObject.transform.position;
+            Quaternion quat = new Quaternion(0, 0, 0, 0);
+            Instantiate(explosion, pos, quat);
             Destroy(this.gameObject);
         }
     }
