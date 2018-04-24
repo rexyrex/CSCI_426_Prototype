@@ -7,6 +7,7 @@ public class GenericSpawnScript : MonoBehaviour {
 	public GameObject[] spawnObjects;
 
 	public float distanceFromPlayerToSpawn;
+    public float id;
 
 	public float enemySpawnFreq;
     public float waveTime;
