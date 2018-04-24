@@ -4941,7 +4941,7 @@ MonoBehaviour:
   manaType: {fileID: 1451866111625074, guid: 49ca34b89c5eba3428f448a46440f356, type: 2}
   spawnfreq: 5
   spawned: []
-  max: 5
+  max: 25
   prx: 2
   nrx: -32
   prz: 5
@@ -4960,7 +4960,7 @@ MonoBehaviour:
   manaType: {fileID: 1688285845365804, guid: 422ebe0fd3aacaa4cad03ffb194a4481, type: 2}
   spawnfreq: 5
   spawned: []
-  max: 20
+  max: 30
   prx: 2
   nrx: -32
   prz: 5
@@ -4971,7 +4971,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 709497661}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -13753,7 +13753,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6400002, guid: 612fdce2ba61f4047aa3115f18e62ac5, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6400002, guid: 612fdce2ba61f4047aa3115f18e62ac5, type: 3}
       propertyPath: m_Convex

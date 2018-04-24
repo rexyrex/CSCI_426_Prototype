@@ -21,13 +21,13 @@ public class FireTrapScript : EnvironmentObject {
 	
 	// Update is called once per frame
 	void Update () {
-        if (isOn)
+        if (isOn) //Flame will grow if it isn't fully grown and will burn everything in it
         {
             counter += Time.deltaTime;
             if (!grown)
             {
                 float size = this.transform.localScale.x + Time.deltaTime*2;
-                if (size >= 1) grown = true;
+                if (size >= 1) grown = true; //Stop growing
                 this.transform.localScale = new Vector3(size, size, size);
             }
             Burn();
@@ -36,7 +36,7 @@ public class FireTrapScript : EnvironmentObject {
         else if (!grown)
         {
             float size = this.transform.localScale.x - Time.deltaTime * 2;
-            if (size <= 0.1)
+            if (size <= 0.1) //Stop Shrinking
             {
                 grown = true;
                 mesh.enabled = false;
@@ -66,6 +66,9 @@ public class FireTrapScript : EnvironmentObject {
         if (!isOn) this.Actuate();
     }
 
+    // A new object has entered the flame
+    // I used a separate cube to check for colliders so that the fluctuating area of the fire isn't a factor.
+    // That cube has a script called FireBoxScript
     public void AddBurn(GameObject other)
     {
         Debug.Log("something to burn: " + other.tag);
@@ -73,11 +76,13 @@ public class FireTrapScript : EnvironmentObject {
         else if (other.tag == "breakable") Destroy(other.gameObject);
     }
 
+    // An object has left the flame
     public void RemoveBurn(GameObject other)
     {
         if (burning.Contains(other.gameObject)) burning.Remove(other.gameObject);
     }
 
+    // Damage Everyone in the fire
     void Burn()
     {
         for(int i = 0; i < burning.Count; i++)
