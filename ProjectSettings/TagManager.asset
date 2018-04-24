@@ -22,6 +22,8 @@ TagManager:
   - Chain
   - breakable
   - RopeIgnore
+  - Rail
+
   layers:
   - Default
   - TransparentFX

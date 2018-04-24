@@ -19,7 +19,7 @@ public class ChainJoint : MonoBehaviour {
     {
         if (other.gameObject.tag == "Enemy")
         {
-			other.gameObject.GetComponent<BasicEnemyScript>().OnHitByChain(1, GlobalDataController.gdc.chainCharged);
+			other.gameObject.GetComponent<BasicColorEnemyScript>().OnHitByChain(1, GlobalDataController.gdc.chainCharged);
         }else if (other.gameObject.tag == "breakable")
         {
             other.gameObject.GetComponent<BreakScript>().Break();
