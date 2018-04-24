@@ -21,6 +21,7 @@ TagManager:
   - ClosingWall2
   - Chain
   - breakable
+  - RopeIgnore
   layers:
   - Default
   - TransparentFX
