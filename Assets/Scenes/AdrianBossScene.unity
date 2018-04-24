@@ -483,6 +483,71 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e8c57f89ef187b4bbafd0d94eedf351, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &278474534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 278474536}
+  - component: {fileID: 278474535}
+  m_Layer: 0
+  m_Name: Spotlight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &278474535
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278474534}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 0
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Intensity: 70
+  m_Range: 10
+  m_SpotAngle: 13
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &278474536
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278474534}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 5.3, y: 7.9, z: 13.1}
+  m_LocalScale: {x: 13, y: 13, z: 13}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &284646277
 GameObject:
   m_ObjectHideFlags: 0
@@ -2456,11 +2521,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b2ff53e82caf649a0bbd6bafc85216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  directionalLight: {fileID: 1983656508}
+  spotLight: {fileID: 278474534}
   healthBar: {fileID: 456936571}
   closeMat: {fileID: 2100000, guid: 0c45b8293e17ae348b0bd70f59a9a901, type: 2}
   medMat: {fileID: 2100000, guid: 148c3bb31e862e141926871e604c6367, type: 2}
   farMat: {fileID: 2100000, guid: d9a83b7eb849ada47bcd63bd7a1d5878, type: 2}
   invincibleMat: {fileID: 2100000, guid: 48320b49af8978940a9561e91eae3373, type: 2}
+  lavaMat: {fileID: 2100000, guid: e08446c16286d264286248000ef77e4d, type: 2}
   closeEnemyObject: {fileID: 1084414284649774, guid: daa5a200c9c21854aaa8c02337da05a8,
     type: 2}
   mediumEnemyObject: {fileID: 1778059781510776, guid: 93359d9a1f554e04cafb23e12999510e,
@@ -4380,7 +4448,7 @@ Transform:
   m_LocalScale: {x: 13, y: 13, z: 13}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2012248263
 Prefab:
