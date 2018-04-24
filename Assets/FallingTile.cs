@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingTile : MonoBehaviour {
-    public Renderer[] mats;
+    public MeshRenderer[] mats;
     protected Vector3 movement;
-    protected BoxCollider bc;
+    protected Collider bc;
     protected Color activeCol;
     protected Color currCol;
     protected Color endCol;
@@ -18,11 +18,12 @@ public class FallingTile : MonoBehaviour {
     void Start()
     {
         //movement = new Vector3(0, this.transform.position.y*2+0.1f, 0);
-        bc = this.GetComponent<BoxCollider>();
-        activeCol = new Color(240, 240, 240, 1);
-        endCol = new Color(40, 40, 40, 0);
+        bc = this.GetComponent<MeshCollider>();
+        activeCol = new Color(100, 100, 100, 1);
+        currCol = activeCol;
         actuating = false;
         reverting = false;
+        SetCol();
     }
 
     // Update is called once per frame
@@ -30,57 +31,61 @@ public class FallingTile : MonoBehaviour {
     {
         if (actuating)
         {
-            counter -= Time.deltaTime;
-            float colorVal = currCol.r;
+            counter += Time.deltaTime;
             float ratio = (fadeTime - counter) / fadeTime;
-            if(ratio > 1)
+            if(ratio < 0)
             {
                 actuating = false;
                 reverting = true;
-                return;
+                fadeTime = fadeTime / 2;
+                bc.enabled = false;
             }
-
+            else
+            {
+                float colorVal = 50 + (100 - 50) * ratio;
+                currCol = new Color(colorVal, colorVal, colorVal, 1 - ratio);
+                SetCol();
+            }
         }
         if (reverting)
         {
-            counter += Time.deltaTime;
-            if (counter >= fadeTime)
+            counter -= Time.deltaTime;
+            float ratio = (fadeTime - counter) / fadeTime;
+            if (counter < 0)
             {
                 reverting = false;
+                fadeTime *= 2;
                 currCol = activeCol;
                 SetCol();
                 bc.enabled = true;
             }
             else
             {
-                float colorVal = currCol.r;
-                currCol = new Color(colorVal, colorVal, colorVal, currCol.a + Time.deltaTime / fadeTime);
+                float colorVal = 50 + (100 - 50) * ratio;
+                currCol = new Color(colorVal, colorVal, colorVal, 1 - ratio);
+                SetCol();
             }
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player1Tag" || collision.gameObject.tag == "Player2Tag") Actuate();
+        if (collision.gameObject.tag == "Player1Tag" || collision.gameObject.tag == "Player2Tag")
+        {
+            if(!actuating && !reverting) this.Actuate();
+        }
     }
 
     public void Actuate()
     {
-        bc.enabled = false;
         actuating = true;
         reverting = false;
-        counter = fadeTime;
-    }
-
-    public void Revert()
-    {
-        reverting = false;
-
         counter = 0;
     }
 
     void SetCol()
     {
+        Debug.Log("seeting color");
         for( int i = 0; i < mats.Length; i++)
         {
             mats[i].material.color = currCol;

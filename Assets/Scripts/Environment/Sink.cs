@@ -10,7 +10,10 @@ public class Sink : EnvironmentObject {
     protected Color fadeCol;
     protected bool reverting;
     public float fadeTime;
+    public float fadedTime;
     protected float counter;
+    bool actuating;
+    bool faded;
 
 	// Use this for initialization
 	void Start () {
@@ -20,10 +23,38 @@ public class Sink : EnvironmentObject {
         activeCol = mat.material.color;
         fadeCol = new Color(activeCol.r, activeCol.g, activeCol.b, 0.5f);
         reverting = false;
+        actuating = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if(faded)
+        {
+            counter += Time.deltaTime;
+            if (counter > fadedTime)
+            {
+                reverting = true;
+                faded = false;
+                counter = 0;
+            }
+        }
+
+        if (actuating)
+        {
+            float a = mat.material.color.a;
+            a = a - Time.deltaTime / fadeTime;
+            if (a < 0)
+            {
+                Actuate();
+                faded = true;
+                actuating = false;
+                counter = 0;
+            }
+            Color newCol = new Color(activeCol.r, activeCol.g, activeCol.b, a);
+            mat.material.color = newCol;
+            counter += Time.deltaTime;
+        }
+
         if (reverting)
         {
             if (counter >= fadeTime)
@@ -35,7 +66,7 @@ public class Sink : EnvironmentObject {
             else
             {
                 float a = mat.material.color.a;
-                Color newCol = new Color(activeCol.r, activeCol.g, activeCol.b, a + 0.5f * Time.deltaTime / fadeTime);
+                Color newCol = new Color(activeCol.r, activeCol.g, activeCol.b, a + Time.deltaTime / fadeTime);
                 mat.material.color = newCol;
                 counter += Time.deltaTime;
             }
@@ -56,5 +87,14 @@ public class Sink : EnvironmentObject {
         //this.transform.Translate(movement);
         reverting = true;
         counter = 0;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(!actuating && !reverting)
+        {
+            counter = 0;
+            this.actuating = true;
+        }
     }
 }
