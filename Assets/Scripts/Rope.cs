@@ -266,7 +266,12 @@ public class Rope : MonoBehaviour
             {
                 Physics.IgnoreCollision(n.GetComponent<Collider>(), toIgnore[j].GetComponent<Collider>());
             }
-            
+
+            GameObject[] objects = GameObject.FindGameObjectsWithTag("RopeIgnore");
+            for (int j = 0; j < objects.Length; j++)
+            {
+                Physics.IgnoreCollision(n.GetComponent<Collider>(), objects[j].GetComponent<Collider>());
+            }
 
             nodes.Add(n);
             materials.Add(n.GetComponent<Renderer>().material);
