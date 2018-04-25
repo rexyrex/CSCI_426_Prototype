@@ -7809,6 +7809,21 @@ Prefab:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1377473474}
+    - target: {fileID: 114782786956613650, guid: 5ed6733018f920240af0d2e25053ad6f,
+        type: 2}
+      propertyPath: maxClosestDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114782786956613650, guid: 5ed6733018f920240af0d2e25053ad6f,
+        type: 2}
+      propertyPath: maxMiddleDistance
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114782786956613650, guid: 5ed6733018f920240af0d2e25053ad6f,
+        type: 2}
+      propertyPath: maxFarthestDistance
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ed6733018f920240af0d2e25053ad6f, type: 2}
   m_IsPrefabParent: 0

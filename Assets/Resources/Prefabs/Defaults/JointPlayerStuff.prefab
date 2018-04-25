@@ -502,11 +502,11 @@ MonoBehaviour:
   emissionIntensityCharged: 5
   charged: 1
   unchargedColor: {r: 0.6292942, g: 0.62426996, b: 0.68586624, a: 0}
-  maxClosestDistance: 7.5
+  maxClosestDistance: 5
   closestColor: {r: 0, g: 1, b: 0, a: 0}
-  maxMiddleDistance: 15
+  maxMiddleDistance: 8
   middleColor: {r: 0, g: 0.90065145, b: 0.9742775, a: 0}
-  maxFarthestDistance: 22.5
+  maxFarthestDistance: 11
   farthestColor: {r: 0.7544387, g: 0, b: 1, a: 0}
   deathColor: {r: 1, g: 0, b: 0, a: 0}
   player1: {fileID: 1747413915559092}

@@ -135,7 +135,12 @@ public class Rope : MonoBehaviour
 
     void FixedUpdate()
     {
-        playerDistance = Vector3.Distance(player1.transform.position, player2.transform.position);
+        //playerDistance = Vector3.Distance(player1.transform.position, player2.transform.position);
+        playerDistance = 0;
+        for(int i = 0; i < nodes.Count; i++)
+        {
+            if (i + 1 < nodes.Count) playerDistance += Vector3.Distance(nodes[i].transform.position, nodes[i + 1].transform.position)/3;
+        }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
