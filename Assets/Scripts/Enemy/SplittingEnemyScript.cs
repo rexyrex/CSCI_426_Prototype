@@ -14,7 +14,9 @@ public class SplittingEnemyScript : BasicEnemyScript {
     Quaternion quat = new Quaternion(0, 0, 0, 0);
 
     // Use this for initialization
-    void Start () {
+    protected override void Start () {
+        base.Start();
+
         lastSplit = Time.time;
 		if (Random.value < 0.5) {
 			isBreeder = false;

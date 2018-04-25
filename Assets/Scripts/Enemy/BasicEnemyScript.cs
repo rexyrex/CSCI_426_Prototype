@@ -5,10 +5,17 @@ using UnityEngine;
 public abstract class BasicEnemyScript : MonoBehaviour {
     protected float damageDone = 10;
 
-	public abstract void OnHitByChain (float damage, bool isChainActive);
+
+    protected EnemySFX sfx;
+    public abstract void OnHitByChain(float damage, bool isChainActive);
 
 
-    public float Damage()
+    protected virtual void Start()
+    {
+        sfx = GetComponent<EnemySFX>();
+    }
+
+    public virtual float Damage()
     {
         return damageDone;
     }

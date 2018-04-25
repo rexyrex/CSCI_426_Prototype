@@ -34,8 +34,10 @@ public class ColorSpawnBossScript : BasicEnemyScript {
 	bossMode mode;
 
 	// Use this for initialization
-	void Start () {
-		changeModeLast = Time.time;
+	protected override void Start () {
+        base.Start();
+
+        changeModeLast = Time.time;
 		lastHitTime = Time.time;
 		spawnEnemyLast = Time.time;
 		mode = bossMode.Invincible;

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23428996550176054}
   - component: {fileID: 54997874719318200}
   - component: {fileID: 114822077467647448}
+  - component: {fileID: 114378554997098630}
   m_Layer: 0
   m_Name: Node
   m_TagString: Chain
@@ -100,6 +101,17 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &114378554997098630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1933193081488060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd84558a3cd3a4c2398a52906b7a4f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114822077467647448
 MonoBehaviour:
   m_ObjectHideFlags: 1

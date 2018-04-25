@@ -9,7 +9,9 @@ public class SuicideBombEnemyScript : BasicEnemyScript {
     //public ParticleSystem explosion;
 
 
-	void Start () {
+	protected override void Start () {
+        base.Start();
+
         timeInitialized = Time.time;
 	}
 	

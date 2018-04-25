@@ -15,7 +15,8 @@ public class SizeChangeEnemyScript : BasicEnemyScript {
     private float hitFreq = 0.02f;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+        base.Start();
         lastHitTime = Time.time;
         gameObject.transform.localScale = new Vector3(health / fullHealth + 0.5f, health / fullHealth + 0.5f, health / fullHealth + 0.5f);
     }

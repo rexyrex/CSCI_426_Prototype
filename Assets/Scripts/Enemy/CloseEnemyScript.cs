@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CloseEnemyScript : BasicColorEnemyScript {
 	public GameObject manaObject;
-	public GameObject explosion;
 	bool dead;
 	private float spawnTime;
 
@@ -30,24 +29,12 @@ public class CloseEnemyScript : BasicColorEnemyScript {
 		Destroy (gameObject);
 	}
 
-	public override void Die(){
-		Vector3 pos = gameObject.transform.position;
-		Quaternion quat = new Quaternion(0, 0, 0, 0);
-		Instantiate (explosion, pos, quat);
-		pos.y += 2;
-		//GameObject inst = Instantiate(manaObject, pos, quat);
-
-		Destroy (gameObject);
-	}
-
 	public override void OnHitByChain(float damage, bool isChainActive)
 	{
 		if (GlobalDataController.gdc.chainState == GlobalDataController.ChainDistance.Close && isChainActive &&!dead) {
 			dead = true;
 			GetComponent<SphereCollider> ().enabled = false;
 			Die ();
-
-
 		}
 	}
 }
