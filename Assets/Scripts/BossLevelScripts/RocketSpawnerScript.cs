@@ -16,6 +16,15 @@ public class RocketSpawnerScript : MonoBehaviour {
 	float scaleIncFreq = 2f;
 	float scaleLastInc;
 
+	public int locIndex;
+	public Transform[] locations;
+	Vector3 dest;
+
+	float lastLocChange;
+	float locChangeFreq = 4f;
+
+	bool isMoving;
+
 	// Use this for initialization
 	void Start () {
 		p1 = GameObject.FindGameObjectWithTag ("Player1Tag");
@@ -23,12 +32,30 @@ public class RocketSpawnerScript : MonoBehaviour {
 		p1Inside = false;
 		p2Inside = false;
 		scaleLastInc = Time.time;
-
+		dest = locations [locIndex].position;
+		lastLocChange = Time.time;
+		isMoving = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
+		if (Time.time - lastLocChange > locChangeFreq) {
+			float step = 40 * Time.deltaTime;
+			transform.position = Vector3.MoveTowards(transform.position, dest, step);
+			if (Vector3.Distance (transform.position, dest) < 0.1) {
+				lastLocChange = Time.time;
+				updateLocIndex ();
+			}
+		}
 
+	}
+
+	void updateLocIndex(){
+		if (locIndex >= locations.Length - 1) {
+			locIndex = 0;
+		} else {
+			locIndex++;
+		}
 	}
 
 	void OnTriggerEnter(Collider other){
