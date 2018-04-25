@@ -65,6 +65,8 @@ public class BoulderBossScript : MonoBehaviour {
 	bossMode colorMode;
 	public GameObject boulder;
 
+	public Text dmgtext;
+
 	public void spawnNewBoulder(){
 		int n = Random.Range (0, boulderSpawnPoints.Length);
 		Vector3 pos = boulderSpawnPoints [n].position;
@@ -91,6 +93,22 @@ public class BoulderBossScript : MonoBehaviour {
 		player2Obj = GameObject.FindGameObjectWithTag ("Player2Tag");
 
 
+	}
+
+	float fadeOutTime = 2f;
+	public void FadeOut()
+	{
+		StartCoroutine(FadeOutRoutine());
+	}
+	private IEnumerator FadeOutRoutine()
+	{ 
+		Text text = dmgtext;
+		Color originalColor = Color.red;
+		for (float t = 0.01f; t < fadeOutTime; t += Time.deltaTime)
+		{
+			text.color = Color.Lerp(originalColor, Color.clear, Mathf.Min(1, t/fadeOutTime));
+			yield return null;
+		}
 	}
 
 	// Update is called once per frame
@@ -222,24 +240,24 @@ public class BoulderBossScript : MonoBehaviour {
 	{
 		
 		int rand = Random.Range (1500,3000);
-		if (GlobalDataController.gdc.chainCharged && collision.gameObject.tag == "BoulderTag") {
+		if (collision.gameObject.tag == "BoulderTag") {
 			switch (colorMode) {
 			case bossMode.Close:
-				if (GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Close) {
+				if (GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Close || GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Rainbow) {
 					getDamaged (rand);
 					collision.gameObject.GetComponent<ColorBoulderScript> ().destroyBoulder (1);
 					spawnNewBoulder ();
 				}
 				break;
 			case bossMode.Medium:
-				if (GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Medium) {
+				if (GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Medium || GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Rainbow) {
 					getDamaged (rand);
 					collision.gameObject.GetComponent<ColorBoulderScript> ().destroyBoulder (2);
 					spawnNewBoulder ();
 				}
 				break;
 			case bossMode.Far:
-				if (GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Far) {
+				if (GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Far || GlobalDataController.gdc.boulderState == GlobalDataController.ChainDistance.Rainbow) {
 					getDamaged (rand);
 					collision.gameObject.GetComponent<ColorBoulderScript> ().destroyBoulder (3);
 					spawnNewBoulder ();
@@ -255,9 +273,14 @@ public class BoulderBossScript : MonoBehaviour {
 	public void getDamaged(int damage){
 		if(Time.time - lastHitTime > hitFreq)
 		{
-
+			
+			FadeOut ();
 			//Debug.Log("Health is now: " + health);
+			if (colorMode == bossMode.Chase) {
+				damage = damage * 2;
+			}
 			health -= damage;
+			dmgtext.text = damage.ToString();
 			//DamageTextController.CreateFloatingText (damage.ToString(), gameObject.transform);
 			lastHitTime = Time.time;
 		}

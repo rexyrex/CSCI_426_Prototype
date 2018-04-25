@@ -23,7 +23,7 @@ public class RocketScript : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		//Debug.Log ("COLLIDEDEDEDED");
 		if (other.tag == "Boss" ) {
-			int damage = Random.Range (350,700);
+			int damage = Random.Range (700,2222);
 			other.gameObject.GetComponent<BoulderBossScript> ().getDamaged (damage);
 			Vector3 pos = gameObject.transform.position;
 			Quaternion quat = new Quaternion(0, 0, 0, 0);

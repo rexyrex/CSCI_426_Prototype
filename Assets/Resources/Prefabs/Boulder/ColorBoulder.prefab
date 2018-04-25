@@ -241,3 +241,4 @@ MonoBehaviour:
   medMat: {fileID: 2100000, guid: 148c3bb31e862e141926871e604c6367, type: 2}
   farMat: {fileID: 2100000, guid: d330a5e9f561d3743ba6729c47d47705, type: 2}
   invincibleMat: {fileID: 2100000, guid: 48320b49af8978940a9561e91eae3373, type: 2}
+  rainbowMat: {fileID: 2100000, guid: 6e28cc8cb2dcba341a55445e1fc11916, type: 2}

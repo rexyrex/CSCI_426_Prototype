@@ -15,7 +15,7 @@ public class GlobalDataController : MonoBehaviour {
 
 	public GameObject gameOverCanvas;
 
-	public enum ChainDistance {Close, Medium, Far};
+	public enum ChainDistance {Close, Medium, Far,Rainbow};
 	public bool chainCharged;
 
     //Player Health

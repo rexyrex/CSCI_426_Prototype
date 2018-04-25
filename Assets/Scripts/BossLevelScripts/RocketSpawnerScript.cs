@@ -21,7 +21,7 @@ public class RocketSpawnerScript : MonoBehaviour {
 	Vector3 dest;
 
 	float lastLocChange;
-	float locChangeFreq = 4f;
+	float locChangeFreq = 27f;
 
 	bool isMoving;
 
@@ -40,7 +40,7 @@ public class RocketSpawnerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Time.time - lastLocChange > locChangeFreq) {
-			float step = 40 * Time.deltaTime;
+			float step = 30 * Time.deltaTime;
 			transform.position = Vector3.MoveTowards(transform.position, dest, step);
 			if (Vector3.Distance (transform.position, dest) < 0.1) {
 				lastLocChange = Time.time;
@@ -56,6 +56,7 @@ public class RocketSpawnerScript : MonoBehaviour {
 		} else {
 			locIndex++;
 		}
+		dest = locations [locIndex].position;
 	}
 
 	void OnTriggerEnter(Collider other){

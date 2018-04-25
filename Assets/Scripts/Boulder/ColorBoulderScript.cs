@@ -13,7 +13,7 @@ public class ColorBoulderScript : MonoBehaviour {
 
 	GameObject boss;
 	float distanceFromBoss;
-	float distanceLimit = 50;
+	float distanceLimit = 45;
 
 	// Use this for initialization
 	void Start () {
@@ -25,11 +25,11 @@ public class ColorBoulderScript : MonoBehaviour {
 			canPush.Add(s);
 
 		GlobalDataController.gdc.lastBoulderState = GlobalDataController.gdc.boulderState;
-		int r = Random.Range (0, 3);
+		int r = Random.Range (0, 4);
 		int lastBoulderState = (int)GlobalDataController.gdc.lastBoulderState;
 
 		while (r == lastBoulderState) {
-			r = Random.Range (0, 3);
+			r = Random.Range (0, 4);
 		}
 
 		switch (r) {
@@ -42,8 +42,11 @@ public class ColorBoulderScript : MonoBehaviour {
 		case 2:
 			GlobalDataController.gdc.boulderState = GlobalDataController.ChainDistance.Far;
 			break;
+		case 3:
+			GlobalDataController.gdc.boulderState = GlobalDataController.ChainDistance.Rainbow;
+			break;
 		default:
-			GlobalDataController.gdc.boulderState = GlobalDataController.ChainDistance.Close;
+			GlobalDataController.gdc.boulderState = GlobalDataController.ChainDistance.Rainbow;
 			break;
 		}
 	}
@@ -87,6 +90,7 @@ public class ColorBoulderScript : MonoBehaviour {
 			Instantiate (explosionFar, pos, quat);
 			break;
 		default :
+			Instantiate (explosionFar, pos, quat);
 			break;
 		}
 
