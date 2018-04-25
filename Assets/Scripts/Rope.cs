@@ -129,7 +129,7 @@ public class Rope : MonoBehaviour
 		} else if (playerDistance <= maxFarthestDistance) {
 			currentColor = farthestColor;
 			GlobalDataController.gdc.chainState = GlobalDataController.ChainDistance.Far;
-		}else
+		}else if (playerDistance > maxFarthestDistance)
             currentColor = deathColor;
     }
 
