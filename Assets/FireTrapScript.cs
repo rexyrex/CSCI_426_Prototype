@@ -23,6 +23,7 @@ public class FireTrapScript : EnvironmentObject {
 	void Update () {
         if (isOn) //Flame will grow if it isn't fully grown and will burn everything in it
         {
+            Debug.Log("the flame should be on");
             counter += Time.deltaTime;
             if (!grown)
             {
@@ -50,6 +51,7 @@ public class FireTrapScript : EnvironmentObject {
         this.transform.localScale = new Vector3(0, 0, 0);
         isOn = true;
         grown = false;
+        counter = 0;
         //"about to enable mesh"
         mesh.enabled = true;
         Debug.Log("was mesh enabled: "+ mesh.enabled);
@@ -88,9 +90,9 @@ public class FireTrapScript : EnvironmentObject {
         for(int i = 0; i < burning.Count; i++)
         {
             Debug.Log("Burning " + burning[i].tag);
-            if (burning[i].tag == "Boss") burning[i].GetComponent<ChaseBossScript>().getDamaged(1500);
-            else if (burning[i].tag == "Player1Tag") burning[i].GetComponent<Player1Script>().Damage(0);
-            else burning[i].GetComponent<Player2Script>().Damage(0);
+            if (burning[i].tag == "Boss") burning[i].GetComponent<ChaseBossScript>().getDamaged(500);
+            else if (burning[i].tag == "Player1Tag") burning[i].GetComponent<Player1Script>().Damage(0.1f);
+            else burning[i].GetComponent<Player2Script>().Damage(0.1f);
         }
     }
 }

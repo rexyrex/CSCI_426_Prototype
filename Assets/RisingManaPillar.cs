@@ -45,7 +45,7 @@ public class RisingManaPillar : BreakScript {
     // Break the object
     public override void Break()
     {
-        if(GlobalDataController.gdc.chainState == killDist)
+        if(GlobalDataController.gdc.chainState == killDist && GlobalDataController.gdc.chainCharged)
         {
             Vector3 pos = gameObject.transform.position;
             Quaternion quat = new Quaternion(0, 0, 0, 0);

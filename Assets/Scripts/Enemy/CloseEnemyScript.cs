@@ -30,7 +30,7 @@ public class CloseEnemyScript : BasicColorEnemyScript {
 		Quaternion quat = new Quaternion(0, 0, 0, 0);
 		Instantiate (explosion, pos, quat);
 		pos.y += 2;
-		GameObject inst = Instantiate(manaObject, pos, quat);
+		//GameObject inst = Instantiate(manaObject, pos, quat);
 
 		Destroy (gameObject);
 	}
