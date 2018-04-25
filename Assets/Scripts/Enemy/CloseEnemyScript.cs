@@ -13,7 +13,12 @@ public class CloseEnemyScript : BasicColorEnemyScript {
 		dead = false;
 		spawnTime = Time.time;
 	}
-	
+
+	public override string getType()
+	{
+		return "close";
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (Time.time - spawnTime > lifeTimer) {

@@ -9,6 +9,8 @@ public class RocketSpawnerScript : MonoBehaviour {
 	bool p1Inside;
 	bool p2Inside;
 
+	public string killenemytype;
+
 	public GameObject rocket;
 
 	float scaleIncFreq = 2f;
@@ -32,19 +34,21 @@ public class RocketSpawnerScript : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		//Debug.Log ("COLLIDEDEDEDED");
 		if (other.tag == "Player1Tag" ||  other.tag == "Player2Tag") {
-			FireRocket ();
+			//FireRocket ();
 
 		}
 
-		if (other.tag == "Enemy" ) {
-			other.gameObject.GetComponent<BasicColorEnemyScript> ().Die ();
-			FireRocket ();
-
+		if (other.tag == "Enemy") {
+			if (other.gameObject.GetComponent<BasicColorEnemyScript> ().getType () == killenemytype) {
+				other.gameObject.GetComponent<BasicColorEnemyScript> ().Die ();
+				FireRocket ();
+			}
 		}	
 	}
 
 	void FireRocket(){
 		Vector3 pos = gameObject.transform.position;
+		pos.y += 3;
 		Quaternion quat = new Quaternion(0, 0, 0, 0);
 		Instantiate (rocket, pos, quat);
 	}

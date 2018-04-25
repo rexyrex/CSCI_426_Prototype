@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class BoulderBossScript : MonoBehaviour {
-	float changeColorModeFreq = 20f;
+	float changeColorModeFreq = 22f;
 	float changeColorModeLast;
 	Vector3 dashDest;
 	bool lastModeWasColor;
@@ -13,7 +13,11 @@ public class BoulderBossScript : MonoBehaviour {
 	float chaseDuration = 7f;
 	float chaseLastTime;
 
-	float changeDashDestFreq = 2.5f;
+	float chaseInitSpeed = 22f;
+	float chaseMaxSpeed = 30f;
+	float chaseSpeedIncrement = 1f;
+
+	float changeDashDestFreq = 1.7f;
 	float changeDashDestLast;
 
 	GameObject player1Obj;
@@ -23,7 +27,7 @@ public class BoulderBossScript : MonoBehaviour {
 	public GameObject spotLight;
 
 
-	float spawnEnemyFreq = 6f;
+	float spawnEnemyFreq = 7f;
 	float spawnEnemyLast;
 
 	float changeLocFreq = 10f;
@@ -103,12 +107,14 @@ public class BoulderBossScript : MonoBehaviour {
 				lastModeWasColor = false;
 				Debug.Log ("chase start");
 			} else if (true || colorMode == bossMode.Invincible) { // this always triggers (temporary)
+
 				directionalLight.GetComponent<Light> ().intensity = 1f;
 				spotLight.GetComponent<Light> ().intensity = 0f;
-				int randIndex = Random.Range (0, 2);
+				int randIndex = Random.Range (0, 3);
 				colorMode = (bossMode)randIndex;
 				lastModeWasColor = true;
 			} else {
+
 				colorMode = bossMode.Invincible;
 				lastModeWasColor = true;
 			}
@@ -125,7 +131,7 @@ public class BoulderBossScript : MonoBehaviour {
 
 		if (Time.time - changeDashDestLast > changeDashDestFreq && bossAgent.enabled == false) {
 			changeDashDestLast = Time.time;
-			int playerInd = Random.Range (1, 2);
+			int playerInd = Random.Range (1, 3);
 			Vector3 spotTrans;
 			if (playerInd == 1) {
 				dashDest = player1Obj.transform.position;
@@ -150,17 +156,17 @@ public class BoulderBossScript : MonoBehaviour {
 		}
 
 		if (bossAgent.enabled == false) {
-			float step = 17 * Time.deltaTime;
+			float step = chaseInitSpeed * 7f*(Time.time-changeDashDestLast)/changeDashDestFreq * Time.deltaTime;
 			transform.position = Vector3.MoveTowards(transform.position, dashDest, step);
 		}
 
 
-		if (Time.time - spawnEnemyLast > spawnEnemyFreq && colorMode==bossMode.Invincible) {
+		if (Time.time - spawnEnemyLast > spawnEnemyFreq && bossAgent.enabled==true) {
 			spawnEnemyLast = Time.time;
 			Vector3 pos = gameObject.transform.position;
 			Vector3 manapos = new Vector3 (pos.x, pos.y + 10, pos.x);
 			Quaternion quat = new Quaternion(0, 0, 0, 0);
-			int spawnType = Random.Range (0, 2);
+			int spawnType = Random.Range (0, 3);
 			//spawnEnemyFreq = Random.Range (1, 10);
 			GameObject inst;
 			switch (spawnType) {
@@ -215,7 +221,7 @@ public class BoulderBossScript : MonoBehaviour {
 	void OnCollisionEnter(Collision collision)
 	{
 		
-		int rand = Random.Range (420,1700);
+		int rand = Random.Range (1500,3000);
 		if (GlobalDataController.gdc.chainCharged && collision.gameObject.tag == "BoulderTag") {
 			switch (colorMode) {
 			case bossMode.Close:
@@ -246,7 +252,7 @@ public class BoulderBossScript : MonoBehaviour {
 		}
 	}
 
-	void getDamaged(int damage){
+	public void getDamaged(int damage){
 		if(Time.time - lastHitTime > hitFreq)
 		{
 

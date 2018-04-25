@@ -39,6 +39,7 @@ public class GlobalDataController : MonoBehaviour {
 
 	//boulder state
 	public ChainDistance boulderState;
+	public ChainDistance lastBoulderState;
 
     //Player Positions
     public Vector3 p1pos;
@@ -79,6 +80,7 @@ public class GlobalDataController : MonoBehaviour {
         tooFar = false;
 		chainState = ChainDistance.Close;
 		boulderState = ChainDistance.Close;
+		lastBoulderState = ChainDistance.Close;
     }
 
     public void UpdatePlayerStats()

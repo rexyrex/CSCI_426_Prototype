@@ -13,6 +13,11 @@ public class MediumEnemyScript : BasicColorEnemyScript {
 		dead = false;
 		spawnTime = Time.time;
 	}
+
+	public override string getType()
+	{
+		return "medium";
+	}
 	
 	// Update is called once per frame
 	void Update () {

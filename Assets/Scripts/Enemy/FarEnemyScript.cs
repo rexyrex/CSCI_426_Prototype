@@ -13,6 +13,11 @@ public class FarEnemyScript : BasicColorEnemyScript {
 		dead = false;
 		spawnTime = Time.time;
 	}
+
+	public override string getType()
+	{
+		return "far";
+	}
 	
 	// Update is called once per frame
 	void Update () {

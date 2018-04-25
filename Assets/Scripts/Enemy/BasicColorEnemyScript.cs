@@ -15,6 +15,8 @@ public abstract class BasicColorEnemyScript : MonoBehaviour {
 
 	public abstract void Die();
 
+	public abstract string getType ();
+
 	public float Damage()
 	{
 		return damageDone;

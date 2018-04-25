@@ -23,6 +23,29 @@ public class ColorBoulderScript : MonoBehaviour {
 		canPush = new HashSet<string>();
 		foreach (var s in canPushObjects)
 			canPush.Add(s);
+
+		GlobalDataController.gdc.lastBoulderState = GlobalDataController.gdc.boulderState;
+		int r = Random.Range (0, 3);
+		int lastBoulderState = (int)GlobalDataController.gdc.lastBoulderState;
+
+		while (r == lastBoulderState) {
+			r = Random.Range (0, 3);
+		}
+
+		switch (r) {
+		case 0:
+			GlobalDataController.gdc.boulderState = GlobalDataController.ChainDistance.Close;
+			break;
+		case 1:
+			GlobalDataController.gdc.boulderState = GlobalDataController.ChainDistance.Medium;
+			break;
+		case 2:
+			GlobalDataController.gdc.boulderState = GlobalDataController.ChainDistance.Far;
+			break;
+		default:
+			GlobalDataController.gdc.boulderState = GlobalDataController.ChainDistance.Close;
+			break;
+		}
 	}
 
 	// Update is called once per frame
