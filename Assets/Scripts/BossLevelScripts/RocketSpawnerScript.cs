@@ -43,6 +43,11 @@ public class RocketSpawnerScript : MonoBehaviour {
 				other.gameObject.GetComponent<BasicColorEnemyScript> ().Die ();
 				FireRocket ();
 			}
+
+			if (killenemytype == "mana") {
+				other.gameObject.GetComponent<BasicColorEnemyScript> ().Die ();
+				GlobalDataController.gdc.currentMana += 40;
+			}
 		}	
 	}
 

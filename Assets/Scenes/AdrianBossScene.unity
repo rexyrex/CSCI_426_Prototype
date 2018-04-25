@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac43f462c511db49885cf6716589167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killenemytype: None
+  killenemytype: mana
   rocket: {fileID: 1509465962590800, guid: 53385ddf76d4c26439120448b83a5e9a, type: 2}
 --- !u!23 &632992729
 MeshRenderer:
