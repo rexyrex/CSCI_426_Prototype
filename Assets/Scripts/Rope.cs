@@ -48,6 +48,8 @@ public class Rope : MonoBehaviour
 
     static readonly Vector3 connectedAnchor = new Vector3(-5.960462e-08f, -0.9999939f, 0f);
 
+    bool ropeAlive;
+
 	// Use this for initialization
 	void Start () {
         nodes = new List<GameObject>();
@@ -135,7 +137,16 @@ public class Rope : MonoBehaviour
 
     void FixedUpdate()
     {
-        //playerDistance = Vector3.Distance(player1.transform.position, player2.transform.position);
+        if (GlobalDataController.gdc.gameover) 
+        {
+            if (ropeAlive)
+            {
+                ropeAlive = false;
+                Destroy(gameObject);
+                return;
+            }        
+        }
+
         playerDistance = 0;
         for(int i = 0; i < nodes.Count; i++)
         {
@@ -151,22 +162,6 @@ public class Rope : MonoBehaviour
         {
             AddNodeToMiddle();
         }
-
-        /*Vector3 b = player2.transform.position - player1.transform.position;
-        b.y = 0;
-        for(int i = 0; i < rigidbodies.Count; i++)
-        {
-            Vector3 z = b.normalized * b.magnitude * i / rigidbodies.Count;
-            Vector3 direction = (z - rigidbodies[i].transform.position);
-            direction.y = 0;
-            //float orthDist = Mathf.Abs(Vector3.Magnitude(a) * Mathf.Cos(Vector3.Angle(a, b) * Mathf.PI / 180));
-            //Vector3 a = rigidbodies[i].transform.position - player1.transform.position;
-            //a.y = 0;
-            //float dist = Mathf.Abs(Vector3.Magnitude(a) * Mathf.Sin(Vector3.Angle(a, b) * Mathf.PI / 180));//Absolute distance from the line between the players
-            
-            rigidbodies[i].AddForce(direction / 100);
-        }*/
-            //UpdateRopeYPosition();
     }
 
     void SetAutoConfigureConnectedAnchor(int i, bool val)
@@ -267,17 +262,6 @@ public class Rope : MonoBehaviour
             Physics.IgnoreCollision(n.GetComponent<Collider>(), p1col);
             Physics.IgnoreCollision(n.GetComponent<Collider>(), p2col);
 
-            for(int j = 0; j < toIgnore.Length; j++)
-            {
-                Physics.IgnoreCollision(n.GetComponent<Collider>(), toIgnore[j].GetComponent<Collider>());
-            }
-
-            GameObject[] objects = GameObject.FindGameObjectsWithTag("RopeIgnore");
-            for (int j = 0; j < objects.Length; j++)
-            {
-                Physics.IgnoreCollision(n.GetComponent<Collider>(), objects[j].GetComponent<Collider>());
-            }
-
             nodes.Add(n);
             materials.Add(n.GetComponent<Renderer>().material);
 
@@ -293,6 +277,11 @@ public class Rope : MonoBehaviour
             foreach (var c2 in colls)
                 if (c1 != c2)
                     Physics.IgnoreCollision(c1, c2);
+
+        foreach (var o in toIgnore) {
+            if (o != null)
+                IgnoreCollisionsWith(o.GetComponent<Collider>());
+        }
 
         foreach (var n in nodes)
         {
@@ -333,6 +322,8 @@ public class Rope : MonoBehaviour
             jointsBackward[i].connectedBody = rigidbodies[i - 1];
             jointsForward[i - 1].connectedBody = rigidbodies[i];
         }
+
+        ropeAlive = true;
     }
 
     Vector3 GetDirectionalIncrement(GameObject node)

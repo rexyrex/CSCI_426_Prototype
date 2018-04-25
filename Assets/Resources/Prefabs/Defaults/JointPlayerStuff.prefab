@@ -65,6 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4820451739275898}
   - component: {fileID: 114542876331855990}
+  - component: {fileID: 82832281242946454}
   m_Layer: 0
   m_Name: RopeSpawner
   m_TagString: Untagged
@@ -162,7 +163,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1945230911572872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.8, y: -13, z: 7.1}
+  m_LocalPosition: {x: -12, y: 1.65, z: 30.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4148123618671544}
@@ -412,7 +413,7 @@ Rigidbody:
   m_Mass: 90
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -427,7 +428,7 @@ Rigidbody:
   m_Mass: 130
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
@@ -468,6 +469,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82832281242946454
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802120699315044}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114450602997080168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -497,16 +578,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pingPong: 0
-  toIgnore: []
+  toIgnore:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   emissionIntensityUncharged: 0
   emissionIntensityCharged: 5
   charged: 1
   unchargedColor: {r: 0.6292942, g: 0.62426996, b: 0.68586624, a: 0}
-  maxClosestDistance: 5
+  maxClosestDistance: 12
   closestColor: {r: 0, g: 1, b: 0, a: 0}
-  maxMiddleDistance: 8
+  maxMiddleDistance: 18
   middleColor: {r: 0, g: 0.90065145, b: 0.9742775, a: 0}
-  maxFarthestDistance: 11
+  maxFarthestDistance: 25
   farthestColor: {r: 0.7544387, g: 0, b: 1, a: 0}
   deathColor: {r: 1, g: 0, b: 0, a: 0}
   player1: {fileID: 1747413915559092}
@@ -531,7 +631,7 @@ MonoBehaviour:
   playerId: -1
   speed: 25
   maxSpeed: 12
-  acceleration: 15
+  acceleration: 5
   jumpHeight: 5
   rotationSpeedScale: 20
 --- !u!114 &114578373606735680
@@ -619,7 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: -1
-  speed: 25
+  speed: 17.5
   maxSpeed: 12
   acceleration: 10
   jumpHeight: 7
@@ -631,7 +731,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747413915559092}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fef63d1994f87549ba3103d5c6909a5, type: 3}
   m_Name: 
@@ -643,7 +743,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772553722866964}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fef63d1994f87549ba3103d5c6909a5, type: 3}
   m_Name: 
