@@ -497,6 +497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pingPong: 0
+  toIgnore: []
   emissionIntensityUncharged: 0
   emissionIntensityCharged: 5
   charged: 1
@@ -529,8 +530,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: -1
   speed: 25
-  maxSpeed: 0.8
-  acceleration: 4
+  maxSpeed: 12
+  acceleration: 15
   jumpHeight: 5
   rotationSpeedScale: 20
 --- !u!114 &114578373606735680
@@ -619,8 +620,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: -1
   speed: 25
-  maxSpeed: 1
-  acceleration: 5
+  maxSpeed: 12
+  acceleration: 10
   jumpHeight: 7
   rotationSpeedScale: 20
   pullIntensity: 10
