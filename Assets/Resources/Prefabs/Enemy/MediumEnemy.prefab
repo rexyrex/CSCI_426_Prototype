@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 54358831715791628}
   - component: {fileID: 114394198795405044}
   - component: {fileID: 82221674840475574}
+  - component: {fileID: 114090873203944280}
   m_Layer: 0
   m_Name: MediumEnemy
   m_TagString: Enemy
@@ -111,9 +112,10 @@ AudioSource:
   m_GameObject: {fileID: 1778059781510776}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243894540555208478, guid: 5fddf8e5c909c481eb084201947ab0bc,
+    type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -183,6 +185,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114090873203944280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1778059781510776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a04598634884e37bf690590dc27f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popEffects:
+  - {fileID: 8300000, guid: 170cb47eb63bc0d49b116d1ac0b13f82, type: 3}
+  - {fileID: 8300000, guid: 1bdca56a889386449899fe990eaef5b6, type: 3}
+  - {fileID: 8300000, guid: 3c209915cd5aea3498b6ebc123ebd5ae, type: 3}
+  spawnEffects:
+  - {fileID: 8300000, guid: d45a457e0e8810a4393f8f69afbcaeba, type: 3}
 --- !u!114 &114355933707358078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,8 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcac64b2978d5054a9632738aee35780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaObject: {fileID: 1979483110936726, guid: 1dbf91b582d83764186ed9889e8a1ee4, type: 2}
   explosion: {fileID: 1450095327165696, guid: 1b7aef4c8b0f0c4439024402ad721e56, type: 2}
+  manaObject: {fileID: 1979483110936726, guid: 1dbf91b582d83764186ed9889e8a1ee4, type: 2}
 --- !u!135 &135692343997946074
 SphereCollider:
   m_ObjectHideFlags: 1

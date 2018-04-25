@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 54092595275657140}
   - component: {fileID: 114786453563118010}
   - component: {fileID: 82193146801446108}
+  - component: {fileID: 114395485100418318}
   m_Layer: 0
   m_Name: FarEnemy
   m_TagString: Enemy
@@ -194,6 +195,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d202bc38105ae4e9ed1be483145b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114395485100418318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1084414284649774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a04598634884e37bf690590dc27f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popEffects:
+  - {fileID: 8300000, guid: 170cb47eb63bc0d49b116d1ac0b13f82, type: 3}
+  - {fileID: 8300000, guid: 220dd163951b43b4dad8d23d43d77e8b, type: 3}
+  - {fileID: 8300000, guid: bbdd7b0756abc28468d735f4a19c4623, type: 3}
+  spawnEffects:
+  - {fileID: 8300000, guid: d45a457e0e8810a4393f8f69afbcaeba, type: 3}
 --- !u!114 &114786453563118010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,8 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd97d1151dd9f2d4d939421ca2860aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaObject: {fileID: 1979483110936726, guid: 1dbf91b582d83764186ed9889e8a1ee4, type: 2}
   explosion: {fileID: 1450095327165696, guid: 1b7aef4c8b0f0c4439024402ad721e56, type: 2}
+  manaObject: {fileID: 1979483110936726, guid: 1dbf91b582d83764186ed9889e8a1ee4, type: 2}
 --- !u!135 &135174496216563778
 SphereCollider:
   m_ObjectHideFlags: 1
