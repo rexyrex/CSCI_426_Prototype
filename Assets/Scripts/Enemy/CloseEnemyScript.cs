@@ -8,7 +8,9 @@ public class CloseEnemyScript : BasicColorEnemyScript {
 	private float spawnTime;
 
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
+        base.Start();
+
 		dead = false;
 		spawnTime = Time.time;
 	}

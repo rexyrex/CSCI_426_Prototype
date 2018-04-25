@@ -12,12 +12,25 @@ public abstract class BasicColorEnemyScript : BasicEnemyScript {
     {
         base.Start();
 
-//        sfx.PlaySpawn();
+        if (sfx != null)
+        {
+            Debug.LogErrorFormat("SFX object was not initialized for enemy {0}", gameObject.name);
+            sfx.PlaySpawn();
+        }
     }
 
 	public abstract void KillOff ();
 
-    public virtual void Die() {
+
+	public abstract string getType ();
+
+    public override float Damage()
+    {
+        return damageDone;
+    }
+
+    public void Die()
+    {
         Vector3 pos = gameObject.transform.position;
         Quaternion quat = new Quaternion(0, 0, 0, 0);
         Instantiate(explosion, pos, quat);
@@ -26,16 +39,13 @@ public abstract class BasicColorEnemyScript : BasicEnemyScript {
         gameObject.GetComponent<Collider>().enabled = false;
         gameObject.GetComponent<Renderer>().enabled = false;
 
-        //sfx.PlayPop();
+        float destroyIn = 0.0f;
+        if (sfx != null)
+        {
+            sfx.PlayPop();
+            destroyIn = sfx.PopDelay;
+        }
 
-        //print(sfx.PopDelay);
-        //Destroy(gameObject, sfx.PopDelay);
+        Destroy(gameObject, destroyIn);
     }
-
-	public abstract string getType ();
-
-	public override float Damage()
-	{
-		return damageDone;
-	}
 }

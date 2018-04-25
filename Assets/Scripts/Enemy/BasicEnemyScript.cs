@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemySFX))]
 public abstract class BasicEnemyScript : MonoBehaviour {
     protected float damageDone = 10;
 
@@ -14,6 +15,7 @@ public abstract class BasicEnemyScript : MonoBehaviour {
     {
         sfx = GetComponent<EnemySFX>();
     }
+
 
     public virtual float Damage()
     {
