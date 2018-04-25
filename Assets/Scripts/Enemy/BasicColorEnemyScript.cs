@@ -12,7 +12,7 @@ public abstract class BasicColorEnemyScript : BasicEnemyScript {
     {
         base.Start();
 
-        sfx.PlaySpawn();
+//        sfx.PlaySpawn();
     }
 
 	public abstract void KillOff ();
@@ -26,10 +26,10 @@ public abstract class BasicColorEnemyScript : BasicEnemyScript {
         gameObject.GetComponent<Collider>().enabled = false;
         gameObject.GetComponent<Renderer>().enabled = false;
 
-        sfx.PlayPop();
+        //sfx.PlayPop();
 
-        print(sfx.PopDelay);
-        Destroy(gameObject, sfx.PopDelay);
+        //print(sfx.PopDelay);
+        //Destroy(gameObject, sfx.PopDelay);
     }
 
 	public abstract string getType ();
