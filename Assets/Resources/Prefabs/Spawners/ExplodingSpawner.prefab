@@ -51,8 +51,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1656298717297236}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.94, y: 1.2198126e-17, z: -3.57}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.100464, y: -26.928959, z: -3.8424072}
   m_LocalScale: {x: 1, y: 0.6, z: 1}
   m_Children:
   - {fileID: 4677936394579262}
@@ -138,9 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c8c63e0f440ec4d8101b2560132807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObjects: []
-  distanceFromPlayerToSpawn: 30
-  id: 0
+  spawnObjects:
+  - {fileID: 1084414284649774, guid: daa5a200c9c21854aaa8c02337da05a8, type: 2}
+  - {fileID: 1778059781510776, guid: 93359d9a1f554e04cafb23e12999510e, type: 2}
+  - {fileID: 1084414284649774, guid: d36d3c87701f7ba4da3af0476af97b03, type: 2}
+  distanceFromPlayerToSpawn: 50
+  id: 2
   enemySpawnFreq: 0.5
   waveTime: 4
   difficulty: 0

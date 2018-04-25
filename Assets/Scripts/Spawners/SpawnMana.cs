@@ -9,10 +9,10 @@ public class SpawnMana : MonoBehaviour {
     public GameObject[] spawned;
     public int max = 5;
     float lastTime = 0.0f;
-    public float prx = 5;
-    public float nrx = 5;
-    public float prz = 5;
-    public float nrz = 5;
+    float prx = 5;
+    float nrx = -5;
+    float prz = 5;
+    float nrz = -5;
     float y;
     /*float prx;
     float nrx;
@@ -43,10 +43,12 @@ public class SpawnMana : MonoBehaviour {
             {
                 if (spawned[i] == null || spawned[i].Equals(null))
                 {
-                    float x = Random.Range(nrx, prx);
-                    float z = Random.Range(nrz, prz);
+					int scale = 2;
+					float x = Random.Range(nrx*scale, prx*scale);
+					float z = Random.Range(nrz*scale, prz*scale);
 
-                    spawned[i] = Instantiate(manaType, new Vector3(x, y, z), quat);
+					Debug.Log (x + "," + z);
+					spawned[i] = Instantiate(manaType, gameObject.transform.position + new Vector3(x, y, z), quat);
                     lastTime = Time.time;
                     break;
                 }
