@@ -4559,6 +4559,7 @@ GameObject:
   - component: {fileID: 1294819625}
   - component: {fileID: 1294819627}
   - component: {fileID: 1294819626}
+  - component: {fileID: 1294819628}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -4596,7 +4597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.76551723, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.76551723, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4607,7 +4608,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 3
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
     m_MaxSize: 300
     m_Alignment: 4
@@ -4623,6 +4624,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1294819624}
+--- !u!114 &1294819628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1294819624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1303167001
 Prefab:
   m_ObjectHideFlags: 0
@@ -5085,6 +5100,11 @@ Prefab:
       propertyPath: camZPos
       value: -7
       objectReference: {fileID: 0}
+    - target: {fileID: 82379353289237326, guid: e75db6ea9b4fd4b5496ff2ee049b4137,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5138195c1d88d4c40914f1f9f6d2eea6, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e75db6ea9b4fd4b5496ff2ee049b4137, type: 2}
   m_IsPrefabParent: 0

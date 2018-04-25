@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/AdrianBossScene.unity
+    guid: b4a8ccbc0c4f5e746bcb1a62442679e1
+  - enabled: 0
+    path: Assets/Scenes/MattBossScene.unity
+    guid: 4c62075c59c4f29489316c9d34845791
+  - enabled: 1
+    path: Assets/Scenes/Room3.unity
+    guid: d4f62d84237125249a2bfbfc321c6892
