@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 54092595275657140}
   - component: {fileID: 114080854669283212}
   - component: {fileID: 82431480525579182}
+  - component: {fileID: 114477543603050798}
   m_Layer: 0
   m_Name: CloseEnemy
   m_TagString: Enemy
@@ -194,8 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490775d7f34f7c9448b8ce61cf7de080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaObject: {fileID: 1979483110936726, guid: 1dbf91b582d83764186ed9889e8a1ee4, type: 2}
   explosion: {fileID: 1450095327165696, guid: 1b7aef4c8b0f0c4439024402ad721e56, type: 2}
+  manaObject: {fileID: 1979483110936726, guid: 1dbf91b582d83764186ed9889e8a1ee4, type: 2}
 --- !u!114 &114182632213955966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,6 +208,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d202bc38105ae4e9ed1be483145b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114477543603050798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1084414284649774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a04598634884e37bf690590dc27f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popEffects:
+  - {fileID: 8300000, guid: 170cb47eb63bc0d49b116d1ac0b13f82, type: 3}
+  spawnEffects:
+  - {fileID: 8300000, guid: d45a457e0e8810a4393f8f69afbcaeba, type: 3}
 --- !u!135 &135174496216563778
 SphereCollider:
   m_ObjectHideFlags: 1
